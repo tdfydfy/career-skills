@@ -1,0 +1,4 @@
+interface:
+  display_name: "新房买方异议成交"
+  short_description: "识别买方异议、拆解深因并生成可直接使用的中文话术"
+  default_prompt: "用 $saletricks-newhome-buyer 诊断新房买方异议，并生成一段中文、口语化、能推进下一步的回复。"
