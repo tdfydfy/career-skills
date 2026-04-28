@@ -1,0 +1,4 @@
+interface:
+  display_name: "总部营销对接"
+  short_description: "总部与地区营销对接、项目研判、周报、调价沟通和资源协调工作流。"
+  default_prompt: "请使用 marketing-liaison skill，按总部营销对接人的视角，帮我梳理地区/项目情况、汇报要点、策略判断或调价沟通材料。"
