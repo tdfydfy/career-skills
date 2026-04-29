@@ -2,10 +2,31 @@
 
 ## 目录
 
+- 学区合规总原则
 - `location-bad`
 - `location-school-weak`
 - `location-commute`
 - `location-immature`
+
+## 学区合规总原则
+
+学校与学区问题默认先按 [03-sales-response-principles.md](./03-sales-response-principles.md) 的合规口径处理。
+
+不能承诺“保证能读”“一定对口”“100%不变”。正确动作是用证据链建立概率判断：
+
+- 历史惯性：过去 3 到 5 年划片是否稳定；
+- 地理优势：项目到学校的距离和周边小区对比；
+- 容量逻辑：招生规模、片区新增人口、新盘压力；
+- 流程边界：最终以教育局或官方公布为准。
+
+可选技法：`tactic-evidence-chain` `tactic-compliance-reframe` `tactic-micro-close`。
+
+合规替代表达：
+
+- “保证能读” -> “根据过去几年情况看，稳定性较高”
+- “绝对是学区房” -> “项目目前在相关划片范围内”
+- “签合同就能入学” -> “交付落户后按政策流程报名”
+- “肯定不变” -> “板块边界较清晰，调整可能性相对低”
 
 ## `location-bad`
 

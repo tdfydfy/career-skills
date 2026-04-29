@@ -2,10 +2,22 @@
 
 ## 目录
 
+- 信任、市场与竞品总原则
 - `trust-developer`
 - `trust-delivery`
 - `trust-market-downturn`
 - `competition-compare`
+
+## 信任、市场与竞品总原则
+
+涉及开发商、交付、市场下行、竞品比较时，默认遵守 [03-sales-response-principles.md](./03-sales-response-principles.md)：
+
+- 信任靠可验证证据，不靠“放心吧”；
+- 市场下行不预测涨跌，把问题转回自住价值、持有周期和等待成本；
+- 竞品对比先承认事实优劣，再按客户需求排序；
+- 对手在客户硬条件上确实更强时，不硬踩对手，直接讲清取舍或换方案。
+
+可选技法：`tactic-evidence-chain` `tactic-compliance-reframe` `tactic-objective-compare` `tactic-need-ranking`。
 
 ## `trust-developer`
 

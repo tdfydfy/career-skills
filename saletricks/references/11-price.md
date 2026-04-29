@@ -2,10 +2,23 @@
 
 ## 目录
 
+- 价格谈判总原则
 - `price-total-high`
 - `price-unit-high`
 - `price-value-doubt`
 - `price-too-low`
+
+## 价格谈判总原则
+
+价格问题默认先按 [03-sales-response-principles.md](./03-sales-response-principles.md) 的支付力和阶梯放价逻辑处理。
+
+- 先问支付力：首付现金、月供上限、付款方式、出资结构、最终决策人；
+- 再判客户类型：硬约束型、软约束型、弹性型；
+- 再给价格动作：预算不足就换房源，预算匹配才做价值重塑或申请动作；
+- 不一次性亮底牌，按现场口径、经理申请、领导沟通、特殊申请分层表达；
+- 不虚构底价、领导特批、明天涨价、赠品或房源紧张。
+
+可选技法：`tactic-payment-probe` `tactic-staged-concession` `tactic-micro-close`。
 
 ## `price-total-high`
 

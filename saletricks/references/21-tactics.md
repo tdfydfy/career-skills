@@ -16,6 +16,13 @@
 - `tactic-third-party`
 - `tactic-switch`
 - `tactic-micro-close`
+- `tactic-customer-inventory`
+- `tactic-payment-probe`
+- `tactic-staged-concession`
+- `tactic-evidence-chain`
+- `tactic-compliance-reframe`
+- `tactic-objective-compare`
+- `tactic-need-ranking`
 
 ## `tactic-empathy`
 
@@ -101,6 +108,55 @@
 - 动作：只推进下一小步，不一次要求成交
 - 一句模板：这样，咱先别急着定，先把下一步最关键的动作做掉。
 
+## `tactic-customer-inventory`
+
+- 用在：客户盘点、跟进策略、阶段性客户小结、销售说“这个客户怎么跟”
+- 动作：先补齐客户身份、需求、预算、决策链、竞品、阶段、抗性，再判断 A/B/C/D 或暂不判级
+- 一句模板：现在先别急着给结论，我先补一个最关键的信息：影响他成交的到底是预算、家人意见，还是竞品比较？
+- 边界：信息不足时继续追问，不为了输出格式硬生成阶段性小结
+
+## `tactic-payment-probe`
+
+- 用在：客户问价格、首付、月供、最低价、优惠
+- 动作：先判断支付力和成交诚意，再谈具体价格动作
+- 一句模板：价格我可以帮您算细，但我先确认一下，您更卡的是首付现金，还是月供压力？
+- 边界：不把客户预算不足说成“咬咬牙”，明显不匹配时切换房源
+
+## `tactic-staged-concession`
+
+- 用在：客户进入价格谈判、要求折扣或赠品
+- 动作：按个人权限、经理权限、领导权限、特殊申请分层表达，让客户感到“争取过程”
+- 一句模板：我能直接给您的先按现场口径算；如果您今天确实能定，我再拿这个诚意去帮您找经理申请。
+- 边界：不得虚构底价、领导特批、明天涨价或不存在的赠品
+
+## `tactic-evidence-chain`
+
+- 用在：学校、学区、开发商、交付、规划、竞品事实等需要建立信任的场景
+- 动作：用可验证证据链代替空口承诺，优先讲历史、距离、容量、文件、进度、合同
+- 一句模板：这件事我不靠一句保证说服您，咱们就看三个事实：过去怎么划、距离有多近、学位压力大不大。
+- 边界：证据不足时降级表达为“从目前信息看”，不得说绝对确定
+
+## `tactic-compliance-reframe`
+
+- 用在：客户追问保证、升值、政策、学区、市场涨跌等高风险问题
+- 动作：承认不能承诺，再把话题转成概率、流程、边界和客户可控动作
+- 一句模板：这个我不能替政策打包票，但我们能把目前能查到的依据和您能提前准备的动作讲清楚。
+- 边界：合规表达不是回避，要给客户可判断的信息和下一步
+
+## `tactic-objective-compare`
+
+- 用在：客户拿竞品、新房、二手房、成熟盘比较
+- 动作：先承认对手优势，再比较客户在意的两个维度，不全盘否定
+- 一句模板：XX盘这个点确实有优势，我不否认；咱们就拿您最在意的两项放一起比。
+- 边界：只比较可验证维度，不编竞品缺陷
+
+## `tactic-need-ranking`
+
+- 用在：客户多个需求互相打架，或竞品越看越乱
+- 动作：让客户排出“必须项”和“可妥协项”，再决定推荐或放弃
+- 一句模板：学校、通勤、总价、户型、环境里，您最不能妥协的是哪两个？这个顺序定了，答案就清楚很多。
+- 边界：如果本项目无法满足客户第一硬条件，优先换方案
+
 ## 组合原则
 
 - 常规场景：`tactic-empathy + tactic-diagnose + tactic-tradeoff + tactic-micro-close`
@@ -109,5 +165,10 @@
 - 模糊异议：`tactic-empathy + tactic-threshold + tactic-micro-close`
 - 强化成交感：`tactic-empathy + tactic-loss-aversion + tactic-micro-close`
 - 摇摆客户：`tactic-empathy + tactic-future-self + tactic-tradeoff + tactic-micro-close`
+- 客户盘点：`tactic-customer-inventory + tactic-diagnose + tactic-micro-close`
+- 学区合规：`tactic-evidence-chain + tactic-compliance-reframe + tactic-micro-close`
+- 价格谈判：`tactic-payment-probe + tactic-staged-concession + tactic-micro-close`
+- 竞品对比：`tactic-objective-compare + tactic-need-ranking + tactic-micro-close`
+- 市场下行：`tactic-empathy + tactic-compliance-reframe + tactic-cost-of-wait + tactic-micro-close`
 - 真不匹配：`tactic-empathy + tactic-switch`
 - 想要一点巧劲：在第二步或第三步插入 `tactic-reverse`

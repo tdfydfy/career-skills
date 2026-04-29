@@ -1,7 +1,20 @@
 # 总索引
 
+## 默认总纲
+
+每次调用本 skill，先读 [03-sales-response-principles.md](./03-sales-response-principles.md)。它是默认前置规则，不是可选话术库，负责确定：
+
+- 是否需要先做客户盘点，而不是直接回异议；
+- 是否涉及具体项目，是否需要按项目自己的文档确认项目事实；
+- 信息不足时应该追问哪些关键项；
+- 是否满足生成阶段性客户小结的条件；
+- 学区、价格、政策、竞品和市场判断的合规边界；
+- 最终输出应采用“四段异议推进”还是“阶段性客户小结”。
+
 ## 快速路由
 
+- 销售应答总纲、客户盘点、阶段性客户小结、学区合规、竞品对比、价格谈判、市场下行抗性：默认先看 [03-sales-response-principles.md](./03-sales-response-principles.md)
+- 项目文档结构、默认模板和项目知识路由：涉及具体项目时看 [project-documents/README.md](../project-documents/README.md)
 - 产品条件异议：看 [10-product.md](./10-product.md)
 - 价格与价值异议：看 [11-price.md](./11-price.md)
 - 区位、通勤、学区、板块成熟度：看 [12-location.md](./12-location.md)
@@ -64,3 +77,9 @@
 | `trust-delivery` | 怕烂尾、怕交付不好、怕货不对板 | [16-trust-and-competition.md](./16-trust-and-competition.md) |
 | `trust-market-downturn` | 怕买了就跌、担心市场往下 | [16-trust-and-competition.md](./16-trust-and-competition.md) |
 | `competition-compare` | 旁边那个盘也在看、还没比完 | [16-trust-and-competition.md](./16-trust-and-competition.md) |
+| `sales-customer-review` | 盘点一下客户、分析客户需求、这个客户怎么跟、下一步怎么聊 | [03-sales-response-principles.md](./03-sales-response-principles.md) |
+| `sales-customer-summary` | 生成客户小结、阶段性总结、客户盘点结果 | [03-sales-response-principles.md](./03-sales-response-principles.md) |
+| `sales-school-compliance` | 能不能读某学校、学区会不会变、规划学校能不能上、对口是否稳定 | [03-sales-response-principles.md](./03-sales-response-principles.md) + [12-location.md](./12-location.md) |
+| `sales-price-negotiation` | 多少钱、最低价、优惠折扣、能不能便宜、送不送车位物业费 | [03-sales-response-principles.md](./03-sales-response-principles.md) + [11-price.md](./11-price.md) |
+| `sales-market-downturn` | 买了会不会跌、等市场稳了再买、二手房卖不掉、太贵不如将就 | [03-sales-response-principles.md](./03-sales-response-principles.md) + [16-trust-and-competition.md](./16-trust-and-competition.md) |
+| `sales-project-docs` | 项目文档、项目主卡、产品价格文档、项目知识地图、按项目口径回答 | [project-documents/README.md](../project-documents/README.md) |
