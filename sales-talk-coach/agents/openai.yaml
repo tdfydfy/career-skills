@@ -1,0 +1,4 @@
+interface:
+  display_name: "销售话术教练"
+  short_description: "模拟客户实战对练、话术合规评估与复盘反馈"
+  default_prompt: "使用 $sales-talk-coach 开始一次房地产销售话术实战对练，并在结束后给出结构化评估。"

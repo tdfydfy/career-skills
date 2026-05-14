@@ -9,4 +9,5 @@
 1. 客户盘点skill [链接](./sales-officer)
 
 ## 业务流程类
-1. 销售逼定说辞skill [链接](./salestricks)
+1. 销售逼定说辞skill [链接](./saletricks)
+2. 销售话术教练skill [链接](./sales-talk-coach)
