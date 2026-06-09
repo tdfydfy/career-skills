@@ -26,7 +26,67 @@
 
 ## 客户卡片结构
 
-内部生成时使用以下结构。不要在对练开始时向销售展示。
+内部生成时优先使用以下固定结构。不要在对练开始时向销售展示；对练开场只能公开 `visible_info`。
+
+```yaml
+visible_info:
+  visit_count:
+  visitor_count:
+  visible_gender_age:
+  clothing_and_items:
+  temperament_state:
+  visit_time:
+  current_event:
+hidden_profile:
+  family_structure:
+  direct_reason:
+  deep_motivation:
+  emotional_variable:
+budget:
+  total_price_range:
+  down_payment_capacity:
+  monthly_payment_tolerance:
+  fund_and_loan_status:
+  hard_constraint:
+decision_chain:
+  main_decider:
+  payer:
+  resident:
+  influencers:
+  black_white_roles:
+  family_conflict:
+needs:
+  target_units:
+  area:
+  floor_orientation:
+  view:
+  decoration_delivery:
+  must_have:
+  negotiable:
+objections:
+  primary_objection:
+  secondary_objections:
+  competitor_reference:
+  compliance_trap:
+reveal_rules:
+  easy_to_reveal:
+  reveal_after_trust:
+  reveal_only_if_asked:
+  should_not_reveal:
+scoring_focus:
+  training_theme:
+  expected_sales_actions:
+  deduction_points:
+```
+
+字段使用要求：
+
+- `visible_info` 必须具体到可直接写进开场，且不得出现真实预算、深层动机、谁拍板、谁出资、家庭矛盾、客户是否心动等隐藏字段。
+- `hidden_profile`、`budget`、`decision_chain`、`needs` 和 `objections` 必须互相匹配，不要生成互相冲突的客户画像。
+- `reveal_rules` 必须控制信息释放节奏：销售问对了也不一定一次性全说，只释放当前信任程度下合理的信息。
+- `scoring_focus` 只供复盘使用，对练过程中不得暴露。
+
+也可以用以下中文清单辅助填充细节。
 
 ```md
 客户卡片

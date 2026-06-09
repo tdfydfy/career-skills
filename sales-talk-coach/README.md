@@ -540,3 +540,4 @@
 - [evaluation-rubric.md](./references/evaluation-rubric.md)：评分标准
 - [feedback-report.md](./references/feedback-report.md)：复盘报告模板
 - [project-config-template.md](./references/project-config-template.md)：真实项目配置模板
+- [training-examples.md](./references/training-examples.md)：项目考核和客户对练的完整样例
