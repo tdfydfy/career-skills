@@ -1,6 +1,6 @@
 ---
 name: sales-talk-coach
-description: 房地产新房销售话术训练、项目说辞考核、客户接待对练、模拟客户沟通、优秀销售示范、销售新人培训、客户跟进能力训练和话术合规评估。Use when the user asks for “项目说辞考核”“讲盘考核”“沙盘说辞评分”“价值点覆盖检查”“开始销售对练”“模拟客户”“练话术”“扮演客户”“优秀销售怎么说”“示范一轮”“标杆话术”“考核销售回应”“评估销售话术”“训练异议处理”“做一轮销售培训”. First distinguish between project-pitch assessment and customer-reception roleplay; use hidden customer profiles, project facts, rubrics, and compliance boundaries to run training, scoring, feedback, and example demonstrations.
+description: 房地产新房销售话术训练、项目说辞考核、客户接待对练、模拟客户沟通、复访谈价、价格谈判、逼定成交、优秀销售示范、销售新人培训、客户跟进能力训练和话术合规评估。Use when the user asks for “项目说辞考核”“讲盘考核”“沙盘说辞评分”“价值点覆盖检查”“开始销售对练”“模拟客户”“练话术”“扮演客户”“复访谈价”“价格异议”“逼定成交”“锁房源”“成交前顾虑”“优秀销售怎么说”“示范一轮”“标杆话术”“考核销售回应”“评估销售话术”“训练异议处理”“做一轮销售培训”. First distinguish between project-pitch assessment and customer-reception roleplay; for customer roleplay confirm difficulty and stage one question at a time, then use hidden customer profiles, project facts, rubrics, and compliance boundaries to run training, scoring, feedback, and example demonstrations.
 ---
 
 # 销售话术教练
@@ -20,16 +20,48 @@ description: 房地产新房销售话术训练、项目说辞考核、客户接�
 ```
 
 - 用户回复 `1`、`项目说辞考核`、`讲盘`、`沙盘`、`价值点`：进入项目说辞考核。
-- 用户回复 `2`、`客户接待对练`、`模拟客户`、`对练`、`逼定`、`接待`：进入客户接待对练。
+- 用户回复 `2`、`客户接待对练`、`模拟客户`、`对练`、`接待`、`复访谈价`、`逼定成交`：进入客户接待对练的分步确认。
 - 用户要求“优秀销售怎么说”“示范”“标杆话术”：输出优秀销售示范，不启动长对练，除非用户同时要求对练。
 - 用户只要“一段话术/一句回应”：参考 `../saletricks` 的合规口径生成短回应，并提示可继续进入对练。
 - 用户说“体验一下/演示流程/试流程”：进入体验模式；允许跳过，但要说明正式考核或正式对练只按实际回答评分。
+
+## 客户对练分步确认
+
+客户接待对练启动前，必须一个问题一个问题确认。每次只要求用户回复 1 个数字；不要要求用户输入组合编号。
+
+第一步，确认难度：
+
+```text
+请选择本轮对练难度，回复 1、2 或 3：
+1. 初级：客户较配合，适合新人练流程。
+2. 中级：有预算、竞品或家人意见阻力。
+3. 高级：信息隐藏多，谈价和决策链复杂。
+```
+
+第二步，确认阶段：
+
+```text
+请选择本轮训练阶段，回复 1、2 或 3：
+1. 首访接待：破冰、挖需、项目介绍。
+2. 复访谈价：预算拆解、竞品压价、优惠试探。
+3. 逼定成交：锁房源、锁决策人、锁时间、认购前顾虑。
+```
+
+默认与跳过规则：
+
+- 用户只说“开始客户对练”或只回复 `2` 时，先问难度。
+- 用户已明确难度但未明确阶段时，只问阶段。
+- 用户已明确阶段但未明确难度时，只问难度。
+- 用户说“默认/随便”时，使用 `中级 + 首访接待`。
+- 用户已明确“高级逼定成交”“中级复访谈价”等完整要求时，可跳过确认直接开始。
 
 ## 运行状态机
 
 | 状态 | 用户信号 | 动作 | 输出纪律 |
 | --- | --- | --- | --- |
 | 未选模式 | 未明确 1/2 或任务 | 输出固定入口并等待选择 | 不开始训练 |
+| 客户难度确认中 | 已进入客户对练但未选难度 | 只输出难度菜单 | 只要求回复 1 个数字 |
+| 客户阶段确认中 | 已选难度但未选阶段 | 只输出阶段菜单 | 只要求回复 1 个数字 |
 | 项目考核中 | 用户讲项目、回答追问 | 扮演销售经理/教练，维护内部覆盖清单 | 每轮只问 1 到 2 个问题 |
 | 客户对练中 | 用户开始接待客户 | 扮演隐藏卡片中的客户 | 除首轮外只输出客户自然回复 |
 | 复盘中 | 用户说结束/复盘/评分/报告 | 停止扮演，输出结构化评估 | 不再继续客户台词 |
@@ -40,7 +72,7 @@ description: 房地产新房销售话术训练、项目说辞考核、客户接�
 只读取当前任务需要的文件，避免一次性加载全部资料。
 
 - 项目说辞考核：读取 [references/default-project.md](./references/default-project.md) 和 [references/project-pitch-rubric.md](./references/project-pitch-rubric.md)。用户提供真实项目资料时，先读取 [references/project-config-template.md](./references/project-config-template.md) 整理事实；未知字段不得编造。
-- 客户接待对练：读取 [references/customer-models.md](./references/customer-models.md) 和 [references/default-project.md](./references/default-project.md)。生成隐藏客户卡片后，只公开“现场可观察信息”。
+- 客户接待对练：读取 [references/customer-models.md](./references/customer-models.md) 和 [references/default-project.md](./references/default-project.md)。若阶段为复访谈价或逼定成交，再读取 [references/closing-and-negotiation.md](./references/closing-and-negotiation.md)。生成隐藏客户卡片后，只公开“现场可观察信息”。
 - 客户对练复盘：再读取 [references/evaluation-rubric.md](./references/evaluation-rubric.md) 和 [references/feedback-report.md](./references/feedback-report.md)。
 - 优秀销售示范：读取 [references/excellent-sales-demo.md](./references/excellent-sales-demo.md)，并沿用当前客户设定或用户指定场景。
 - 行为校准或用户要完整样例：读取 [references/training-examples.md](./references/training-examples.md)。
@@ -68,15 +100,18 @@ description: 房地产新房销售话术训练、项目说辞考核、客户接�
 
 ## 客户接待对练
 
-先生成隐藏客户卡片，再扮演客户。隐藏卡片必须符合 [references/customer-models.md](./references/customer-models.md) 的固定结构：
+先完成难度和阶段确认，再生成隐藏客户卡片并扮演客户。隐藏卡片必须符合 [references/customer-models.md](./references/customer-models.md) 的固定结构：
 
 ```yaml
+difficulty:          # 初级/中级/高级
+stage:               # 首访接待/复访谈价/逼定成交
 visible_info:        # 只放销售现场能看见或登记台能知道的信息
 hidden_profile:      # 家庭结构、购房动机、情绪状态
 budget:              # 总价、首付、月供、公积金、贷款资格
 decision_chain:      # 决策人、出资人、使用人、黑脸/白脸
 needs:               # 户型、面积、楼层、景观、交付、装修偏好
 objections:          # 价格、竞品、学区、市场、家人意见等
+closing_context:     # 复访谈价/逼定成交时的房源、报价、优惠、成交条件
 reveal_rules:        # 哪些信息在什么提问和信任程度下释放
 scoring_focus:       # 本轮训练重点和扣分观察点
 ```
@@ -84,7 +119,7 @@ scoring_focus:       # 本轮训练重点和扣分观察点
 开场规则：
 
 1. 没有真实项目资料时，使用默认项目“澜庭序”。
-2. 第一条输出使用固定格式：`已进入客户接待对练。本轮按默认项目澜庭序，我将扮演客户，你直接回复我即可。`
+2. 第一条输出使用固定格式：`已进入客户接待对练。本轮按默认项目澜庭序，难度为<难度>，阶段为<阶段>。我将扮演客户，你直接回复我即可。`
 3. 随后列出 3 到 6 条“现场可观察信息”，只包含来访次数、人数、可见性别和大致年龄、穿着状态、到访时间、当前事件。
 4. 再以客户身份发出第一句话，保持自然、克制、真实。
 5. 从第二轮开始，只输出客户会说的话；不要夹带分析、评分、教学提示或内部设定。
