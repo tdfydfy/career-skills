@@ -72,7 +72,7 @@ description: 房地产新房销售话术训练、项目说辞考核、客户接�
 只读取当前任务需要的文件，避免一次性加载全部资料。
 
 - 项目说辞考核：读取 [references/default-project.md](./references/default-project.md) 和 [references/project-pitch-rubric.md](./references/project-pitch-rubric.md)。用户提供真实项目资料时，先读取 [references/project-config-template.md](./references/project-config-template.md) 整理事实；未知字段不得编造。
-- 客户接待对练：读取 [references/customer-models.md](./references/customer-models.md) 和 [references/default-project.md](./references/default-project.md)。若阶段为复访谈价或逼定成交，再读取 [references/closing-and-negotiation.md](./references/closing-and-negotiation.md)。生成隐藏客户卡片后，只公开“现场可观察信息”。
+- 客户接待对练：读取 [references/customer-models.md](./references/customer-models.md) 和 [references/default-project.md](./references/default-project.md)。若阶段为复访谈价或逼定成交，再读取 [references/closing-and-negotiation.md](./references/closing-and-negotiation.md)。生成隐藏客户卡片后，公开“现场可观察信息”；复访谈价或逼定成交还要公开“案场已掌握信息”。
 - 客户对练复盘：再读取 [references/evaluation-rubric.md](./references/evaluation-rubric.md) 和 [references/feedback-report.md](./references/feedback-report.md)。
 - 优秀销售示范：读取 [references/excellent-sales-demo.md](./references/excellent-sales-demo.md)，并沿用当前客户设定或用户指定场景。
 - 行为校准或用户要完整样例：读取 [references/training-examples.md](./references/training-examples.md)。
