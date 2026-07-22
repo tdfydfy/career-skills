@@ -1,0 +1,40 @@
+contract: fact-record
+version: 0.1.0
+
+id: null
+information_type: fact | metric | assumption | observation | inference | forecast | commitment
+statement: null
+
+scope:
+  company: null
+  region: null
+  project_name: null
+  property_type: null
+  period: null
+
+source:
+  title: null
+  source_type: system | document | approval | meeting | interview | field-research | external-data
+  owner: null
+  source_date: null
+  retrieved_at: null
+  location: null
+
+quality:
+  evidence_level: A | B | C | D
+  verification_status: verified | provisional | disputed | stale | missing
+  confidence: high | medium | low
+  conflicts: []
+
+assumption_control:
+  reason: null
+  impact_if_wrong: null
+  validation_action: null
+  validation_owner: null
+  validation_due_date: null
+
+authorization:
+  internal_use: null
+  external_use: null
+  approved_by: null
+  valid_until: null

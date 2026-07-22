@@ -1,0 +1,52 @@
+contract: content-brief
+version: 0.1.0
+
+identity:
+  project_name: null
+  content_id: null
+  content_type: copy | graphic | image | video | live | sales-material
+  channel: null
+  owner: null
+  deadline: null
+
+objective:
+  business_goal: null
+  target_action: null
+  success_metrics: []
+
+audience:
+  primary_segment: null
+  current_awareness: null
+  key_question: null
+  key_objection: null
+
+message:
+  single_core_message: null
+  supporting_messages: []
+  tone: null
+  call_to_action: null
+
+facts:
+  approved_facts: []
+  evidence_ids: []
+  prohibited_or_unconfirmed_claims: []
+  mandatory_disclosures: []
+
+assets:
+  required: []
+  available: []
+  rights_status: []
+
+production:
+  format: null
+  dimensions_or_duration: null
+  variants: []
+  source_file_required: null
+
+review:
+  business_reviewer: null
+  fact_reviewer: null
+  brand_reviewer: null
+  compliance_reviewer: null
+  publisher: null
+  final_version: null

@@ -1,0 +1,63 @@
+contract: project-context
+version: 0.2.0
+
+identity:
+  project_name: null
+  city: null
+  region: null
+  company: null
+  as_of_date: null
+
+classification:
+  property_type: null
+  sales_stage: null
+  operating_status: normal | key-difficult | tail | undetermined
+  attention_flags: []
+  strategic_role:
+    primary: null
+    secondary: []
+  market_condition: null
+  sales_mode: null
+  organization_level: null
+
+objectives:
+  horizon: null
+  primary_objective: null
+  target_sales_amount: null
+  target_sales_units: null
+  target_collection_amount: null
+  target_profit: null
+  target_inventory_reduction: null
+
+project_facts:
+  location: null
+  product: null
+  customer: null
+  inventory: null
+  price: null
+  display: null
+  competition: null
+  team: null
+  launch_and_supply_plan: null
+  sales: null
+  collection: null
+  marketing_expense: null
+  milestones: []
+
+constraints:
+  financial: []
+  legal_and_compliance: []
+  product_and_delivery: []
+  organization_and_resources: []
+  approval_authority: []
+
+evidence:
+  - id: null
+    fact: null
+    source: null
+    source_date: null
+    verified: false
+    confidence: null
+
+assumptions: []
+data_gaps: []

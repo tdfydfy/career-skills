@@ -1,0 +1,170 @@
+case:
+  id: launch-price-synthetic-001
+  notice: 全部公司、城市、项目、政策、竞品、客户和财务数据均为虚构，仅用于技能前测，不得对外使用。
+  company: 华澜地产澄州公司
+  project: 云栖澜庭
+  city: 澄州市
+  district: 东湾新区
+  report_date: 2026-07-20
+  planned_launch_date: 2026-07-26
+  startup_meeting_date: 2026-03-01
+  opening_price_review_date: 2026-07-20
+
+project:
+  land_acquired_at: 2026-02-10
+  land_area_sqm: 36000
+  floor_area_ratio: 1.8
+  residential_saleable_area_sqm: 57680
+  residential_units: 448
+  land_floor_price_yuan_per_sqm: 8800
+  land_payment_yuan: 570000000
+  product: 4栋17F精装小高层、4栋11F精装洋房
+  parking_spaces: 538
+  parking_ratio: "1:1.20"
+  commercial_saleable_area_sqm: 1500
+  decoration_cost_yuan_per_sqm:
+    small_highrise: 2200
+    garden_house: 2600
+
+startup_baseline:
+  residential_average_price_yuan_per_sqm: 22500
+  small_highrise_average_price_yuan_per_sqm: 21000
+  garden_house_average_price_yuan_per_sqm: 24277
+  residential_value_yuan: 1297800000
+  commercial_average_price_yuan_per_sqm: 30000
+  commercial_value_yuan: 45000000
+  parking_value_yuan: 43000000
+  full_project_value_yuan: 1385800000
+  full_investment_interest_net_profit_yuan: 142000000
+  residential_net_profit_yuan: 130000000
+  residential_cost_profit_rate: 0.104
+  residential_gross_margin: 0.178
+  residential_net_margin: 0.1002
+  cost_profit_rate: 0.108
+  gross_margin: 0.182
+  net_margin: 0.1025
+  irr: 0.185
+  land_payment_recovery_date: 2026-09
+  cashflow_recovery_date: 2027-04
+  annual_contract_target_yuan: 700000000
+
+current_finance_model:
+  version: FIN-SYN-20260718
+  status: 虚拟财务已确认
+  commercial_value_yuan: 45000000
+  parking_value_yuan: 45900000
+  full_investment_interest_net_profit_yuan: 151000000
+  residential_net_profit_yuan: 139000000
+  residential_cost_profit_rate: 0.109
+  residential_gross_margin: 0.183
+  residential_net_margin: 0.1048
+  cost_profit_rate: 0.113
+  gross_margin: 0.187
+  net_margin: 0.1065
+  irr: 0.191
+  land_payment_recovery_date: 2026-09
+  cashflow_recovery_date: 2027-03
+  annual_contract_target_yuan: 720000000
+
+milestones:
+  - {date: 2026-04-18, event: 一展, content: 城市展厅和品牌馆开放, startup_variance_days: 0}
+  - {date: 2026-05-23, event: 二展, content: 售楼处和125㎡样板间开放, startup_variance_days: -5}
+  - {date: 2026-06-28, event: 三展, content: 示范区和132㎡、168㎡样板间开放, startup_variance_days: 3}
+  - {date: 2026-06-01, event: 验资, content: 验资50万元, cumulative_customers: 310}
+  - {date: 2026-06-20, event: 冻资, content: 冻资20万元并释放2%冻资优惠, cumulative_customers: 235}
+  - {date: 2026-07-05, event: 认筹, content: 认筹5万元并释放1%认筹优惠, cumulative_customers: 184}
+  - {date: 2026-07-24, event: 取证, content: 预计G1、Y1、Y3共156套取证}
+  - {date: 2026-07-26, event: 首开, content: 线上签到、线下摇号选房}
+
+market_12_months:
+  period: 2025-07至2026-06
+  city_supply_sqm: [42000, 48000, 55000, 60000, 58000, 45000, 32000, 30000, 38000, 54000, 71000, 87000]
+  city_transactions_sqm: [39000, 41000, 43000, 46000, 44000, 40000, 35000, 37000, 45000, 54000, 63000, 73000]
+  city_average_price: [20500, 20600, 20750, 20800, 20700, 20550, 20400, 20450, 20600, 20850, 21000, 21150]
+  district_supply_sqm: [12000, 15000, 18000, 20000, 16000, 13000, 10000, 8000, 11000, 16000, 21000, 25000]
+  district_transactions_sqm: [11000, 12000, 13000, 14000, 13000, 12000, 10000, 11000, 13000, 17000, 20000, 25000]
+  district_inventory_sqm: 128000
+  district_inventory_months: 9.0
+  city_inventory_sqm: 510000
+  city_inventory_months: 10.9
+
+synthetic_policy:
+  notice: 纯虚构政策，仅用于报告结构测试。
+  presale: 主体施工达到形象进度三分之一且资料齐备后可申请预售许可
+  price_filing: 首次备案后30日内原则上不得下调备案均价超过5%
+  mortgage: 首套最低首付20%，二套最低首付30%
+  purchase_restriction: 本区不限购
+  signing: 认购后7日内签约，网签房源与备案价格受系统校验
+  transfer: 取得不动产权证满2年后方可转让
+  bundling: 不得捆绑销售车位、装修升级包或其他商品
+
+competitors:
+  - name: 澄庐壹号
+    status: 在售
+    product: 精装小高层/洋房
+    area_range: 132-190㎡
+    average_price_yuan_per_sqm: 24600
+    remaining_units: 112
+    recent_three_month_average_sales: 20
+    competitive_level: 一级
+  - name: 东岸云府
+    status: 在售
+    product: 精装高层/小高层
+    area_range: 105-143㎡
+    average_price_yuan_per_sqm: 21800
+    remaining_units: 165
+    recent_three_month_average_sales: 25
+    competitive_level: 一级
+  - name: 水岸和鸣
+    status: 在售
+    product: 毛坯高层
+    area_range: 118-139㎡
+    average_price_yuan_per_sqm: 20900
+    remaining_units: 94
+    recent_three_month_average_sales: 18
+    competitive_level: 二级
+  - name: 东湾序
+    status: 待售
+    product: 精装小高层
+    area_range: 125-165㎡
+    expected_price_yuan_per_sqm: 23500
+    expected_launch_date: 2026-09
+    competitive_level: 一级
+  - name: 滨江家园
+    status: 二手房
+    product: 次新住宅
+    area_range: 95-145㎡
+    average_price_yuan_per_sqm: 18500
+    recent_month_average_sales: 12
+    competitive_level: 三级
+
+customer_summary:
+  verified: 310
+  frozen: 235
+  subscribed_unique: 184
+  ratings: {A: 72, B+: 34, B: 26, B-: 18, C+: 14, C: 10, C-: 6, D: 4}
+  first_choice: {105㎡小高层: 45, 125㎡小高层: 42, 132㎡洋房: 53, 168㎡洋房: 44}
+  unconverted_frozen: 51
+
+launch_target:
+  conversion_assumption: 0.60
+  units: 108
+  contract_amount_yuan: 337487500
+  sell_through_rate: 0.6923
+  by_building:
+    G1: {target_units: 50, target_contract_amount_yuan: 124217500, target_subscription: 84, current_subscription: 87}
+    Y1: {target_units: 32, target_contract_amount_yuan: 100510080, target_subscription: 54, current_subscription: 53}
+    Y3: {target_units: 26, target_contract_amount_yuan: 112759920, target_subscription: 44, current_subscription: 44}
+
+parking:
+  total: 538
+  expected_sales: 430
+  expected_value_yuan: 45900000
+  categories:
+    A: {planned: 90, expected_sales: 86, average_price_yuan: 130000}
+    B: {planned: 190, expected_sales: 170, average_price_yuan: 110000}
+    C: {planned: 190, expected_sales: 140, average_price_yuan: 95000}
+    D: {planned: 68, expected_sales: 34, average_price_yuan: 80000}
+  opening_batch: {offered: 180, target_sales: 100, target_amount_yuan: 11000000}
+  subscribed_customer_intent: {clear_yes: 96, likely: 32, no: 38, not_surveyed: 18}
+  finance_model: PARK-SYN-20260718

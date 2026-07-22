@@ -1,0 +1,91 @@
+contract: deliverable-package
+version: 0.2.0
+
+metadata:
+  deliverable_id: null
+  title: null
+  project_name: null
+  period: null
+  audience: null
+  author_or_owner: null
+  version: null
+  as_of_date: null
+
+executive_summary:
+  conclusion: null
+  business_status: null
+  primary_conflicts: []
+  recommendation: null
+  decisions_needed: []
+
+context:
+  objectives: []
+  scope: null
+  constraints: []
+
+strategy_thesis:
+  company_intent: null
+  project_task: null
+  core_conflicts: []
+  core_opportunities: []
+  chosen_path: null
+  rejected_paths: []
+  not_doing: []
+
+reasoning_chain:
+  - decision_question: null
+    evidence_ids: []
+    facts_and_findings: []
+    inference: null
+    business_implication: null
+    strategy_choice: null
+    resulting_actions: []
+    target_impacts: []
+    budget_impact: null
+    assumptions: []
+    invalidation_triggers: []
+    review_date: null
+
+evidence:
+  facts: []
+  metric_snapshot_ids: []
+  assumptions: []
+  data_gaps: []
+
+capability_results:
+  - capability_id: null
+    result_reference: null
+    key_findings: []
+
+strategy:
+  objective: null
+  choices: []
+  not_doing: []
+  milestones: []
+
+action_plan:
+  action_plan_reference: null
+  priority_actions: []
+
+financial_and_authority:
+  financial_context_reference: null
+  impacts: []
+  requested_authority: []
+
+risks:
+  - risk: null
+    likelihood: null
+    impact: null
+    mitigation: null
+    trigger: null
+
+quality_gates:
+  metric_consistency: null
+  financial_boundary: null
+  evidence_traceability: null
+  legal_and_content_compliance: null
+  cross_section_consistency: null
+  action_accountability: null
+  reasoning_closure: null
+
+appendices: []

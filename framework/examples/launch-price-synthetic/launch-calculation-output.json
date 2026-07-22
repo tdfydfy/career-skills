@@ -1,0 +1,68 @@
+{
+  "inventory": {
+    "total_area": 21020.0,
+    "total_units": 156.0,
+    "total_value": 497291840.0,
+    "weighted_average_price": 23658.032350142723,
+    "groups": [
+      {
+        "name": "G1",
+        "area": 7820.0,
+        "units": 68.0,
+        "value": 168266000.0,
+        "area_share": 0.3720266412940057,
+        "unit_share": 0.4358974358974359,
+        "value_share": 0.33836469144557046
+      },
+      {
+        "name": "Y1",
+        "area": 5808.0,
+        "units": 44.0,
+        "value": 138201360.0,
+        "area_share": 0.2763082778306375,
+        "unit_share": 0.28205128205128205,
+        "value_share": 0.2779079584334221
+      },
+      {
+        "name": "Y3",
+        "area": 7392.0,
+        "units": 44.0,
+        "value": 190824480.0,
+        "area_share": 0.3516650808753568,
+        "unit_share": 0.28205128205128205,
+        "value_share": 0.3837273501210074
+      }
+    ]
+  },
+  "sales": {
+    "sell_through_rate": 0.6923076923076923
+  },
+  "subscription": {
+    "subscription_target": 180,
+    "current_subscriptions": 184.0,
+    "gap": -4.0
+  },
+  "comparisons": [
+    {
+      "name": "首开申请均价较启动会整盘均价",
+      "baseline": 22500.0,
+      "current": 23658.032350142723,
+      "change": 1158.0323501427229,
+      "change_rate": 0.051468104450787686
+    },
+    {
+      "name": "整盘预计均价较启动会",
+      "baseline": 22500.0,
+      "current": 22994.14077669903,
+      "change": 494.14077669903054,
+      "change_rate": 0.021961812297734692
+    }
+  ],
+  "price_dispersion": {
+    "count": 156,
+    "minimum": 20450.0,
+    "maximum": 26590.0,
+    "range": 6140.0,
+    "median": 23435.0
+  }
+}

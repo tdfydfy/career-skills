@@ -1,0 +1,27 @@
+id: null
+title: null
+layer: foundation | business | deliverable
+kind: reference-module | executable-skill | orchestrator-skill
+status: planned
+priority: null
+owner: null
+path: null
+
+purpose: null
+triggers: []
+out_of_scope: []
+
+consumes: []
+produces: []
+depends_on: []
+used_by: []
+
+references: []
+knowledge_sources: []
+assets: []
+scripts: []
+
+quality_gates: []
+test_cases:
+  normal: null
+  exceptional: null

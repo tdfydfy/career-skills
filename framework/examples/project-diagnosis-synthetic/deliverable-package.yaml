@@ -1,0 +1,76 @@
+example: true
+synthetic: true
+contract: deliverable-package
+version: 0.1.0
+
+metadata:
+  deliverable_id: deliverable-project-diagnosis-report
+  title: 示例项目A经营诊断报告结构样例
+  project_name: 示例项目A
+  period: 2026年上半年
+  audience: 地区及总部营销管理层
+  author_or_owner: 示例
+  version: V0.1
+  as_of_date: 2026-06-30
+
+executive_summary:
+  conclusion: 当前存在合约额缺口和库存压力，但缺少年度目标、近三个月合约额及认购流速，暂不能判断是否进入重难点管理
+  business_status: undetermined
+  primary_conflicts:
+    - 目标缺口与库存周期压力
+    - 客户和价格证据不足
+  recommendation: 先完成一周专项核验，再决定价格货量和新增费用
+  decisions_needed:
+    - 是否启动专项核验
+
+context:
+  objectives: [完成全年销售和回款目标]
+  scope: 住宅持销
+  constraints: [财务底价和利润缺失]
+
+evidence:
+  facts: [上半年目标完成率60%, 项目库存周期14.4个月]
+  metric_snapshot_ids: [target_amount_achievement, inventory_months]
+  assumptions: [下半年市场保持弱势]
+  data_gaps: [有效客储, 竞品成交, 财务底价]
+
+capability_results:
+  - capability_id: business-analyze-project-health
+    result_reference: capability-result.yaml
+    key_findings: [合约额缺口, 库存周期压力, 经营状态暂不能判定]
+
+strategy:
+  objective: 先核验根因再配置资源
+  choices: [客户与价格专项核验]
+  not_doing: [在财务数据缺失时直接降价]
+  milestones: [一周完成核验]
+
+action_plan:
+  action_plan_reference: null
+  priority_actions:
+    - 客储盘点
+    - 竞品成交核验
+    - 财务底价和利润确认
+
+financial_and_authority:
+  financial_context_reference: financial-context.yaml
+  impacts: [尚不能完整测算]
+  requested_authority: []
+
+risks:
+  - risk: 以不完整数据做价格决策
+    likelihood: medium
+    impact: high
+    mitigation: 完成财务和客户核验
+    trigger: 提交具体调价方案前
+
+quality_gates:
+  metric_consistency: true
+  financial_boundary: true
+  evidence_traceability: true
+  legal_and_content_compliance: true
+  cross_section_consistency: true
+  action_accountability: true
+
+appendices:
+  - 本样例完全虚构，仅验证框架结构

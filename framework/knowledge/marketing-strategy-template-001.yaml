@@ -1,0 +1,102 @@
+source:
+  id: marketing-strategy-template-001
+  title: 项目营销策略报告模板认知
+  provided_by: marketing-lead
+  received_at: 2026-07-20
+  status: normalized-template
+
+atom_types:
+  enterprise-rule: 企业报告必须遵守的结构或推导要求
+  template-pattern: 从既有模板抽取的可复用编排模式
+  case-practice: 只能结合项目事实选择的案例动作
+
+atoms:
+  - id: MSTR-001
+    domain: deliverable-reasoning
+    type: enterprise-rule
+    statement: 价格报告等成果是经营推导的结果呈现；所有报告都应保留从公司策略、市场和客户到结论、目标与动作的逻辑暗线。
+    target_nodes: [foundation-fact-governance, business-plan-marketing-strategy, deliverable-launch-report, deliverable-launch-price-report]
+
+  - id: MSTR-002
+    domain: deliverable-reasoning
+    type: enterprise-rule
+    statement: 项目营销策略报告集中呈现完整推导链，既分析项目、市场和客户，也从价值、推广、客储、销售和费用等角度策划动作。
+    target_nodes: [business-plan-marketing-strategy, deliverable-launch-report]
+
+  - id: MSTR-003
+    domain: report-structure
+    type: template-pattern
+    statement: 首开型项目营销策略报告可按项目基本情况、市场竞品、价值策划及推广、客储策略、费用预算五部分组织，并在前置摘要中呈现策略命题和待决策事项。
+    target_nodes: [deliverable-launch-report]
+
+  - id: MSTR-004
+    domain: project-strategy
+    type: template-pattern
+    statement: 项目基本情况不仅展示整盘货量，还应将批次、展示节点、首开目标和销售周期与公司批复指标连接。
+    target_nodes: [foundation-project-model, business-plan-pricing-inventory, deliverable-launch-report]
+
+  - id: MSTR-005
+    domain: target-planning
+    type: template-pattern
+    statement: 首开销售目标应从推售套数和金额向认筹、来访及渠道分解，并明确解筹率、到访转筹率等假设来源。
+    target_nodes: [foundation-metric-dictionary, business-plan-target-budget, business-plan-customer-acquisition, deliverable-launch-report]
+
+  - id: MSTR-006
+    domain: market-competition
+    type: template-pattern
+    statement: 市场部分应从库存、去化周期、主力在售和未来竞品推导本案流速、价格、客户分流和开盘窗口，而不是只展示图表。
+    target_nodes: [business-analyze-market-competition, business-plan-marketing-strategy, deliverable-launch-report, deliverable-launch-price-report]
+
+  - id: MSTR-007
+    domain: value-strategy
+    type: template-pattern
+    statement: 价值策划应从目标客户痛点和竞品缺口选择土地、配套、产品、展示及品牌证据，再转化为分阶段传播主张和现场体验。
+    target_nodes: [storyline-creation, business-plan-promotion, business-plan-display, deliverable-launch-report]
+
+  - id: MSTR-008
+    domain: promotion
+    type: template-pattern
+    statement: 推广按入市、强蓄、认筹、升筹、开盘等节点组织时，每阶段应明确客户任务、释放信息、展示证据、活动、渠道和转化承接。
+    target_nodes: [business-plan-promotion, business-plan-media, business-plan-campaign, deliverable-launch-report]
+
+  - id: MSTR-009
+    domain: customer-acquisition
+    type: template-pattern
+    statement: 客储策略应把自拓、新媒体、企拓、老带新、全民营销、合作资源等渠道分工与客户池、周度动作、有效客户及成交目标连接。
+    target_nodes: [business-plan-customer-acquisition, business-plan-channel, business-plan-sales, deliverable-launch-report]
+
+  - id: MSTR-010
+    domain: organization
+    type: template-pattern
+    statement: 拓销组织、积分和过程管控用于保证动作执行，但具体编制、积分值和激励必须根据目标、劳动制度、预算及数据质量校准。
+    target_nodes: [foundation-organization-governance, business-plan-sales, business-manage-team-performance, deliverable-launch-report]
+
+  - id: MSTR-011
+    domain: budget
+    type: enterprise-rule
+    statement: 费用预算应分解到广告、制作、活动、拓客、薪酬等科目，并与合约目标、营销费率、阶段动作和结果指标闭合。
+    target_nodes: [foundation-financial-standards, business-plan-target-budget, business-analyze-marketing-expense, deliverable-launch-report]
+
+  - id: MSTR-012
+    domain: mixed-property
+    type: template-pattern
+    statement: 住宅策略报告可以纳入车位、商业、储藏室等业态，但必须分别说明经营目标、客户、节点、价格和动作，再汇总到项目目标。
+    target_nodes: [foundation-project-model, business-plan-pricing-inventory, deliverable-launch-report, deliverable-parking-commercial-report]
+
+  - id: MSTR-013
+    domain: compliance
+    type: enterprise-rule
+    statement: 客户电话资源、身份证等个人信息、政府或业主原声、教育规划、投资增值、推荐奖励和团购优惠必须经过数据、法务、财务和权限审核，模板案例不能直接转用。
+    target_nodes: [foundation-fact-governance, foundation-customer-model, content-compliance, deliverable-launch-report]
+
+  - id: MSTR-014
+    domain: action-selection
+    type: case-practice
+    statement: AI机器人、花车巡游、分子料理、短视频人设、积分制、企拓私宴等属于可选案例动作，只在目标客户、策略任务、预算、合规和历史效果支持时采用。
+    target_nodes: [foundation-marketing-action-library, business-plan-campaign, business-plan-promotion, deliverable-launch-report]
+
+  - id: MSTR-015
+    domain: management
+    type: enterprise-rule
+    statement: 策略报告必须明确不做事项、关键假设、失效条件、责任人和复盘节点，使报告可以转成周度执行与动态调整。
+    target_nodes: [business-plan-marketing-strategy, deliverable-launch-report]

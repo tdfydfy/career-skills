@@ -1,0 +1,51 @@
+contract: capability-result
+version: 0.2.0
+
+capability:
+  id: null
+  title: null
+  executed_at: null
+
+scope:
+  project_name: null
+  period: null
+  objective: null
+
+inputs_used: []
+
+facts:
+  - statement: null
+    evidence_ids: []
+
+assumptions:
+  - statement: null
+    reason: null
+    impact_if_wrong: null
+
+findings:
+  - finding: null
+    cause: null
+    impact: null
+    confidence: null
+    evidence_ids: []
+
+reasoning_links:
+  - decision_question: null
+    evidence_ids: []
+    inference: null
+    business_implication: null
+    recommended_choice: null
+    invalidation_triggers: []
+
+recommendations:
+  - action: null
+    owner: null
+    deadline: null
+    expected_result: null
+    prerequisite: null
+    risk: null
+
+options: []
+decisions_needed: []
+risks: []
+data_gaps: []

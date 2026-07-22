@@ -1,0 +1,98 @@
+contract: customer-context
+version: 0.2.0
+
+identity:
+  customer_code: null
+  project_name: null
+  as_of_date: null
+  information_owner: null
+
+profile:
+  gender: unknown
+  age_range: unknown
+  family_structure: unknown
+  occupation: unknown
+  education: unknown
+  current_residence_area: unknown
+
+visit_context:
+  source_channel: unknown
+  visit_count: null
+  last_visit_at: null
+  attendees: []
+  observable_behavior: []
+  pure_activity_participant: unknown
+  had_property_viewing_or_purchase_discussion: unknown
+  included_in_visit_count: unknown
+  exclusion_reason: null
+
+motive:
+  primary: unknown
+  secondary: []
+  evidence: []
+
+needs:
+  explicit: []
+  implicit_hypotheses: []
+  preferred_location: unknown
+  preferred_area: unknown
+  preferred_floor: unknown
+  preferred_delivery_time: unknown
+
+money:
+  deposit_ready: unknown
+  down_payment_ready: unknown
+  monthly_payment_capacity: unknown
+  loan_eligibility: unknown
+  payment_method: unknown
+  replacement_sale_status: unknown
+  gaps: []
+
+authority:
+  users: []
+  funders: []
+  influencers: []
+  decision_makers: []
+  roles_present: []
+  gaps: []
+
+need_fit:
+  purchase_need_confirmed: unknown
+  matched_inventory: []
+  mismatches: []
+
+competition_and_objections:
+  competitors_visited: []
+  accepted_points: []
+  objections: []
+
+reservoir:
+  review_stage: unknown
+  intention_rating: unknown
+  intention_rating_allowed: [A, B+, B, B-, C+, C, C-, D, unknown]
+  rated_at: null
+  rated_by: null
+  rating_evidence: []
+  unresolved_issues: []
+  expected_decision_date: unknown
+  forecast_result: unknown
+  sales_manager_review:
+    reviewed_at: null
+    reviewed_by: null
+    demand_match: unknown
+    price_match: unknown
+    decision_match: unknown
+    inventory_match: unknown
+    expected_purchase_or_contract_date: unknown
+    forecast_basis: []
+
+evidence: []
+assumptions: []
+data_gaps: []
+next_actions: []
+
+privacy:
+  collection_purpose: null
+  consent_or_policy_basis: null
+  sensitive_fields: []
+  access_notes: []

@@ -1,0 +1,4 @@
+interface:
+  display_name: "持销期专题诊断与改善方案"
+  short_description: "诊断持销问题根因并制定价值、获客、价格保护及房车联动策略"
+  default_prompt: "Use $sustained-sales-diagnosis to diagnose a sustained-sales problem, identify its internal and external root causes, and build a prioritized recovery plan with measurable safeguards."

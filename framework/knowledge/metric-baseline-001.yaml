@@ -1,0 +1,818 @@
+source:
+  id: metric-baseline-001
+  version: 0.3.0
+  title: 房地产营销经营指标基线
+  created_at: 2026-07-19
+  status: generated-draft
+  basis:
+    - customer-liaison-notes-001
+    - project-operating-monitoring-001
+    - 房地产营销通用经营分析口径
+  warning: 所有公司专属公式、统计时点和财务确认口径必须在投入使用前校准。
+
+global_rules:
+  amount_storage_unit: yuan
+  amount_display_unit: 按成果要求转换为万元或亿元
+  area_unit: square_meter
+  rate_storage: decimal
+  rate_display: percentage
+  visit_count_unit: customer_group
+  unknown_value: null
+  zero_denominator: 返回null并标记not-applicable，不得返回0
+  cancellation_rule: 合约额以明源正式签约为主；签约退房在退房发生周期冲减，不追溯改写原合约发生周期
+  time_rule: 每个指标必须包含统计开始、统计结束和数据截止时间
+  scope_rule: 比较指标必须使用相同项目范围、物业类型、数据状态和统计口径
+
+standard_dimensions:
+  - company
+  - region
+  - city
+  - project
+  - property_type
+  - sales_stage
+  - building
+  - product_type
+  - area_band
+  - source_channel
+  - customer_segment
+  - period
+
+metrics:
+  - id: target_contract_amount
+    title: 销售合约额目标
+    category: target
+    definition: 指定周期内要求实现的净销售合约金额目标。
+    unit: yuan
+    formula: source_value
+    source_atoms: [GOV-004, GOV-005]
+    status: enterprise-supported-draft
+
+  - id: target_contract_units
+    title: 销售套数目标
+    category: target
+    definition: 指定周期内要求实现的净成交套数目标。
+    unit: unit
+    formula: source_value
+    source_atoms: [GOV-004, GOV-005]
+    status: enterprise-supported-draft
+
+  - id: target_collection_amount
+    title: 回款目标
+    category: target
+    definition: 指定周期内要求实现的实际到账金额目标。
+    unit: yuan
+    formula: source_value
+    source_atoms: [GOV-004]
+    status: needs-enterprise-confirmation
+
+  - id: target_marketing_expense
+    title: 营销费用预算
+    category: target
+    definition: 指定周期和范围内获批的营销费用预算。
+    unit: yuan
+    formula: source_value
+    source_atoms: [GOV-004]
+    status: enterprise-supported-draft
+
+  - id: lead_count
+    title: 线索数
+    category: customer-funnel
+    definition: 指定周期内进入系统且满足最小联系方式要求的去重客户线索数。
+    unit: customer
+    formula: count_distinct(lead_id)
+    status: baseline-draft
+    calibration: 明确无效号码、重复号码和跨渠道重复线索处理规则。
+
+  - id: new_visit_groups
+    title: 首访组数
+    category: customer-funnel
+    definition: 指定周期内第一次到访项目的去重客户组数；纯参加活动且未发生看房或购房沟通的客户通常不计入。
+    unit: customer_group
+    formula: count_distinct(customer_group_id where first_visit_date in period and not pure_activity_only)
+    source_atoms: [CUST-014]
+    status: enterprise-supported-draft
+
+  - id: revisit_group_times
+    title: 复访组次
+    category: customer-funnel
+    definition: 指定周期内非首次到访产生的到访次数，同一客户多次复访分别计次。
+    unit: visit_time
+    formula: count(visit_id where visit_sequence > 1)
+    status: baseline-draft
+
+  - id: unique_visit_customers
+    title: 到访客户组数
+    category: customer-funnel
+    definition: 指定周期内至少到访一次的去重客户组数；纯参加活动且未发生看房或购房沟通的客户通常不计入。
+    unit: customer_group
+    formula: count_distinct(customer_group_id where visit_date in period and not pure_activity_only)
+    source_atoms: [CUST-014]
+    status: enterprise-supported-draft
+
+  - id: valid_customer_count
+    title: 有效客户数
+    category: customer-funnel
+    definition: 仅在首开客储或专题另行定义有效标准时，符合该标准的去重客户组数；不是日常来访统计的默认分类。
+    unit: customer_group
+    formula: count_distinct(customer_group_id where valid_customer = true)
+    status: needs-enterprise-confirmation
+    calibration: 必须定义用途、联系方式、真实需求、预算范围、购房时点或其他条件，且不得反向改写日常来访总数。
+
+  - id: subscription_customers
+    title: 认筹客户数
+    category: customer-funnel
+    definition: 指定周期或节点内完成有效认筹的去重客户数。
+    unit: customer
+    formula: count_distinct(customer_id where subscription_status = valid)
+    status: baseline-draft
+    calibration: 明确认筹金到账、退款、重复认筹和一客多筹规则。
+
+  - id: subscription_units
+    title: 认筹套数
+    category: customer-funnel
+    definition: 指定周期或节点内有效认筹对应的房源意向套数。
+    unit: unit
+    formula: count(subscription_unit_id where subscription_status = valid)
+    status: baseline-draft
+
+  - id: purchase_units
+    title: 认购套数
+    category: sales-process
+    definition: 指定周期内完成有效认购并缴纳定金的住宅套数，用于观察首开和持销销售流速，不替代正式合约额考核。
+    unit: unit
+    formula: count(unit_id where purchase_status = valid and purchase_date in period)
+    source_atoms: [OPM-007, OPM-008, OPM-009, OPM-010, OPM-013]
+    status: enterprise-supported-draft
+
+  - id: purchase_cancellation_units
+    title: 认购退房套数
+    category: sales-process
+    definition: 指定周期或客户队列内已认购后发生有效退房的套数。
+    unit: unit
+    formula: count(unit_id where purchase_cancellation_status = approved)
+    source_atoms: [OPM-013, OPM-016, OPM-017]
+    status: enterprise-supported-draft
+
+  - id: purchase_cancellation_rate
+    title: 认购退房率
+    category: transaction-quality
+    definition: 同一管理观察窗口或认购客户队列内，认购退房套数占有效认购套数的比例。
+    unit: rate
+    formula: purchase_cancellation_units_in_cohort / purchase_units_in_cohort
+    source_atoms: [OPM-016]
+    status: needs-enterprise-confirmation
+    benchmark:
+      risk_threshold: 0.05
+      interpretation: 超过5%提示销售质量或虚假销售风险，需要核查，不直接认定违规。
+    calibration: 明确认购客户队列、跨期退房和统计观察窗口。
+
+  - id: gross_contract_customers
+    title: 毛成交客户数
+    category: sales
+    definition: 指定周期内完成明源正式签约、未扣除本期签约退房冲减的去重客户数。
+    unit: customer
+    formula: count_distinct(customer_id where mingyuan_signing_status = valid and signing_date in period)
+    source_atoms: [OPM-006, OPM-014]
+    status: enterprise-supported-draft
+
+  - id: cancellation_customers
+    title: 退订客户数
+    category: sales
+    definition: 指定周期内发生并完成审批的签约退房去重客户数，可包含以前周期签约客户。
+    unit: customer
+    formula: count_distinct(customer_id where signed_cancellation_status = approved and cancellation_date in period)
+    source_atoms: [OPM-006, OPM-016, OPM-017]
+    status: enterprise-supported-draft
+
+  - id: net_contract_customers
+    title: 净成交客户数
+    category: sales
+    definition: 毛成交客户扣除有效退订后的净客户数。
+    unit: customer
+    formula: gross_contract_customers - cancellation_customers
+    status: baseline-draft
+
+  - id: gross_contract_units
+    title: 毛成交套数
+    category: sales
+    definition: 指定周期内完成明源正式签约、未扣除本期签约退房冲减的套数。
+    unit: unit
+    formula: count(unit_id where mingyuan_signing_status = valid and signing_date in period)
+    source_atoms: [OPM-006, OPM-014]
+    status: enterprise-supported-draft
+
+  - id: cancellation_units
+    title: 退订套数
+    category: sales
+    definition: 指定周期内发生并完成审批的签约退房套数，可包含以前周期签约房源。
+    unit: unit
+    formula: count(unit_id where signed_cancellation_status = approved and cancellation_date in period)
+    source_atoms: [OPM-006, OPM-016, OPM-017]
+    status: enterprise-supported-draft
+
+  - id: net_contract_units
+    title: 净成交套数
+    category: sales
+    definition: 本期明源正式签约套数扣除本期发生的签约退房冲减套数；不追溯改写原签约周期。
+    unit: unit
+    formula: gross_contract_units - cancellation_units
+    source_atoms: [GOV-004, GOV-007, OPM-006]
+    status: enterprise-supported-draft
+
+  - id: gross_contract_amount
+    title: 本期签约合约发生额
+    category: sales
+    definition: 指定周期内完成明源正式签约的合同金额，不扣除本期签约退房冲减。
+    unit: yuan
+    formula: sum(contract_amount where mingyuan_signing_status = valid and signing_date in period)
+    source_atoms: [OPM-002, OPM-006, OPM-014]
+    status: enterprise-supported-draft
+
+  - id: cancellation_amount
+    title: 本期签约退房冲减额
+    category: sales
+    definition: 指定周期内完成审批并发生冲减的签约退房合同金额，可对应以前周期形成的合约。
+    unit: yuan
+    formula: sum(contract_amount where signed_cancellation_status = approved and cancellation_date in period)
+    source_atoms: [OPM-006, OPM-017]
+    status: enterprise-supported-draft
+
+  - id: net_contract_amount
+    title: 净销售合约额
+    category: sales
+    definition: 本期明源正式签约合约发生额扣除本期签约退房冲减额；历史合约发生周期保持不变。
+    unit: yuan
+    formula: gross_contract_amount - cancellation_amount
+    source_atoms: [GOV-004, GOV-007, OPM-002, OPM-006]
+    status: enterprise-supported-draft
+
+  - id: net_contract_area
+    title: 净成交建筑面积
+    category: sales
+    definition: 净成交房源对应的合同建筑面积合计。
+    unit: square_meter
+    formula: sum(contract_building_area where net_contract_status = valid)
+    status: baseline-draft
+
+  - id: target_amount_achievement
+    title: 合约额目标完成率
+    category: performance
+    definition: 指定周期净销售合约额相对同期合约额目标的完成比例。
+    unit: rate
+    formula: net_contract_amount / target_contract_amount
+    source_atoms: [GOV-004, GOV-005, OPM-002, OPM-003]
+    status: enterprise-supported-draft
+
+  - id: annual_remaining_contract_amount
+    title: 年度剩余合约额
+    category: performance
+    definition: 年度合约额目标扣除截至当前节点年度累计净销售合约额后的剩余金额。
+    unit: yuan
+    formula: annual_target_contract_amount - year_to_date_net_contract_amount
+    source_atoms: [OPM-002, OPM-004]
+    status: enterprise-supported-draft
+
+  - id: remaining_effective_sales_months
+    title: 剩余有效销售月份
+    category: performance
+    definition: 从数据截止日到年度结束，结合实际销售窗口和供货节奏仍可贡献合约额的有效月份数。
+    unit: month
+    formula: source_value
+    source_atoms: [OPM-004]
+    status: needs-enterprise-confirmation
+    calibration: 明确不完整月份、停工停销、取证和供货延迟的折算规则。
+
+  - id: required_average_monthly_contract_amount
+    title: 后续月均合约额要求
+    category: performance
+    definition: 为完成年度合约额目标，剩余每个有效销售月份平均需要实现的净销售合约额。
+    unit: yuan_per_month
+    formula: annual_remaining_contract_amount / remaining_effective_sales_months
+    source_atoms: [OPM-004]
+    status: enterprise-supported-draft
+
+  - id: rolling_three_month_average_contract_amount
+    title: 近三个月月均合约额
+    category: performance
+    definition: 截至数据日最近三个完整月份净销售合约额的月均值。
+    unit: yuan_per_month
+    formula: sum(net_contract_amount over last_3_complete_months) / 3
+    source_atoms: [OPM-005]
+    status: enterprise-supported-draft
+
+  - id: contract_completion_pressure_ratio
+    title: 合约额完成压力比
+    category: performance
+    definition: 后续月均合约额要求相对近三个月月均合约额的比例，用于判断完成年度目标所需流速相对当前能力的压力。
+    unit: ratio
+    formula: required_average_monthly_contract_amount / rolling_three_month_average_contract_amount
+    source_atoms: [OPM-005]
+    status: enterprise-supported-draft
+    benchmarks:
+      - condition: value < 0.8
+        interpretation: 原则上压力较低，是更理想的状态。
+      - condition: value > 1.2
+        interpretation: 危险信号，需要结合供货、价格、市场和政策制定后续策略。
+    calibration: 近三个月存在重大开盘、停销或一次性大宗成交时必须说明可比性。
+
+  - id: target_unit_achievement
+    title: 套数目标完成率
+    category: performance
+    definition: 指定周期净成交套数相对同期成交套数目标的完成比例。
+    unit: rate
+    formula: net_contract_units / target_contract_units
+    status: baseline-draft
+
+  - id: lead_to_visit_conversion
+    title: 线索到访转化率
+    category: conversion
+    definition: 同一归因窗口内，由有效线索转化形成的首访客户占有效线索的比例。
+    unit: rate
+    formula: attributed_first_visit_customers / valid_lead_count
+    status: needs-enterprise-confirmation
+    calibration: 明确归因窗口和多渠道归因规则。
+
+  - id: visit_to_subscription_conversion
+    title: 到访认筹转化率
+    category: conversion
+    definition: 同一客户观察窗口内，到访客户最终形成有效认筹的比例。
+    unit: rate
+    formula: subscription_customers_from_visitor_cohort / unique_visit_customers_in_cohort
+    source_atoms: [BENCH-002]
+    status: enterprise-supported-draft
+    benchmark:
+      sales_stage: launch
+      approximate_value: 0.15
+      usage: 缺少项目历史数据时作为测算起点，后续以实际同批客户转化替换。
+
+  - id: subscription_to_contract_conversion
+    title: 认筹成交转化率
+    category: conversion
+    definition: 有效认筹客户中形成净成交客户的比例。
+    unit: rate
+    formula: net_contract_customers_from_subscriber_cohort / subscription_customers_in_cohort
+    source_atoms: [BENCH-003]
+    status: enterprise-supported-draft
+    benchmark:
+      sales_stage: launch
+      approximate_value: 0.60
+      usage: 缺少项目历史数据时作为测算起点，并按户型、评级、价格和房号落位校验。
+
+  - id: visit_to_contract_conversion
+    title: 到访成交转化率
+    category: conversion
+    definition: 同一客户观察窗口内，到访客户最终形成净成交的比例。
+    unit: rate
+    formula: net_contract_customers_from_visitor_cohort / unique_visit_customers_in_cohort
+    source_atoms: [GOV-004, BENCH-001, BENCH-002, BENCH-003]
+    status: enterprise-supported-draft
+    calibration: 企业所称“销售转化率”应明确是否采用本指标及观察窗口。
+    benchmarks:
+      - sales_stage: sustained
+        approximate_value: 0.10
+        usage: 持销阶段缺少项目历史数据时作为测算起点。
+      - sales_stage: launch
+        approximate_value: 0.09
+        derivation: 0.15 * 0.60
+        usage: 首开来访认筹与认筹成交两个经验基准的链式结果，不替代逐层管理。
+
+  - id: net_average_unit_price
+    title: 净成交均价
+    category: price
+    definition: 净销售合约额除以净成交合同建筑面积。
+    unit: yuan_per_square_meter
+    formula: net_contract_amount / net_contract_area
+    source_atoms: [PROJ-002, WORK-002]
+    status: enterprise-supported-draft
+
+  - id: approved_target_average_price
+    title: 批复目标均价
+    category: price
+    definition: 指定房源范围内经审批确认的目标销售均价。
+    unit: yuan_per_square_meter
+    formula: approved_target_amount / approved_target_area
+    source_atoms: [GOV-004, WORK-002]
+    status: needs-enterprise-confirmation
+
+  - id: price_realization_rate
+    title: 价格实现率
+    category: price
+    definition: 相同房源和统计范围内净成交均价相对批复目标均价的实现比例。
+    unit: rate
+    formula: net_average_unit_price / approved_target_average_price
+    status: baseline-draft
+
+  - id: available_inventory_units
+    title: 可售库存套数
+    category: inventory
+    definition: 数据截止时已取得销售条件且未形成有效净成交的可售房源套数。
+    unit: unit
+    formula: count(unit_id where saleable = true and net_contract_status != valid)
+    source_atoms: [PROJ-001, PROJ-002]
+    status: enterprise-supported-draft
+
+  - id: available_inventory_value
+    title: 可售库存货值
+    category: inventory
+    definition: 可售库存按统一计价口径计算的预计销售货值。
+    unit: yuan
+    formula: sum(unit_valuation where saleable = true and net_contract_status != valid)
+    status: needs-enterprise-confirmation
+    calibration: 明确采用标准总价、目标总价、当前表价或预计成交总价。
+
+  - id: pending_supply_units
+    title: 待推售套数
+    category: inventory
+    definition: 尚未正式推售但计划在后续节点供应的房源套数。
+    unit: unit
+    formula: count(unit_id where planned_supply = true and launched = false)
+    source_atoms: [PROJ-002]
+    status: enterprise-supported-draft
+
+  - id: cumulative_sell_through_rate
+    title: 累计去化率
+    category: inventory
+    definition: 指定供应批次累计净成交套数占累计已推售套数的比例。
+    unit: rate
+    formula: cumulative_net_contract_units / cumulative_launched_units
+    status: baseline-draft
+    calibration: 必须同时报告按套数和按货值口径，不能混用。
+
+  - id: inventory_months
+    title: 项目库存去化周期
+    category: inventory
+    definition: 当前可售库存套数按近期月均净成交套数估算的去化月数。
+    unit: month
+    formula: available_inventory_units / rolling_average_monthly_net_contract_units
+    status: baseline-draft
+    calibration: 明确滚动三个月、六个月或十二个月窗口；成交为零时不得生成有限数值。
+
+  - id: market_inventory_months
+    title: 市场去化周期
+    category: market
+    definition: 同一城市或板块可售库存套数按近期月均成交套数估算的去化月数。
+    unit: month
+    formula: market_available_inventory_units / rolling_average_monthly_market_contract_units
+    source_atoms: [MKT-001]
+    status: enterprise-supported-draft
+
+  - id: market_new_supply_units
+    title: 市场新增供应套数
+    category: market
+    definition: 指定城市或板块在统计周期内新增取得销售条件的商品房套数。
+    unit: unit
+    formula: sum(new_supply_units in market_scope and period)
+    source_atoms: [MKT-001]
+    status: baseline-draft
+
+  - id: market_new_supply_area
+    title: 市场新增供应面积
+    category: market
+    definition: 指定城市或板块在统计周期内新增取得销售条件的商品房建筑面积。
+    unit: square_meter
+    formula: sum(new_supply_building_area in market_scope and period)
+    source_atoms: [MKT-001]
+    status: baseline-draft
+
+  - id: market_contract_units
+    title: 市场成交套数
+    category: market
+    definition: 指定城市或板块在统计周期内按统一备案或认购口径形成的成交套数。
+    unit: unit
+    formula: sum(market_contract_units in market_scope and period)
+    source_atoms: [MKT-001]
+    status: needs-enterprise-confirmation
+    calibration: 明确采用认购、网签或备案口径，并确保历史周期一致。
+
+  - id: market_contract_area
+    title: 市场成交面积
+    category: market
+    definition: 指定城市或板块在统计周期内成交房源的建筑面积。
+    unit: square_meter
+    formula: sum(market_contract_building_area in market_scope and period)
+    source_atoms: [MKT-001]
+    status: baseline-draft
+
+  - id: market_contract_amount
+    title: 市场成交金额
+    category: market
+    definition: 指定城市或板块在统计周期内按统一市场数据口径统计的成交金额。
+    unit: yuan
+    formula: sum(market_contract_amount in market_scope and period)
+    source_atoms: [MKT-001]
+    status: needs-enterprise-confirmation
+
+  - id: market_average_unit_price
+    title: 市场成交均价
+    category: market
+    definition: 同一市场范围和周期内成交金额除以成交建筑面积。
+    unit: yuan_per_square_meter
+    formula: market_contract_amount / market_contract_area
+    source_atoms: [MKT-001]
+    status: baseline-draft
+
+  - id: launch_supply_units
+    title: 首开或加推供应套数
+    category: launch
+    definition: 指定开盘节点正式提供选择和销售的房源套数。
+    unit: unit
+    formula: count(unit_id where launch_batch_id = selected_batch)
+    source_atoms: [GOV-004, STRAT-007]
+    status: enterprise-supported-draft
+
+  - id: opening_three_day_purchase_units
+    title: 首开前三天认购套数
+    category: launch
+    definition: 项目首次开盘日起连续三个自然日内形成的有效住宅认购套数。
+    unit: unit
+    formula: count(unit_id where purchase_status = valid and purchase_date between launch_date and launch_date_plus_2_days)
+    source_atoms: [OPM-007]
+    status: enterprise-supported-draft
+    benchmark:
+      approximate_floor: 100
+      interpretation: 通常100套以上可视为形成基本开盘规模，但正式判断仍以项目目标和总体规模为准。
+
+  - id: launch_valid_reservoir
+    title: 节点有效客储数
+    category: launch
+    definition: 按统一有效标准，在开盘节点前达到指定成熟度的去重客户组数。
+    unit: customer_group
+    formula: count_distinct(customer_group_id where reservoir_qualified = true)
+    source_atoms: [CUST-006, STRAT-005]
+    status: needs-enterprise-confirmation
+
+  - id: reservoir_to_supply_ratio
+    title: 客储货量比
+    category: launch
+    definition: 节点有效客储数相对首开或加推供应套数的比例。
+    unit: ratio
+    formula: launch_valid_reservoir / launch_supply_units
+    status: baseline-draft
+
+  - id: opening_net_contract_units
+    title: 开盘净成交套数
+    category: launch
+    definition: 开盘统一统计窗口内形成并保留的净成交套数。
+    unit: unit
+    formula: gross_opening_contract_units - opening_cancellation_units
+    status: baseline-draft
+    calibration: 明确开盘当日、首三日或首七日统计窗口。
+
+  - id: opening_sell_through_rate
+    title: 开盘去化率
+    category: launch
+    definition: 开盘统一统计窗口内净成交套数占开盘供应套数的比例。
+    unit: rate
+    formula: opening_net_contract_units / launch_supply_units
+    source_atoms: [GOV-004]
+    status: enterprise-supported-draft
+
+  - id: signed_units
+    title: 签约套数
+    category: transaction
+    definition: 指定周期内完成明源正式签约并满足系统有效状态的套数，政府网签作为参考状态另行保留。
+    unit: unit
+    formula: count(unit_id where signing_status = valid and signing_date in period)
+    source_atoms: [OPM-014]
+    status: enterprise-supported-draft
+
+  - id: average_purchase_to_signing_days
+    title: 平均认购转签约周期
+    category: transaction-quality
+    definition: 指定认购客户队列从认购日期至明源正式签约日期的平均自然天数。
+    unit: day
+    formula: average(mingyuan_signing_date - purchase_date for signed_purchase_cohort)
+    source_atoms: [OPM-015]
+    status: enterprise-supported-draft
+    benchmarks:
+      - condition: value >= 3 and value <= 7
+        interpretation: 通常正常。
+      - condition: value > 7
+        interpretation: 销售质量不健康，特殊原因需逐单核实，持销期不可长期接受。
+      - condition: value > 14
+        interpretation: 高风险，需要核查付款、按揭、销售推进及销售真实性。
+
+  - id: signed_cancellation_rate
+    title: 签约退房率
+    category: transaction-quality
+    definition: 同一管理观察窗口或签约客户队列内，完成审批的签约退房套数占明源正式签约套数的比例。
+    unit: rate
+    formula: signed_cancellation_units_in_cohort / signed_units_in_cohort
+    source_atoms: [OPM-016, OPM-017]
+    status: needs-enterprise-confirmation
+    benchmark:
+      risk_threshold: 0.05
+      interpretation: 超过5%提示客户违约、销售质量或虚假销售风险，需要专项核查。
+    calibration: 明确签约客户队列、跨期退房和统计观察窗口。
+
+  - id: signing_rate
+    title: 到期签约率
+    category: transaction
+    definition: 截至统计日已完成签约套数占同期应签约套数的比例。
+    unit: rate
+    formula: signed_units_due_scope / units_due_for_signing
+    status: baseline-draft
+
+  - id: due_collection_amount
+    title: 到期应回款金额
+    category: collection
+    definition: 按合同及付款计划在统计期内到期应收的金额。
+    unit: yuan
+    formula: sum(amount_due where due_date in period)
+    status: baseline-draft
+
+  - id: actual_collection_amount
+    title: 实际回款金额
+    category: collection
+    definition: 指定周期内实际到账且符合财务确认口径的金额。
+    unit: yuan
+    formula: sum(receipt_amount where confirmed_by_finance = true and receipt_date in period)
+    status: needs-enterprise-confirmation
+
+  - id: due_collection_achievement
+    title: 到期回款完成率
+    category: collection
+    definition: 指定周期实际到账的到期款项占同期到期应回款金额的比例。
+    unit: rate
+    formula: actual_due_collection_amount / due_collection_amount
+    status: baseline-draft
+
+  - id: target_collection_achievement
+    title: 回款目标完成率
+    category: collection
+    definition: 指定周期实际回款金额占同期回款目标的比例。
+    unit: rate
+    formula: actual_collection_amount / target_collection_amount
+    status: baseline-draft
+
+  - id: recognized_marketing_expense
+    title: 已确认营销费用
+    category: expense
+    definition: 指定周期和项目范围内按公司财务口径确认的营销费用。
+    unit: yuan
+    formula: sum(marketing_expense where finance_status = recognized)
+    source_atoms: [GOV-004]
+    status: needs-enterprise-confirmation
+
+  - id: marketing_expense_rate
+    title: 营销费率
+    category: expense
+    definition: 已确认营销费用相对同期净销售合约额的比例。
+    unit: rate
+    formula: recognized_marketing_expense / net_contract_amount
+    source_atoms: [GOV-004, BENCH-004]
+    status: enterprise-supported-draft
+    benchmarks:
+      - scope: full_project
+        approximate_value: 0.025
+        usage: 整盘累计动态控制基准。
+      - scope: launch_stage
+        approximate_ceiling: 0.03
+        usage: 首开阶段可适度前置费用，后续压降以回归整盘基准。
+    calibration: 仍需正式确认签约额、回款额或年度动态口径，以及费用分子、分母、分摊和跨期规则。
+
+  - id: cost_per_lead
+    title: 单线索成本
+    category: expense-efficiency
+    definition: 可归因获客费用除以有效线索数。
+    unit: yuan_per_customer
+    formula: attributable_acquisition_expense / valid_lead_count
+    status: baseline-draft
+
+  - id: cost_per_first_visit
+    title: 单首访成本
+    category: expense-efficiency
+    definition: 可归因获客费用除以归因形成的首访客户组数。
+    unit: yuan_per_customer_group
+    formula: attributable_acquisition_expense / attributed_new_visit_groups
+    status: baseline-draft
+
+  - id: cost_per_valid_customer
+    title: 单有效客户成本
+    category: expense-efficiency
+    definition: 可归因获客费用除以归因形成的有效客户数。
+    unit: yuan_per_customer_group
+    formula: attributable_acquisition_expense / attributed_valid_customer_count
+    status: baseline-draft
+
+  - id: cost_per_net_contract_customer
+    title: 单净成交客户获客成本
+    category: expense-efficiency
+    definition: 可归因获客费用除以归因形成的净成交客户数。
+    unit: yuan_per_customer
+    formula: attributable_acquisition_expense / attributed_net_contract_customers
+    status: baseline-draft
+
+  - id: approved_headcount
+    title: 批复编制
+    category: organization
+    definition: 指定组织和周期内获批的营销人员编制数。
+    unit: person
+    formula: source_value
+    source_atoms: [GOV-004]
+    status: enterprise-supported-draft
+
+  - id: actual_headcount
+    title: 实际在岗人数
+    category: organization
+    definition: 数据截止时满足公司在岗统计口径的营销人员数量。
+    unit: person
+    formula: count(employee_id where employment_status = active)
+    status: needs-enterprise-confirmation
+
+  - id: payroll_budget
+    title: 薪酬额度
+    category: organization
+    definition: 指定组织和周期内获批的营销人员薪酬预算。
+    unit: yuan
+    formula: source_value
+    source_atoms: [GOV-004]
+    status: enterprise-supported-draft
+
+  - id: per_capita_contract_amount
+    title: 人均合约额
+    category: organization-efficiency
+    definition: 指定周期净销售合约额相对平均实际在岗营销人数的金额。
+    unit: yuan_per_person
+    formula: net_contract_amount / average_actual_headcount
+    status: baseline-draft
+
+  - id: forecast_sales_revenue
+    title: 预计销售收入
+    category: finance
+    definition: 同一财务测算版本下，按预计净成交价格和可售范围计算的销售收入。
+    unit: yuan
+    formula: sum(forecast_net_unit_amount in model_scope)
+    status: needs-enterprise-confirmation
+
+  - id: forecast_total_cost
+    title: 预计总成本
+    category: finance
+    definition: 同一财务测算版本下，按企业口径归集的土地、建安、税费、期间费用及其他项目成本。
+    unit: yuan
+    formula: sum(land_cost + construction_cost + tax + period_expense + other_project_cost)
+    status: needs-enterprise-confirmation
+
+  - id: forecast_gross_profit
+    title: 预计毛利润
+    category: finance
+    definition: 预计销售收入扣除企业毛利润口径所包含成本后的利润金额。
+    unit: yuan
+    formula: forecast_sales_revenue - forecast_total_cost_in_gross_profit_scope
+    status: needs-enterprise-confirmation
+
+  - id: forecast_gross_margin
+    title: 预计毛利率
+    category: finance
+    definition: 预计毛利润占预计销售收入的比例。
+    unit: rate
+    formula: forecast_gross_profit / forecast_sales_revenue
+    status: needs-enterprise-confirmation
+
+  - id: incremental_profit_impact
+    title: 方案增量利润影响
+    category: finance
+    definition: 拟议方案相对基准方案产生的预计利润变化。
+    unit: yuan
+    formula: proposed_forecast_profit - baseline_forecast_profit
+    status: baseline-draft
+
+  - id: period_net_cashflow
+    title: 期间净现金流
+    category: cashflow
+    definition: 指定期间实际或预测现金流入减现金流出。
+    unit: yuan
+    formula: period_cash_inflow - period_cash_outflow
+    status: needs-enterprise-confirmation
+
+  - id: cumulative_net_cashflow
+    title: 累计净现金流
+    category: cashflow
+    definition: 自项目测算起点至指定时点各期净现金流累计值。
+    unit: yuan
+    formula: cumulative_sum(period_net_cashflow)
+    status: needs-enterprise-confirmation
+
+  - id: peak_negative_cashflow
+    title: 峰值负现金流
+    category: investment
+    definition: 项目累计净现金流序列中的最低值及其发生时点。
+    unit: yuan
+    formula: min(cumulative_net_cashflow_by_period)
+    status: needs-enterprise-confirmation
+
+  - id: investment_payback_period
+    title: 投资回收期
+    category: investment
+    definition: 按企业口径累计净现金流首次达到回收条件所需时间。
+    unit: month
+    formula: first_period_where(cumulative_net_cashflow meets company_payback_rule)
+    status: needs-enterprise-confirmation
+
+  - id: project_irr
+    title: 项目内部收益率
+    category: investment
+    definition: 使项目全周期净现金流现值之和为零的折现率，采用企业正式现金流频率和计算规则。
+    unit: rate
+    formula: irr(company_approved_project_cashflow_series)
+    status: needs-enterprise-confirmation

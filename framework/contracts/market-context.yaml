@@ -1,0 +1,62 @@
+contract: market-context
+version: 0.1.0
+
+scope:
+  city: null
+  submarket: null
+  competition_radius_or_rule: null
+  property_type: null
+  start_date: null
+  end_date: null
+  as_of_date: null
+
+market_metrics:
+  supply_units: null
+  supply_area: null
+  contract_units: null
+  contract_area: null
+  contract_amount: null
+  average_unit_price: null
+  available_inventory_units: null
+  inventory_months: null
+  metric_snapshot_ids: []
+
+structure:
+  by_submarket: []
+  by_area_band: []
+  by_total_price_band: []
+  by_product_type: []
+
+competitors:
+  - project_name: null
+    relationship: direct | substitute | reference
+    property_type: null
+    product: null
+    price: null
+    inventory: null
+    sales_velocity: null
+    display: null
+    channel_policy: null
+    recent_actions: []
+    data_date: null
+    evidence_ids: []
+
+future_supply:
+  current_competitor_launches: []
+  potential_competitors: []
+  land_pipeline: []
+
+external_factors:
+  policies: []
+  secondhand_market: []
+  developer_conditions: []
+
+findings:
+  historical_facts: []
+  structural_opportunities: []
+  risks: []
+  scenarios: []
+
+evidence: []
+assumptions: []
+data_gaps: []

@@ -1,0 +1,135 @@
+case:
+  id: launch-marketing-synthetic-001
+  notice: 全部公司、城市、项目、市场、客户、动作和预算数据均为虚构，仅用于技能前测，不得对外使用。
+  base_case: ../launch-price-synthetic/source-data.yaml
+  company: 华澜地产澄州公司
+  project: 云栖澜庭
+  report_date: 2026-07-20
+  planned_launch_date: 2026-07-26
+
+company_intent:
+  priority_order: [现金流与年度规模, 保持启动会利润指标, 建立东湾改善项目形象]
+  annual_contract_target_yuan: 720000000
+  launch_contract_floor_yuan: 330000000
+  launch_target_units: 108
+  startup_residential_average_price_yuan_per_sqm: 22500
+  minimum_cost_profit_rate: 0.108
+  land_payment_recovery_deadline: 2026-09
+  cashflow_recovery_deadline: 2027-04
+  red_lines:
+    - 不低于集团审批房号底价销售
+    - 不通过住宅与车位捆绑换取住宅成交
+    - 未经批准不突破营销费率和优惠权限
+
+additional_project_facts:
+  positioning: 东湾低密实景改善住区
+  verified_value_evidence:
+    - 容积率1.8，4栋17F小高层与4栋11F洋房
+    - 538个车位，车位比1:1.20
+    - 城市展厅、售楼处、示范区及125/132/168㎡样板间已经开放
+    - 小高层精装成本2200元/㎡，洋房精装成本2600元/㎡
+    - 首开覆盖105/125㎡小高层、132/168㎡洋房四个面积段
+  unverified_claims_not_for_external_use:
+    - 学区承诺
+    - 投资升值承诺
+    - 未批准的会所服务和商业品牌
+
+market_strategy_findings:
+  city_inventory_months: 10.9
+  district_inventory_months: 9.0
+  opportunity: 近三个月成交放量，7月具备首开窗口
+  threat: 供应同步增加，一级竞品东湾序预计2026年9月入市
+  price_positions:
+    105_125: 与东岸云府同价格带竞争，以总价和实景降低决策门槛
+    132: 与澄庐壹号同总价竞争，以洋房属性和完整展示争夺改善客户
+    168: 申请价位于片区高位，以标杆作用为主，不承担过高去化
+
+customer_strategy_findings:
+  subscribed_unique: 184
+  strong_intent_ab: 150
+  first_choice: {105㎡小高层: 45, 125㎡小高层: 42, 132㎡洋房: 53, 168㎡洋房: 44}
+  resistance_counts:
+    总价与付款安排: 62
+    期房兑现与展示: 43
+    通勤及生活配套: 31
+    决策人未统一: 29
+    等待竞品或市场变化: 19
+  conclusion: 认筹总量支持集中首开，但168㎡一房一客承接和决策人到场仍是主要风险
+
+core_conflicts:
+  - 公司要求首开不低于3.30亿元并保持利润，但新增供应增加，首开窗口只有约六周
+  - 项目申请价高于城市均价，必须用实景、产品和总价证据替代概念性溢价
+  - 总认筹充足但168㎡认筹比仅1.0，不能用平均客储掩盖户型结构风险
+
+strategy_choice:
+  proposition: 抢先竞争窗口，以实景兑现建立改善价值，G1与Y1走量、Y3立标，分层客储并集中首开
+  launch_mode: 集中首开
+  opening_scope: G1、Y1、Y3，共156套
+  target_units: 108
+  target_contract_yuan: 337487500
+  not_doing:
+    - 不扩大168㎡首开供应
+    - 不以Y3降价换取全盘表面去化率
+    - 不做不能进入客户漏斗的泛流量大型活动
+    - 不提前承诺未经批准的教育、投资和商业运营内容
+
+funnel_plan:
+  leads: 3400
+  visits: 1200
+  effective_customers: 280
+  subscriptions_execution: 180
+  deals: 108
+  assumptions:
+    lead_to_visit: 0.3529
+    visit_to_effective: 0.2333
+    effective_to_subscription: 0.6429
+    visit_to_subscription: 0.15
+    subscription_to_deal: 0.60
+  actual_as_of_report:
+    verified: 310
+    frozen: 235
+    subscribed_unique: 184
+
+channel_plan:
+  - {channel: 自然来访, leads: 300, visits: 150, effective: 45, subscriptions: 30, deals: 18, budget_yuan: 300000}
+  - {channel: 自拓, leads: 600, visits: 220, effective: 50, subscriptions: 33, deals: 20, budget_yuan: 1100000}
+  - {channel: 新媒体, leads: 700, visits: 180, effective: 42, subscriptions: 27, deals: 16, budget_yuan: 1400000}
+  - {channel: 分销与全民经纪, leads: 450, visits: 270, effective: 60, subscriptions: 40, deals: 24, budget_yuan: 2400000}
+  - {channel: 老带新, leads: 300, visits: 150, effective: 40, subscriptions: 27, deals: 16, budget_yuan: 900000}
+  - {channel: 企拓, leads: 600, visits: 120, effective: 28, subscriptions: 16, deals: 10, budget_yuan: 700000}
+  - {channel: 节点活动, leads: 450, visits: 110, effective: 15, subscriptions: 7, deals: 4, budget_yuan: 1000000}
+
+budget:
+  annual_contract_target_yuan: 720000000
+  annual_budget_yuan: 18000000
+  annual_marketing_rate: 0.025
+  full_project_contract_value_yuan: 1417200000
+  full_project_budget_yuan: 35430000
+  full_project_marketing_rate: 0.025
+  categories:
+    广告费: 3400000
+    制作费: 3200000
+    营销活动费: 1700000
+    客户拓展费: 3600000
+    职工薪酬: 5300000
+    其他销售管理费: 800000
+  launch_stage_budget_yuan: 10124625
+  launch_stage_marketing_rate: 0.03
+  post_launch_annual_contract_target_yuan: 382512500
+  post_launch_annual_budget_yuan: 7875375
+  post_launch_annual_marketing_rate: 0.0206
+  launch_cost_per_effective_customer_yuan: 36159
+  launch_cost_per_subscription_yuan: 56248
+  launch_cost_per_target_deal_yuan: 93747
+  reserve_release_condition: 连续两周有效客户完成率低于85%且渠道复核确认非销售跟进原因
+
+review_rules:
+  - 168㎡A+B客户少于目标房源1.2倍时，不增加供应并逐客复盘付款与决策条件
+  - 两周新媒体单位有效客户成本高于计划30%时，停止放量并更换内容或人群包
+  - 一级竞品提前取证或价格低于本案同面积总价5%时，48小时内重做客户落位和情景测算
+  - 展示延期超过7天时，启动替代展示和远程讲解，不沿用原转化假设
+
+data_status:
+  verified: [项目货量, 价格房号表, 184组去重认筹, 展示完成情况, 虚拟财务结果]
+  management_assumption: [渠道漏斗分解, 渠道预算贡献, 客户抗性计数, 品牌任务]
+  missing_for_real_use: [真实渠道历史效率, 正式品牌与产品手册, 原始PPT母版, 真实公司审批意见]

@@ -1,0 +1,231 @@
+source:
+  id: marketing-action-baseline-001
+  version: 0.1.0
+  title: 房地产营销动作基线
+  created_at: 2026-07-19
+  status: generated-draft
+  basis:
+    - customer-liaison-notes-001
+    - marketing-liaison/references/project-strategy.md
+    - marketing-liaison/references/price-and-resources.md
+
+actions:
+  - id: VALUE-001
+    title: 项目价值体系梳理
+    category: value
+    solves: 价值表达分散或客户无法理解价格理由
+    prerequisites: [项目事实已核验, 核心客户初步明确]
+    outputs: [价值主张, 证据清单, 客群价值转换]
+    leading_metrics: [销售掌握率, 客户价值点反馈]
+    lagging_metrics: [复访率, 到访成交转化率]
+    risks: [概念脱离产品, 编造规划或文化]
+
+  - id: VALUE-002
+    title: 展示动线优化
+    category: value
+    solves: 现场体验无法支撑产品和价格
+    prerequisites: [客户抗性已定位, 展示现状已盘点]
+    outputs: [动线调整, 重点体验点, 讲解节点]
+    leading_metrics: [关键点体验完成率, 样板间到达率]
+    lagging_metrics: [复访率, 价值认可度]
+    risks: [展示超出交付标准, 投入与问题不匹配]
+
+  - id: VALUE-003
+    title: 实景与工程证据传播
+    category: value
+    solves: 期房信任不足或交付顾虑
+    prerequisites: [工程信息经确认, 素材真实可用]
+    outputs: [工程进度内容, 实景素材, 事实说明]
+    leading_metrics: [内容触达, 重点客户反馈]
+    lagging_metrics: [复访率, 信任类抗性变化]
+    risks: [节点承诺过度, 素材与实际不符]
+
+  - id: ACQ-001
+    title: 地推拓客
+    category: acquisition
+    solves: 特定生活圈或工作圈客户触达不足
+    prerequisites: [目标地图清晰, 人员和物料到位]
+    outputs: [点位计划, 排班, 线索回收规则]
+    leading_metrics: [触达数, 有效线索数, 单线索成本]
+    lagging_metrics: [首访组数, 净成交客户数]
+    risks: [低效点位, 个人信息违规采集]
+
+  - id: ACQ-002
+    title: 新媒体内容获客
+    category: acquisition
+    solves: 自然流量和线上认知不足
+    prerequisites: [内容主题和目标客群明确, 承接机制可用]
+    outputs: [选题矩阵, 发布节奏, 留资路径]
+    leading_metrics: [有效触达, 留资, 单线索成本]
+    lagging_metrics: [归因首访, 归因成交]
+    risks: [追求播放忽视有效客户, 平台和广告合规]
+
+  - id: ACQ-003
+    title: 直播获客
+    category: acquisition
+    solves: 需要高频讲解、互动和线索收集
+    prerequisites: [主播和脚本通过培训, 项目口径已审核]
+    outputs: [直播脚本, 排期, 互动和承接流程]
+    leading_metrics: [有效观看, 咨询, 留资]
+    lagging_metrics: [首访, 成交]
+    risks: [口播夸大, 虚假优惠, 归因失真]
+
+  - id: ACQ-004
+    title: 分销渠道合作
+    category: channel
+    solves: 自有客户覆盖不足或需要快速扩大带看
+    prerequisites: [佣金获批, 渠道名单和结算规则明确]
+    outputs: [渠道政策, 带看规则, 目标和复盘]
+    leading_metrics: [报备, 带看, 有效客户]
+    lagging_metrics: [渠道成交, 渠道费效]
+    risks: [佣金倒挂, 客户归属争议, 虚假带看]
+
+  - id: ACQ-005
+    title: 老带新
+    category: acquisition
+    solves: 需要利用业主信任和熟人关系获客
+    prerequisites: [权益获批, 业主关系和兑现流程明确]
+    outputs: [推荐机制, 权益规则, 跟踪台账]
+    leading_metrics: [推荐人数, 到访组数]
+    lagging_metrics: [成交, 权益成本]
+    risks: [权益不兑现, 新老客户口径冲突]
+
+  - id: ACQ-006
+    title: 圈层拓客
+    category: acquisition
+    solves: 高价值或特定职业生活方式客群难以触达
+    prerequisites: [圈层关联真实, 合作资源可核验]
+    outputs: [合作对象, 活动和邀约计划]
+    leading_metrics: [有效邀约, 到访]
+    lagging_metrics: [高意向客户, 成交]
+    risks: [形式大于客户质量, 费用过高]
+
+  - id: CONV-001
+    title: 客户盘点
+    category: conversion
+    solves: 客户信息分散、跟进无重点或成交条件不清
+    prerequisites: [接待记录可用, 责任销售参与]
+    outputs: [客户诊断, MAN缺口, 单客动作]
+    leading_metrics: [信息完整度, 复访邀约]
+    lagging_metrics: [复访率, 成交转化]
+    risks: [标签替代事实, 客户信息过度收集]
+
+  - id: CONV-002
+    title: 销售说辞与训练
+    category: conversion
+    solves: 价值传递不一致、异议处理弱或合规风险高
+    prerequisites: [项目事实包和客户抗性可用]
+    outputs: [说辞, 异议口径, 训练和考核]
+    leading_metrics: [考核通过率, 价值点覆盖]
+    lagging_metrics: [转化率, 客户投诉]
+    risks: [用话术掩盖硬伤, 训练内容脱离项目]
+
+  - id: CONV-003
+    title: 重点客户复邀
+    category: conversion
+    solves: 已到访客户未形成复访或关键决策人未到场
+    prerequisites: [单客理由真实, 邀约对象和目标明确]
+    outputs: [客户名单, 复邀理由, 时间和责任人]
+    leading_metrics: [触达率, 复访确认]
+    lagging_metrics: [复访, 成交]
+    risks: [虚构房源优惠, 过度打扰]
+
+  - id: CONV-004
+    title: 节点活动转化
+    category: conversion
+    solves: 需要以真实体验或节点理由促进到访复访
+    prerequisites: [目标客户和转化动作明确]
+    outputs: [活动方案, 邀约名单, 现场转化流程]
+    leading_metrics: [邀约确认, 到场, 有效沟通]
+    lagging_metrics: [认筹, 成交, 单客成本]
+    risks: [只做热闹无转化, 安全和费用风险]
+
+  - id: PRICE-001
+    title: 价格梯度优化
+    category: price-inventory
+    solves: 不同房源质素与价差不匹配导致客户选择失衡
+    prerequisites: [销控、成交、底价和客户反馈齐备]
+    outputs: [梯度方案, 房源互导规则, 财务影响]
+    leading_metrics: [客户落位变化, 价格接受度]
+    lagging_metrics: [结构去化, 价格实现率]
+    risks: [价格体系失衡, 越权调价]
+
+  - id: PRICE-002
+    title: 限定特价房
+    category: price-inventory
+    solves: 引流、清栋或转化特定滞销房源
+    prerequisites: [房源、价格、数量、期限和权限明确]
+    outputs: [特价房清单, 传播口径, 恢复规则]
+    leading_metrics: [咨询, 到访, 落位]
+    lagging_metrics: [成交, 价格和舆情影响]
+    risks: [虚假稀缺, 老业主影响, 全盘价格下移]
+
+  - id: PRICE-003
+    title: 分批推售
+    category: price-inventory
+    solves: 货量过大、客储不足或需控制价格节奏
+    prerequisites: [货量结构、客储和节点计划齐备]
+    outputs: [批次, 货量, 价格, 客户和节点]
+    leading_metrics: [客储货量比, 落位集中度]
+    lagging_metrics: [批次去化率, 价格实现率]
+    risks: [好货过早耗尽, 客户等待]
+
+  - id: PRICE-004
+    title: 资源组合包
+    category: price-inventory
+    solves: 直接降价不适合但客户存在总成本或交付抗性
+    prerequisites: [资源真实可交付, 成本和权限确认]
+    outputs: [车位、装修、家电或服务组合方案]
+    leading_metrics: [客户接受度, 重点客户转化]
+    lagging_metrics: [成交, 资源成本, 投诉]
+    risks: [交付承诺不清, 名义保价实质超权限]
+
+  - id: ORG-001
+    title: 节点激励
+    category: organization
+    solves: 关键节点团队动力或重点任务聚焦不足
+    prerequisites: [目标可衡量, 预算和规则获批]
+    outputs: [对象, 指标, 奖励, 期限和核验]
+    leading_metrics: [关键动作完成, 客户推进]
+    lagging_metrics: [节点成交, 人均产出]
+    risks: [短期行为, 指标作弊, 费用失控]
+
+  - id: ORG-002
+    title: 跨专业专项小组
+    category: organization
+    solves: 工程、展示、成本、财务或审批成为关键瓶颈
+    prerequisites: [问题和决策事项具体]
+    outputs: [RACI, 里程碑, 升级路径]
+    leading_metrics: [问题关闭率, 节点按期率]
+    lagging_metrics: [展示兑现, 推售和回款]
+    risks: [会议代替行动, 责任模糊]
+
+  - id: ORG-003
+    title: 周度经营复盘
+    category: organization
+    solves: 数据、判断和动作缺少闭环
+    prerequisites: [指标快照和责任人齐备]
+    outputs: [结论, 偏差, 动作, 决策事项]
+    leading_metrics: [动作按期率, 数据完整度]
+    lagging_metrics: [目标完成, 风险关闭]
+    risks: [只报数字, 动作不可追踪]
+
+  - id: TRANS-001
+    title: 集中签约推进
+    category: transaction
+    solves: 已成交客户签约延迟
+    prerequisites: [应签清单、合同和客户障碍明确]
+    outputs: [客户分组, 材料缺口, 时间和责任人]
+    leading_metrics: [材料齐备率, 到场预约]
+    lagging_metrics: [到期签约率]
+    risks: [流程承诺超权限, 客户体验下降]
+
+  - id: TRANS-002
+    title: 按揭与回款专项
+    category: transaction
+    solves: 贷款、资料或付款计划导致回款延迟
+    prerequisites: [财务、银行和客户状态可核验]
+    outputs: [风险清单, 跟进动作, 升级事项]
+    leading_metrics: [资料齐备, 审批进度]
+    lagging_metrics: [到期回款完成率]
+    risks: [金融承诺, 敏感信息管理]

@@ -1,0 +1,67 @@
+contract: organization-context
+version: 0.2.0
+
+scope:
+  company: null
+  region: null
+  city_company_virtual: null
+  standalone_project_company: null
+  project_name: null
+  as_of_date: null
+  organization_level: null
+
+organization:
+  regional_model: 1+N+n
+  hierarchy: [headquarters, regional-company, city-company-virtual-or-standalone-project-company, project]
+  one_definition: regional-company
+  n_upper_definition: city-company-virtual-managing-multiple-projects
+  n_lower_definition: standalone-project-company
+  city_company_is_formal_entity: false
+  city_company_is_virtual_management_unit: true
+  city_companies_managed_by_region: []
+  standalone_project_companies_managed_by_region: []
+  projects_by_city: []
+  accountable_owner: null
+  roles: []
+  vacancies_or_gaps: []
+
+objectives:
+  annual: []
+  monthly: []
+  project_specific: []
+
+performance:
+  sales_contract: null
+  conversion: null
+  marketing_expense: null
+  headcount_and_payroll: null
+  launch_target: null
+  signing_and_collection: null
+  profit_and_cashflow: null
+
+stakeholders:
+  headquarters: []
+  regional: []
+  city_company_virtual: []
+  standalone_project_company: []
+  project: []
+  cross_functional: []
+
+position_by_level:
+  headquarters: null
+  regional: null
+  city_company_virtual: null
+  standalone_project_company: null
+  project: null
+
+governance:
+  meeting_cadence: []
+  site_visit_cadence: []
+  reporting_route: []
+  approval_route: []
+  escalation_rule: []
+
+decisions_needed: []
+conflicts: []
+actions: []
+review_date: null

@@ -1,0 +1,128 @@
+contract: financial-context
+version: 0.3.0
+
+scope:
+  company: null
+  region: null
+  project_name: null
+  property_type: null
+  unit_scope: null
+  as_of_date: null
+  model_version: null
+
+price:
+  startup_approved_amount: null
+  opening_requested_amount: null
+  list_amount: null
+  approved_target_amount: null
+  current_net_amount: null
+  proposed_net_amount: null
+  approved_floor_amount: null
+  resource_equivalent_cost: null
+
+profit:
+  revenue: null
+  direct_cost: null
+  tax: null
+  allocated_cost: null
+  gross_profit: null
+  gross_margin: null
+  company_profit_metric: null
+  loss_status_confirmed_by_finance: null
+
+cashflow:
+  expected_collection: null
+  expected_collection_dates: []
+  committed_outflow: null
+  forecast_net_cashflow: null
+  cash_gap: null
+
+marketing_expense:
+  approved_budget: null
+  committed_expense: null
+  recognized_expense: null
+  paid_expense: null
+  forecast_expense: null
+  expense_rate: null
+
+authority:
+  current_authority: null
+  requested_authority: null
+  approval_level: null
+  required_reviews: []
+  valid_scope: null
+  valid_period: null
+
+scenarios:
+  - name: baseline | proposed | cautious | optimistic
+    contract_units: null
+    contract_amount: null
+    net_price: null
+    collection_amount: null
+    marketing_expense: null
+    profit_impact: null
+    inventory_months: null
+    assumptions: []
+
+opening_price_report:
+  baseline_versions:
+    startup_meeting_version: null
+    opening_price_review_version: null
+    elapsed_months: null
+    technical_indicator_changes: []
+    market_changes: []
+    target_comparison_principle: maintain_or_exceed_startup_targets
+    comparison_version: null
+  price_boundaries:
+    startup_approved_full_project_price: null
+    startup_approved_property_type_prices: []
+    opening_requested_price: null
+    opening_requested_property_type_prices: []
+    unit_floor_price: null
+    list_price: null
+    net_transaction_price: null
+    expected_full_project_realized_price: null
+    unit_floor_price_approved_by_group: unknown
+    actual_price_not_below_floor: unknown
+    definition_status: provided
+  investment_interest_model:
+    canonical_name: 全投资计息
+    aliases: [全计息, 全投资]
+    net_profit: null
+    cost_profit_rate: null
+    gross_margin: null
+    net_margin: null
+    irr: null
+    formula_version: null
+    confirmation_status: missing
+  recovery_dates:
+    land_payment_recovery_date: null
+    cashflow_recovery_date: null
+    land_recovery_rule: cumulative_sales_collections_gte_land_payment_invested
+    cashflow_recovery_rule: cumulative_sales_collections_gte_included_project_cash_outflows
+    included_cash_outflows: [土地, 工程, 设计, 营销, 其他财务纳入费用]
+    formula_version: null
+    confirmation_status: partial
+  decoration_exclusion:
+    opening_price_excluding_decoration: null
+    full_project_price_excluding_decoration: null
+    decoration_cost_per_area: null
+    exclusion_method: decorated_selling_price_minus_decoration_cost
+    confirmation_status: provided
+  parking_sensitivity:
+    model_version: null
+    net_profit_formula: null
+    parking_value_profit_share_formula: null
+    cost_profit_rate_formula: null
+    confirmation_status: missing
+  profit_scope:
+    unified_project_profit_framework: true
+    residential_included: true
+    commercial_included: true
+    parking_included: true
+    other_scope_notes: []
+  confirmed_by_finance: null
+  confirmed_at: null
+
+data_gaps: []
+finance_confirmation: []

@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目首开营销策略报告"
+  short_description: "从市场与客户证据推导首开策略、营销动作、目标漏斗及费用预算"
+  default_prompt: "Use $launch-marketing-report to develop a project launch marketing strategy from business intent, market and customer evidence through actions, targets, budget, and review rules."

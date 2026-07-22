@@ -1,0 +1,30 @@
+{
+  "launch": {
+    "units": 156,
+    "area": 21020,
+    "value": 497291840.0,
+    "average_price": 23658.032350142723,
+    "target_sales_units": 108,
+    "target_sales_value": 337487500,
+    "target_sales_by_building": {
+      "G1": {
+        "units": 50,
+        "value": 124217500
+      },
+      "Y1": {
+        "units": 32,
+        "value": 100510080
+      },
+      "Y3": {
+        "units": 26,
+        "value": 112759920
+      }
+    }
+  },
+  "full_project": {
+    "units": 448,
+    "area": 57680,
+    "value": 1326302040.0,
+    "average_price": 22994.14077669903
+  }
+}

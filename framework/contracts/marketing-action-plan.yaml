@@ -1,0 +1,35 @@
+contract: marketing-action-plan
+version: 0.1.0
+
+scope:
+  project_name: null
+  period: null
+  objective: null
+  target_customer: []
+  target_inventory: []
+
+diagnosis:
+  bottleneck: null
+  evidence_ids: []
+  baseline_metrics: []
+
+actions:
+  - action_id: null
+    title: null
+    rationale: null
+    owner: null
+    collaborators: []
+    start_date: null
+    end_date: null
+    budget: null
+    authority_required: []
+    prerequisites: []
+    deliverables: []
+    leading_metrics: []
+    lagging_metrics: []
+    stop_or_adjust_rule: null
+    risks: []
+
+dependencies: []
+decisions_needed: []
+review_dates: []

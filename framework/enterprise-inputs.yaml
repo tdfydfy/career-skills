@@ -1,0 +1,253 @@
+version: 0.3.0
+updated_at: 2026-07-20
+
+status_values: [missing, partial, provided, validated]
+
+inputs:
+  - id: ENT-001
+    priority: P0
+    title: 项目阶段正式定义
+    status: missing
+    request: 提供公司项目启动、蓄客、认筹、首开、持销、尾盘和交付的正式名称及进入退出节点。
+    accepted_formats: [制度文件, 流程图, 会议模板, 文字说明]
+    affects: [foundation-project-model, deliverable-launch-report, deliverable-sustained-sales-report]
+
+  - id: ENT-002
+    priority: P0
+    title: 项目健康度阈值
+    status: missing
+    request: 提供正常、承压、困难、亏损项目的现行认定规则、观察周期和升级机制。
+    accepted_formats: [项目分级制度, 经营预警表, 真实案例]
+    affects: [business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-distressed-project-plan]
+
+  - id: ENT-003
+    priority: P0
+    title: 经营指标正式口径
+    status: partial
+    request: 已提供持销来访成交约10%、首开来访认筹约15%、认筹成交约60%的经验基准；仍需确认合约额、成交、转化率、去化率、签约和回款的正式分子、分母、状态、观察窗口及历史分布。
+    accepted_formats: [经营报表, 指标字典, 系统字段表]
+    affects: [foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
+
+  - id: ENT-004
+    priority: P0
+    title: 数据系统和字段映射
+    status: partial
+    request: 提供明源、CRM、财务和市场数据库中的正式字段名、数据负责人和更新时间。
+    accepted_formats: [字段导出, 报表样例, API文档, 截图]
+    affects: [foundation-metric-dictionary, foundation-fact-governance]
+
+  - id: ENT-005
+    priority: P0
+    title: 价格与底价口径
+    status: partial
+    request: 已确认启动会批复价、首开申请价、房号底价、表价和净成交价；仍需确认其他调价场景的权限价、明源字段映射及赠送资源折算规则。
+    accepted_formats: [价格表, 调价审批表, 财务规则]
+    affects: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-price-adjustment-proposal]
+
+  - id: ENT-006
+    priority: P0
+    title: 利润和亏损认定
+    status: missing
+    request: 提供毛利、动态利润、项目亏损、单批房源亏损和止损的正式定义及确认部门。
+    accepted_formats: [投资测算表, 财务制度, 经营会材料]
+    affects: [foundation-financial-standards, foundation-investment-criteria, deliverable-loss-making-project-plan]
+
+  - id: ENT-007
+    priority: P0
+    title: 现金流和回款标准
+    status: partial
+    request: 已确认土地款回正和现金流回正的基本定义；仍需提供签约、首付、按揭、分期、计划/实际到账、纳入现金流的其他费用和预警规则。
+    accepted_formats: [回款报表, 财务预测表, 签约回款制度]
+    affects: [foundation-financial-standards, business-manage-contract-collection, deliverable-loss-making-project-plan]
+
+  - id: ENT-008
+    priority: P0
+    title: 营销费用口径
+    status: partial
+    request: 已提供整盘营销费率约2.5%、首开阶段可适度至约3%并后续压降的经验基准；仍需提供费用科目、预算、承诺、确认、支付、分摊、费率分母和跨期规则。
+    accepted_formats: [预算模板, 费用台账, 财务科目表]
+    affects: [foundation-financial-standards, business-analyze-marketing-expense, deliverable-expense-analysis-report]
+
+  - id: ENT-009
+    priority: P0
+    title: 三级审批权限矩阵
+    status: missing
+    request: 提供集团、地区和项目在价格、折扣、赠送、佣金、费用、编制和重大活动方面的权限。
+    accepted_formats: [授权手册, RACI, 审批流程]
+    affects: [foundation-organization-governance, foundation-financial-standards, marketing-liaison]
+
+  - id: ENT-010
+    priority: P0
+    title: 客户字段和个人信息规则
+    status: partial
+    request: 确认客户必填、选填、敏感字段、授权、查看权限、保存期限和删除规则。
+    accepted_formats: [CRM字段表, 隐私制度, 客户表单]
+    affects: [foundation-customer-model, sales-officer]
+
+  - id: ENT-011
+    priority: P0
+    title: 有效客户与客储标准
+    status: partial
+    request: 已确认日常来访不强制区分有效无效、纯活动客户通常不计入，并确认A/B/C/D及B/C加减级定义；仍需确认首开或专题有效客储标准、评级升降级证据、MAN及房源价格条件与开盘预测的映射规则。
+    accepted_formats: [盘客表, 客户评级制度, 首开复盘]
+    affects: [foundation-customer-model, business-analyze-customer-reservoir, deliverable-launch-report, deliverable-launch-price-report]
+
+  - id: ENT-012
+    priority: P0
+    title: 地区 `1+N+n` 职责与岗位RACI
+    status: partial
+    request: 已确认`1`为地区公司、`N`为管理多个项目的城市公司虚拟组织、`n`为单独项目公司；仍需明确各单元岗位职责、兼岗、虚拟组织授权、地区自主事项和重大事项升级时限。
+    accepted_formats: [组织架构图, 岗位职责, RACI]
+    affects: [foundation-organization-governance, business-plan-sales, business-coordinate-project-functions]
+
+  - id: ENT-013
+    priority: P0
+    title: 正式市场数据源
+    status: missing
+    request: 确认城市和板块市场、竞品、新房、二手房、土地和政策数据来源及更新周期。
+    accepted_formats: [数据平台清单, 市场月报, 竞品表]
+    affects: [foundation-fact-governance, business-analyze-market-competition, deliverable-project-diagnosis-report]
+
+  - id: ENT-014
+    priority: P0
+    title: 常用成果正式模板
+    status: partial
+    request: 已提供首开价格报告25页文字模板及项目营销策略报告文字模板；仍需提供两类报告的原始PPT版式资产，以及年度、半年度、持销、诊断、调价、费用和周月汇报模板。
+    accepted_formats: [PPT, Word, Excel, PDF]
+    affects: [deliverable-launch-report, deliverable-launch-price-report, deliverable-annual-marketing-report, deliverable-operating-review]
+
+  - id: ENT-015
+    priority: P0
+    title: 正常和异常项目样例
+    status: missing
+    request: 各提供一个正常、承压、困难和亏损项目的脱敏事实、判断、动作和结果。
+    accepted_formats: [复盘报告, 会议纪要, 脱敏数据包]
+    affects: [business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-loss-making-project-plan]
+
+  - id: ENT-016
+    priority: P1
+    title: 投资测算与标尺
+    status: missing
+    request: 提供投资测算版本、IRR、利润率、回正周期、峰值负现金流和敏感性模板。
+    accepted_formats: [投资测算表, 投资制度]
+    affects: [foundation-investment-criteria, deliverable-loss-making-project-plan]
+
+  - id: ENT-017
+    priority: P1
+    title: 营销动作历史效果
+    status: missing
+    request: 提供渠道、媒体、活动、地推、老带新、直播和展示投入的历史目标、费用和结果。
+    accepted_formats: [活动复盘, 投放报表, 渠道台账]
+    affects: [foundation-marketing-action-library, business-plan-customer-acquisition, business-analyze-marketing-expense]
+
+  - id: ENT-018
+    priority: P1
+    title: 品牌与文案规范
+    status: missing
+    request: 提供品牌核心词、禁用词、固定称谓、语气、免责声明和内容审批流程。
+    accepted_formats: [品牌手册, 文案规范, 优秀案例]
+    affects: [foundation-copy-standards, business-write-soft-article, deliverable-promotion-plan]
+
+  - id: ENT-019
+    priority: P1
+    title: 项目和企业VI
+    status: missing
+    request: 提供Logo、字体、色值、安全区、版式、项目视觉资产和免责声明模板。
+    accepted_formats: [VI手册, 源文件, 模板]
+    affects: [foundation-image-standards, business-compose-graphic-content, business-brief-image-creative]
+
+  - id: ENT-020
+    priority: P1
+    title: 视频与账号规范
+    status: missing
+    request: 提供账号矩阵、栏目、时长、片头片尾、字幕、出镜、素材版权和发布审批规则。
+    accepted_formats: [运营规范, 视频模板, 账号清单]
+    affects: [foundation-video-standards, business-plan-video-content, deliverable-promotion-plan]
+
+  - id: ENT-021
+    priority: P1
+    title: 渠道管理制度
+    status: missing
+    request: 提供报备、客户归属、佣金、结算、违规、黑名单和渠道考核规则。
+    accepted_formats: [渠道制度, 合同模板, 结算表]
+    affects: [business-plan-channel, deliverable-sustained-sales-report]
+
+  - id: ENT-022
+    priority: P1
+    title: 活动采购和安全制度
+    status: missing
+    request: 提供采购权限、供应商、安全审批、保险、应急和复盘要求。
+    accepted_formats: [活动制度, 采购流程, 应急预案]
+    affects: [business-plan-campaign, deliverable-campaign-proposal]
+
+  - id: ENT-023
+    priority: P1
+    title: 展示建造和验收标准
+    status: missing
+    request: 提供售楼处、示范区、样板间、实景展示的任务书、成本、验收和维护规则。
+    accepted_formats: [设计任务书, 验收表, 展示复盘]
+    affects: [business-plan-display, deliverable-launch-report]
+
+  - id: ENT-024
+    priority: P1
+    title: 销售组织和考核标准
+    status: partial
+    request: 提供岗位编制、接待流程、佣金激励、训练、考核和案场制度。
+    accepted_formats: [销售手册, 考核表, 排班表]
+    affects: [business-plan-sales, sales-talk-coach, deliverable-sales-pitch-manual]
+
+  - id: ENT-025
+    priority: P1
+    title: 签约按揭回款流程
+    status: missing
+    request: 提供应签时限、资料、合作银行、逾期、退订和重大争议升级机制。
+    accepted_formats: [签约流程, 按揭清单, 回款台账]
+    affects: [business-manage-contract-collection, deliverable-operating-review]
+
+  - id: ENT-026
+    priority: P1
+    title: 车位和商业专项规则
+    status: missing
+    request: 提供权属、销售条件、税费、客户、价格、租售、合同和审批差异。
+    accepted_formats: [车位方案, 商业方案, 法务意见]
+    affects: [deliverable-parking-commercial-report]
+
+  - id: ENT-027
+    priority: P0
+    title: 目标与预算分解制度
+    status: missing
+    request: 提供年度目标下达、项目和月度分解、预算编制、滚动预测及调标权限。
+    accepted_formats: [目标责任书, 预算模板, 月度分解表]
+    affects: [business-plan-target-budget, deliverable-target-budget-plan, deliverable-annual-marketing-report]
+
+  - id: ENT-028
+    priority: P1
+    title: 团队能力和绩效制度
+    status: partial
+    request: 提供岗位能力模型、绩效指标、人才盘点、带教、改进和员工信息权限规则。
+    accepted_formats: [岗位模型, 绩效制度, 人才盘点表]
+    affects: [business-manage-team-performance, deliverable-team-capability-review]
+
+  - id: ENT-029
+    priority: P1
+    title: 项目定位与产品线标准
+    status: missing
+    request: 提供项目启动、客户调研、产品线、面积配置、成本限额和营销定位决策模板。
+    accepted_formats: [定位报告, 产品线手册, 启动会模板, 成本限额]
+    affects: [business-plan-project-positioning, deliverable-project-positioning-report]
+
+  - id: ENT-030
+    priority: P0
+    title: 法务与广告合规正式口径
+    status: partial
+    request: 提供当前适用地区、广告审查、项目必备信息、标准免责声明、个人信息和对外承诺审批规则。
+    accepted_formats: [法务审查清单, 广告制度, 免责声明, 隐私制度]
+    affects: [content-compliance, foundation-fact-governance, foundation-copy-standards, foundation-image-standards, foundation-video-standards]
+
+  - id: ENT-031
+    priority: P0
+    title: 首开价格报告财务与价格口径
+    status: partial
+    request: 已确认启动会与首开价格评审会关系、全投资计息简称、回正、精装剔除、价格边界和统一项目利润框架；真实项目使用时仍需财务提供全投资计息及车位测算结果、精装成本和模型版本。
+    accepted_formats: [首开价格测算表, 投资测算表, 财务口径说明, 价格审批制度]
+    affects: [foundation-financial-standards, foundation-investment-criteria, business-plan-pricing-inventory, deliverable-launch-price-report]

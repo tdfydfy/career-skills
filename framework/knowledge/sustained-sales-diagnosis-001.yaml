@@ -1,0 +1,84 @@
+source:
+  id: sustained-sales-diagnosis-001
+  title: 持销期专题诊断与房车同售认知
+  provided_by: marketing-lead
+  received_at: 2026-07-20
+  status: normalized-draft
+
+atom_types:
+  enterprise-rule: 企业当前管理原则
+  domain-framework: 可复用分析框架
+  heuristic: 需结合项目事实验证的经验规则
+
+atoms:
+  - id: SUST-001
+    domain: deliverable-purpose
+    type: enterprise-rule
+    statement: 持销阶段发起专题分析通常意味着项目遇到具体问题，成果必须针对异常进行诊断和提出建议，不能只形成笼统阶段报告。
+    target_nodes: [deliverable-sustained-sales-report, business-analyze-project-health]
+
+  - id: SUST-002
+    domain: diagnosis
+    type: domain-framework
+    statement: 持销诊断应结合项目外部环境、内部经营条件和前期销售得失，识别问题发生时间、影响范围和变化机制。
+    target_nodes: [deliverable-sustained-sales-report, business-analyze-project-health, business-plan-marketing-strategy]
+
+  - id: SUST-003
+    domain: diagnosis
+    type: domain-framework
+    statement: 销售问题可能由市场、竞争、客户、产品、团队、策划、传播、价值、展示、渠道、激励、获客和执行等多个因素共同造成，不能预设单一原因。
+    target_nodes: [deliverable-sustained-sales-report, business-analyze-project-health]
+
+  - id: SUST-004
+    domain: diagnosis
+    type: enterprise-rule
+    statement: 诊断必须区分策略错误、执行不足和外部变化，并通过事实、时间线、结构差异和验证动作建立因果关系。
+    target_nodes: [foundation-fact-governance, deliverable-sustained-sales-report, business-analyze-project-health]
+
+  - id: SUST-005
+    domain: intervention
+    type: heuristic
+    statement: 持销期产品已经规划并销售，产品和价格调整通常成本高、影响大，原则上作为靠后的选择；但证据证明其为主要根因且窗口有限时，应及时进行重大改革。
+    target_nodes: [business-plan-marketing-strategy, business-plan-pricing-inventory, deliverable-sustained-sales-report]
+
+  - id: SUST-006
+    domain: intervention
+    type: domain-framework
+    statement: 常规改善优先从展示、价值挖掘、传播、渠道、激励、获客、销售团队和执行承接等可逆环节选择动作，并为每项动作设置验证指标。
+    target_nodes: [foundation-marketing-action-library, business-plan-display, business-plan-channel, business-plan-sales, deliverable-sustained-sales-report]
+
+  - id: SUST-007
+    domain: customer-value
+    type: heuristic
+    statement: 可通过家电、装修、封窗等资源提高客户获得感并降低直接降价的负面影响，但必须验证客户需求、折算成本、明确交付责任并取得权限审批。
+    target_nodes: [foundation-financial-standards, foundation-marketing-action-library, business-plan-pricing-inventory, deliverable-sustained-sales-report]
+
+  - id: SUST-008
+    domain: price-inventory
+    type: domain-framework
+    statement: 价格调整可结合加推房源设置立标杆、保流速、引流、难售修复和保护性房源，不应无差别调整全盘价格。
+    target_nodes: [foundation-project-model, business-plan-pricing-inventory, deliverable-sustained-sales-report]
+
+  - id: SUST-009
+    domain: reputation
+    type: enterprise-rule
+    statement: 持销期价格和权益动作必须评估项目口碑、公开价格体系及老业主感受，必要时同步设计沟通与风险预案。
+    target_nodes: [foundation-fact-governance, content-compliance, business-plan-pricing-inventory, deliverable-sustained-sales-report]
+
+  - id: SUST-010
+    domain: housing-parking
+    type: enterprise-rule
+    statement: 项目原则上从开盘和持销阶段推进住宅与车位同步销售，避免住宅去化后积压大量车位库存。
+    target_nodes: [business-plan-pricing-inventory, business-plan-sales, deliverable-launch-report, deliverable-sustained-sales-report, deliverable-parking-commercial-report]
+
+  - id: SUST-011
+    domain: housing-parking
+    type: heuristic
+    statement: 房车组合可在住宅房号底价之上配置额外住宅优惠，并通过人员考核引导同步销售，但须经财务和权限审批且不得强制捆绑。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, business-plan-sales, deliverable-sustained-sales-report]
+
+  - id: SUST-012
+    domain: housing-parking
+    type: enterprise-rule
+    statement: 房车同售必须分别设置住宅和车位量价目标、车住销售比、客户意向、财务结果和复盘机制，住宅、车位再汇总到同一项目利润框架。
+    target_nodes: [foundation-metric-dictionary, foundation-financial-standards, deliverable-sustained-sales-report, deliverable-parking-commercial-report]

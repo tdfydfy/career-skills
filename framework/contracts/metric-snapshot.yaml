@@ -1,0 +1,53 @@
+contract: metric-snapshot
+version: 0.2.0
+
+scope:
+  company: null
+  region: null
+  city: null
+  project_name: null
+  property_type: null
+  sales_stage: null
+  additional_dimensions: {}
+
+period:
+  start_date: null
+  end_date: null
+  as_of_date: null
+  comparison_period: null
+
+dictionary:
+  source_id: metric-baseline-001
+  version: 0.3.0
+
+values:
+  - metric_id: null
+    value: null
+    unit: null
+    numerator:
+      metric_id: null
+      value: null
+    denominator:
+      metric_id: null
+      value: null
+    formula_version: null
+    data_source: null
+    source_updated_at: null
+    quality_status: verified | provisional | missing | not-applicable
+    notes: null
+
+comparisons:
+  - metric_id: null
+    comparison_type: year-on-year | month-on-month | rolling | target
+    current_value: null
+    comparison_value: null
+    change_absolute: null
+    change_rate: null
+    comparable: null
+    notes: null
+
+data_quality:
+  missing_metrics: []
+  inconsistent_scopes: []
+  stale_sources: []
+  reconciliation_items: []

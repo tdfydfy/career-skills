@@ -1,0 +1,60 @@
+contract: inventory-context
+version: 0.1.0
+
+scope:
+  project_name: null
+  property_type: null
+  as_of_date: null
+  price_version: null
+
+summary:
+  cumulative_launched_units: null
+  cumulative_net_contract_units: null
+  available_inventory_units: null
+  available_inventory_area: null
+  available_inventory_value: null
+  pending_supply_units: null
+  inventory_months: null
+
+units:
+  - unit_id: null
+    building: null
+    floor: null
+    unit_number: null
+    property_type: null
+    product_type: null
+    building_area: null
+    location_and_view: []
+    delivery_status: null
+    sale_status: available | reserved | subscribed | contracted | cancelled | unavailable
+    launch_batch: null
+    list_amount: null
+    approved_target_amount: null
+    current_net_amount: null
+    approved_floor_amount: null
+    resource_equivalent_cost: null
+    customer_feedback: []
+    strengths: []
+    objections: []
+    inventory_role: attraction | core | benchmark | profit | difficult | tail
+    evidence_ids: []
+
+planned_batches:
+  - batch_id: null
+    planned_date: null
+    unit_ids: []
+    target_customer: []
+    target_units: null
+    target_amount: null
+    target_price: null
+    strategic_role: null
+    prerequisites: []
+
+constraints:
+  financial: []
+  legal: []
+  engineering: []
+  partner: []
+  approval: []
+
+data_gaps: []

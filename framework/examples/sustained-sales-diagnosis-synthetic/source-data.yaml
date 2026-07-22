@@ -1,0 +1,155 @@
+case:
+  id: sustained-sales-diagnosis-synthetic-001
+  notice: 全部公司、城市、项目、市场、客户、团队、价格和财务数据均为虚构，仅用于技能前测，不得对外使用。
+  company: 华澜地产澄州公司
+  project: 泊岸云章
+  report_date: 2026-07-20
+  launch_date: 2026-03-28
+  diagnosis_window: 2026-04-01至2026-07-20
+
+business_problem:
+  annual_contract_target_yuan: 650000000
+  post_launch_8_week_target_units: 60
+  post_launch_8_week_target_contract_yuan: 135000000
+  symptom: 首开后到访与转化同时下降，165㎡和车位形成结构性库存
+  turning_points:
+    - {date: 2026-05-05, event: 销售经理更换，销售团队由12人减至9人}
+    - {date: 2026-05-18, event: 一级竞品澄江序开放完整示范区并以较低总价入市}
+    - {date: 2026-06-01, event: 分销渠道将主要资源转向高佣竞品}
+
+project:
+  residential_total_units: 600
+  launched_units: 320
+  sold_units: 158
+  launched_available_units: 162
+  unlaunched_units: 280
+  product_inventory:
+    - {product: 115㎡小高层, launched: 120, sold: 80, available: 40, current_price_yuan_per_sqm: 21300, competitor_price_yuan_per_sqm: 21000}
+    - {product: 135㎡小高层, launched: 120, sold: 62, available: 58, current_price_yuan_per_sqm: 22000, competitor_price_yuan_per_sqm: 20900}
+    - {product: 165㎡洋房, launched: 80, sold: 16, available: 64, current_price_yuan_per_sqm: 23500, competitor_price_yuan_per_sqm: 22500}
+  next_launch:
+    planned_date: 2026-08-16
+    building: 6号楼
+    units:
+      - {product: 115㎡小高层, units: 36, role: 保流速}
+      - {product: 135㎡小高层, units: 36, role: 立标杆}
+
+sales_trend:
+  - {period: 2026-04, visits: 260, deals: 24, conversion: 0.0923, average_price_yuan_per_sqm: 22050}
+  - {period: 2026-05, visits: 210, deals: 14, conversion: 0.0667, average_price_yuan_per_sqm: 21980}
+  - {period: 2026-06, visits: 130, deals: 8, conversion: 0.0615, average_price_yuan_per_sqm: 21920}
+  - {period: 2026-07-01至07-20, visits: 65, deals: 4, conversion: 0.0615, average_price_yuan_per_sqm: 21900}
+
+market_change:
+  market_transaction_change_since_april: -0.12
+  project_visit_change_since_april: -0.50
+  project_share_change: {from: 0.085, to: 0.051}
+
+customer_loss_sample:
+  sample_size: 120
+  reasons:
+    等待竞品或竞品总价更低: 40
+    本案展示陈旧或价值证据不足: 28
+    165㎡总价超预算: 18
+    销售跟进慢或信息不一致: 14
+    通勤与生活半径不匹配: 10
+    家庭决策未统一: 6
+    贷款或付款条件不满足: 4
+
+competitor:
+  name: 澄江序
+  opened_at: 2026-05-18
+  strengths: [完整示范区, 135㎡总价较本案低约15万元, 分销佣金3.5%, 交付配置展示完整]
+  weaknesses: [距离核心生活圈更远, 车位配比低]
+  project_channel_commission: 0.022
+  competitor_channel_commission: 0.035
+
+internal_findings:
+  sales_team_headcount_launch: 12
+  sales_team_headcount_current: 9
+  follow_up_within_48h_rate: 0.62
+  crm_required_field_completion: 0.82
+  sales_person_conversion_range: [0.02, 0.12]
+  current_story: 智慧奢居科技社区
+  customer_priority: [总价可控, 空间实用, 交付可信, 车位便利]
+  display_gaps: [165㎡样板间未开放, 临时售楼处包装老化, 园林动线不完整]
+  execution_gaps: [销售经理更换后盘客中断, 渠道带看未按质量验收, 新媒体线索未在24小时内分配]
+
+candidate_factors:
+  external: [市场成交下降, 一级竞品入市, 竞品低总价, 竞品高佣分销, 客户观望增强]
+  internal: [165㎡库存偏重, 165㎡展示缺失, 价值主张错位, 售楼处包装老化, 团队缩编, 销售经理更换, 跟进不及时, CRM缺失, 渠道质量失控, 新媒体承接慢]
+
+root_cause_chains:
+  - id: RC-01
+    statement: 竞品低总价与完整展示入市，本案价值表达和展示未同步升级，导致项目到访份额与复访下降。
+    confidence: high
+    contribution: primary
+  - id: RC-02
+    statement: 团队缩编和经理更换造成盘客、跟进及渠道验收中断，将持销来访成交率由接近10%拉低至约6%。
+    confidence: high
+    contribution: primary
+  - id: RC-03
+    statement: 165㎡供应占已推库存39.5%，但总价超预算且无样板间，形成结构性库存并拉低整体流速。
+    confidence: high
+    contribution: primary
+  - id: AMP-01
+    statement: 市场成交下降12%、竞品高佣和客户观望放大了三条主因果链，但不足以单独解释项目到访下降50%。
+    confidence: medium
+    contribution: amplifier
+
+recommended_plan:
+  two_week_actions:
+    - {id: ACT-01, root_cause: RC-02, action: 恢复每日盘客和48小时跟进稽核, target: 跟进及时率95%、CRM完整率98%}
+    - {id: ACT-02, root_cause: RC-01, action: 将传播从智慧奢居切换为实景兑现、空间和总价价值, target: 复访预约率提升至30%}
+    - {id: ACT-03, root_cause: RC-03, action: 完成165㎡临时实体展示和一房一客复盘, target: 165㎡有效客户40组}
+  four_to_eight_week_actions:
+    - {id: ACT-04, root_cause: RC-01, action: 更新展示动线并对渠道按有效客户而非带看量验收, target: 8周到访600组}
+    - {id: ACT-05, root_cause: RC-03, action: 为165㎡提供可选封窗或家电权益包并折算成本, target: 8周成交15套}
+    - {id: ACT-06, root_cause: RC-01, action: 8月加推6号楼，115㎡保流速、135㎡立标杆, target: 加推去化30套}
+  price_trigger:
+    condition: 完成四周执行和展示修复后，持销来访成交仍低于8%，且135/165㎡未成交客户中超过50%明确因净价差距放弃
+    action: 启动房号级结构性调价审批，不进行全盘普降
+
+benefit_package:
+  applicable_product: 165㎡洋房
+  customer_choice: [封窗权益包, 家电权益包]
+  resource_cost_yuan_per_unit: 30000
+  requirements: [客户自愿选择, 写入合同或补充协议, 财务折算成本, 审批后执行, 评估老业主]
+
+housing_parking:
+  total_parking_spaces: 660
+  sold_parking_spaces: 62
+  residential_sold_units: 158
+  current_housing_parking_ratio: 0.3924
+  next_8_week_residential_target: 60
+  next_8_week_parking_target: 45
+  target_housing_parking_ratio: 0.75
+  parking_average_price_yuan: 110000
+  combination_policy:
+    housing_discount_yuan: 20000
+    condition: 客户自愿同时购买指定车位，住宅优惠后仍高于房号底价
+    sales_assessment: 住宅70%、车位20%、合规与签约回款10%
+    prohibition: 不强制捆绑，不隐瞒分项价格和客户选择
+
+finance:
+  full_project_expected_contract_yuan: 1420000000
+  full_project_marketing_budget_yuan: 35500000
+  full_project_marketing_rate: 0.025
+  recognized_marketing_expense_yuan: 12600000
+  recognized_contract_yuan: 344000000
+  current_cumulative_rate: 0.0366
+  remaining_project_contract_yuan: 1076000000
+  remaining_project_budget_yuan: 22900000
+  remaining_project_rate: 0.0213
+  recovery_plan_budget_yuan: 1800000
+
+decision_requests:
+  - 批准180万元八周改善预算及动作间动态调配
+  - 批准165㎡两类可选权益包，单套资源成本不超过3万元
+  - 批准房车自愿组合优惠，住宅额外优惠2万元且不低于房号底价
+  - 确认四周价格触发门槛，未触发前不全盘降价
+
+data_status:
+  verified_synthetic: [销售趋势, 房源库存, 客户流失样本, 团队执行, 竞品动作, 车位销售]
+  management_assumption: [根因贡献, 动作提升目标, 权益效果, 价格触发门槛]
+  missing_for_real_use: [真实底价和财务测算, 权益交付方案, 老业主意见, 属地房车政策, 正式PPT模板]

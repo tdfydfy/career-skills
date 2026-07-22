@@ -1,0 +1,193 @@
+version: 0.5.0
+updated_at: 2026-07-22
+
+routing_rules:
+  - 先识别用户最终需要的是分析、策略、执行内容还是完整成果。
+  - 用户明确要求固定报告或方案时，优先路由到成果节点，由成果节点调用业务能力。
+  - 用户只要求一个专业模块时，路由到业务节点，不强制生成完整报告。
+  - 涉及项目事实时先建立project-context；事实不足时列缺口，不用默认项目代替真实结论。
+  - 涉及财务、价格、合规和对外承诺时必须加载对应基础节点。
+
+ambiguity_rules:
+  customer:
+    single_customer_analysis: sales-officer
+    customer_pool_or_reservoir_analysis: business-analyze-customer-reservoir
+  sales_talk:
+    direct_objection_response: saletricks
+    roleplay_or_assessment: sales-talk-coach
+    full_project_pitch_manual: deliverable-sales-pitch-manual
+  management:
+    recurring_weekly_or_monthly_review: deliverable-operating-review
+    single_decision_request: deliverable-management-decision-brief
+    cross_level_coordination: marketing-liaison
+
+routes:
+  - id: ROUTE-000
+    intent: 新项目营销定位和产品建议
+    triggers: [项目定位报告, 新项目定位, 产品定位, 户型配比建议]
+    primary_node: deliverable-project-positioning-report
+
+  - id: ROUTE-001
+    intent: 新项目首开或关键加推完整营销策略方案
+    triggers: [项目营销策略报告, 项目营销策划报告, 首开营销策略, 首开营销策划报告, 首开报告, 开盘方案, 新项目开盘, 加推报告]
+    primary_node: deliverable-launch-report
+
+  - id: ROUTE-002
+    intent: 持销期销售问题专题诊断与改善
+    triggers: [持销专题, 持销诊断, 持销报告, 销售下滑, 流速下降, 项目卖不动, 阶段去化改善, 开盘后怎么卖, 房车同售]
+    primary_node: deliverable-sustained-sales-report
+
+  - id: ROUTE-003
+    intent: 年度营销经营计划
+    triggers: [年度营销报告, 年度营销方案, 全年营销计划]
+    primary_node: deliverable-annual-marketing-report
+
+  - id: ROUTE-004
+    intent: 半年度营销经营计划
+    triggers: [半年度营销报告, 年中营销报告, 下半年营销计划]
+    primary_node: deliverable-semiannual-marketing-report
+
+  - id: ROUTE-005
+    intent: 尾盘专项去化
+    triggers: [尾盘报告, 尾货去化, 清盘方案, 清栋方案]
+    primary_node: deliverable-tail-inventory-report
+
+  - id: ROUTE-006
+    intent: 车位或商业专项营销
+    triggers: [车位营销, 商业营销, 商铺方案, 车商报告]
+    primary_node: deliverable-parking-commercial-report
+
+  - id: ROUTE-007
+    intent: 项目全景诊断
+    triggers: [项目诊断, 项目为什么卖不动, 全面诊断项目]
+    primary_node: deliverable-project-diagnosis-report
+
+  - id: ROUTE-008
+    intent: 重点难点项目扭转
+    triggers: [困难项目, 重难点项目, 滞销项目扭转, 专项帮扶]
+    primary_node: deliverable-distressed-project-plan
+
+  - id: ROUTE-009
+    intent: 亏损项目改善
+    triggers: [亏损项目, 止损方案, 利润修复, 现金流修复]
+    primary_node: deliverable-loss-making-project-plan
+
+  - id: ROUTE-010
+    intent: 营销费用分析
+    triggers: [费用分析, 营销费率, 费用超支, 投放费效]
+    primary_node: deliverable-expense-analysis-report
+
+  - id: ROUTE-011
+    intent: 调价审批
+    triggers: [调价报告, 价格请示, 特价房审批, 价格检讨]
+    primary_node: deliverable-price-adjustment-proposal
+
+  - id: ROUTE-012
+    intent: 周月经营汇报
+    triggers: [周报, 月报, 周会汇报, 月度经营汇报]
+    primary_node: deliverable-operating-review
+
+  - id: ROUTE-013
+    intent: 营销活动完整方案
+    triggers: [活动方案, 暖场活动, 圈层活动, 节点活动]
+    primary_node: deliverable-campaign-proposal
+
+  - id: ROUTE-014
+    intent: 整合推广方案
+    triggers: [推广方案, 传播方案, 整合营销推广, 内容矩阵]
+    primary_node: deliverable-promotion-plan
+
+  - id: ROUTE-015
+    intent: 项目销售说辞手册
+    triggers: [销售说辞, 项目说辞手册, 讲盘说辞, 销售FAQ]
+    primary_node: deliverable-sales-pitch-manual
+
+  - id: ROUTE-016
+    intent: 目标和预算方案
+    triggers: [目标分解, 预算分解, 年度指标分解, 月度任务分解]
+    primary_node: deliverable-target-budget-plan
+
+  - id: ROUTE-017
+    intent: 团队能力盘点
+    triggers: [团队盘点, 人才盘点, 营销团队诊断, 编制方案]
+    primary_node: deliverable-team-capability-review
+
+  - id: ROUTE-018
+    intent: 单项管理决策请示
+    triggers: [领导请示, 决策材料, 资源申请, 专题汇报]
+    primary_node: deliverable-management-decision-brief
+
+  - id: ROUTE-019
+    intent: 市场竞品专项分析
+    triggers: [市场分析, 竞品分析, 板块分析, 供需分析]
+    primary_node: business-analyze-market-competition
+
+  - id: ROUTE-020
+    intent: 客户池和客储分析
+    triggers: [客储分析, 批量盘客, 客群分析, 开盘客户预测]
+    primary_node: business-analyze-customer-reservoir
+
+  - id: ROUTE-021
+    intent: 单个客户盘点
+    triggers: [盘点这个客户, 单客分析, 这个客户怎么跟]
+    primary_node: sales-officer
+
+  - id: ROUTE-023
+    intent: 单句异议处理或成交推进
+    triggers: [客户说贵怎么回, 异议处理, 微信怎么回复, 逼定说辞]
+    primary_node: saletricks
+
+  - id: ROUTE-024
+    intent: 销售模拟训练和考核
+    triggers: [销售对练, 话术考核, 模拟客户, 讲盘考核]
+    primary_node: sales-talk-coach
+
+  - id: ROUTE-025
+    intent: 项目故事线
+    triggers: [项目故事线, 故事定位, 项目价值主张, 文化概念]
+    primary_node: storyline-creation
+
+  - id: ROUTE-026
+    intent: 房地产软文
+    triggers: [写软文, 公众号文章, 项目推文, 新闻软文]
+    primary_node: business-write-soft-article
+
+  - id: ROUTE-027
+    intent: 图文编排
+    triggers: [图文排版, 长图结构, 公众号编排, 逐屏脚本]
+    primary_node: business-compose-graphic-content
+
+  - id: ROUTE-028
+    intent: 图片创意任务书
+    triggers: [海报创意, 主视觉, 图片提示词, 设计任务书]
+    primary_node: business-brief-image-creative
+
+  - id: ROUTE-029
+    intent: 视频内容
+    triggers: [视频脚本, 短视频选题, 分镜, 直播脚本]
+    primary_node: business-plan-video-content
+
+  - id: ROUTE-030
+    intent: 内容合规终审
+    triggers: [审核文案, 广告合规, 图片合规, 发布前检查]
+    primary_node: content-compliance
+
+  - id: ROUTE-031
+    intent: 总部地区项目对接
+    triggers: [总部对接, 地区沟通, 项目协调, 领导沟通]
+    primary_node: marketing-liaison
+
+  - id: ROUTE-032
+    intent: 案场客户接待流程与跟进
+    triggers: [客户接待流程, 首访怎么接, 复访怎么谈, 接待复盘]
+    primary_node: business-manage-sales-reception
+
+  - id: ROUTE-033
+    intent: 新项目定位专项分析
+    triggers: [定位分析, 客户定位, 面积段建议, 产品配置建议]
+    primary_node: business-plan-project-positioning
+
+  - id: ROUTE-034
+    intent: 首开价格制定与价格会审批
+    triggers: [首开价格报告, 首开价格会, 开盘价格审批, 首开定价, 首开价格PPT]
+    primary_node: deliverable-launch-price-report

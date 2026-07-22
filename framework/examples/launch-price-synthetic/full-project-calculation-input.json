@@ -1,0 +1,64 @@
+{
+  "inventory": [
+    {
+      "name": "G1",
+      "area": 7820,
+      "unit_price": 21517.391304347828,
+      "units": 68
+    },
+    {
+      "name": "Y1",
+      "area": 5808,
+      "unit_price": 23795.0,
+      "units": 44
+    },
+    {
+      "name": "Y3",
+      "area": 7392,
+      "unit_price": 25815.0,
+      "units": 44
+    },
+    {
+      "name": "G2",
+      "area": 7820,
+      "unit_price": 21350,
+      "units": 68
+    },
+    {
+      "name": "G3",
+      "area": 7820,
+      "unit_price": 21200,
+      "units": 68
+    },
+    {
+      "name": "G5",
+      "area": 7820,
+      "unit_price": 21100,
+      "units": 68
+    },
+    {
+      "name": "Y2",
+      "area": 5808,
+      "unit_price": 24200,
+      "units": 44
+    },
+    {
+      "name": "Y5",
+      "area": 7392,
+      "unit_price": 25800,
+      "units": 44
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "整盘住宅均价",
+      "baseline": 22500,
+      "current": 22994.14077669903
+    },
+    {
+      "name": "整盘住宅货值",
+      "baseline": 1297800000,
+      "current": 1326302040.0
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+example: true
+synthetic: true
+contract: project-context
+version: 0.2.0
+
+identity:
+  project_name: 示例项目A
+  city: 示例市
+  region: 示例地区公司
+  company: 示例公司
+  as_of_date: 2026-06-30
+
+classification:
+  property_type: residential
+  sales_stage: sustained
+  operating_status: undetermined
+  attention_flags: [合约额目标缺口, 库存周期偏长]
+  strategic_role:
+    primary: volume
+    secondary: [cashflow]
+  market_condition: weak
+  sales_mode: continuous-sale
+  organization_level: project
+
+objectives:
+  horizon: half-year
+  primary_objective: sales
+  target_sales_amount: 300000000
+  target_sales_units: 260
+  target_collection_amount: 240000000
+  target_profit: null
+  target_inventory_reduction: 260
+
+project_facts:
+  location: 示例市新区，具体生活半径待核验
+  product: 89至128平方米住宅
+  customer: 以本地改善和成家客户为主的暂定判断
+  inventory: 现有可售180套，待推售120套
+  price: 当前净成交均价约每平方米12500元
+  display: 售楼处和样板间已开放，实景园林未完成
+  competition: 直接竞品近期增加低总价房源
+  team: 销售团队10人，近两月转化下降
+  launch_and_supply_plan: 下季度计划加推120套
+  sales: 上半年净成交75套、合约额约9000万元
+  collection: 上半年实际回款约6500万元
+  marketing_expense: 上半年已确认费用约650万元
+  milestones:
+    - 2026-08-15: 计划加推
+
+constraints:
+  financial:
+    - 最低价格和利润影响等待财务确认
+  legal_and_compliance: []
+  product_and_delivery:
+    - 实景园林尚未完成
+  organization_and_resources:
+    - 渠道新增费用尚未审批
+  approval_authority:
+    - 价格和渠道政策需地区及总部审批
+
+evidence:
+  - id: EX-EV-001
+    fact: 上半年净成交75套
+    source: 虚构销售台账
+    source_date: 2026-06-30
+    verified: true
+    confidence: high
+  - id: EX-EV-002
+    fact: 竞品增加低总价房源
+    source: 虚构竞品周报
+    source_date: 2026-06-28
+    verified: false
+    confidence: medium
+
+assumptions:
+  - 下半年市场保持弱势但不继续显著下滑
+data_gaps:
+  - 财务底价和动态利润
+  - 有效客储及客户价格测试
+  - 竞品真实成交和渠道政策

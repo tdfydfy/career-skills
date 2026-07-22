@@ -1,0 +1,233 @@
+source:
+  id: project-operating-monitoring-001
+  title: 项目经营监控、流速与销售质量口径
+  provided_by: marketing-lead
+  received_at: 2026-07-20
+  updated_at: 2026-07-20
+  status: normalized-draft
+
+atom_types:
+  enterprise-rule: 企业当前明确采用的管理或考核口径
+  heuristic: 需要结合项目规模、货量和经营约束使用的经验判断
+  governance-rule: 涉及审批、数据确认和风险升级的管理规则
+
+atoms:
+  - id: OPM-001
+    domain: operating-monitoring
+    type: enterprise-rule
+    statement: 项目经营状态在每周操盘监控中逐步形成，不单独依靠一次健康度评分；日常至少观察销售流速、指标完成、来访、价格和后续供应。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
+    applicability: 项目周度经营监控和阶段复盘
+
+  - id: OPM-002
+    domain: target-management
+    type: enterprise-rule
+    statement: 项目状态优先以年度合约额目标及预计实现情况判断，套数只作为流速和运营效率参考，不作为核心考核指标。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
+    applicability: 年度、月度和周度经营分析
+
+  - id: OPM-003
+    domain: target-management
+    type: enterprise-rule
+    statement: 月度指标是阶段性分解，允许随市场、价格、房源和政策变化；应通过月度完成趋势判断全年风险，不能因单月偏差直接判定项目状态。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
+    applicability: 月度经营分析
+
+  - id: OPM-004
+    domain: target-management
+    type: enterprise-rule
+    statement: 后续月均合约额要求等于年度剩余合约额除以剩余有效销售月份；有效销售月份需结合实际销售窗口和供货节奏确定。
+    target_nodes: [foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
+    applicability: 全年预计实现和剩余压力测算
+
+  - id: OPM-005
+    domain: target-management
+    type: heuristic
+    statement: 后续月均合约额要求与近三个月月均合约额的比值原则上最好低于0.8，超过1.2属于危险信号；0.8至1.2区间需结合后续供货、价格、市场和政策判断。
+    target_nodes: [foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
+    applicability: 住宅项目年度指标压力判断
+    caveat: 该比值反映完成压力，不单独替代全年预测和项目状态结论。
+
+  - id: OPM-006
+    domain: transaction
+    type: enterprise-rule
+    statement: 合约额通常以明源正式签约金额为准；后续发生签约退房时，在退房发生周期冲减，不追溯改写原合约发生周期的历史数据。
+    target_nodes: [foundation-metric-dictionary, foundation-financial-standards, business-manage-contract-collection, business-plan-target-budget, deliverable-operating-review]
+    applicability: 合约额统计、目标完成和历史趋势分析
+
+  - id: OPM-007
+    domain: sales-velocity
+    type: heuristic
+    statement: 新开盘项目通常观察首开前三天住宅认购套数，100套以上可视为形成基本开盘规模；不同项目可因总体规模达到300套或500套，不以100套替代正式首开目标。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, deliverable-launch-report, deliverable-launch-price-report]
+    applicability: 新开盘住宅项目
+
+  - id: OPM-008
+    domain: sales-velocity
+    type: heuristic
+    statement: 持销住宅项目月度认购30至50套通常具备较健康的绝对流速，但仍需满足年度合约额完成和价格利润等经营要求。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-operating-review]
+    applicability: 剩余可售房源不少于50套的持销住宅项目
+
+  - id: OPM-009
+    domain: sales-velocity
+    type: heuristic
+    statement: 持销住宅项目月度认购低于20套时，售楼处和团队固定运营成本容易摊薄利润，即使完成阶段目标也不视为健康，应尽可能提速。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-operating-review]
+    applicability: 剩余可售房源不少于50套的持销住宅项目
+    caveat: 存在明确利润压力时可以不降价，但利润约束不将低流速重新定义为健康。
+
+  - id: OPM-010
+    domain: sales-velocity
+    type: enterprise-rule
+    statement: 剩余可售房源不少于50套且连续两个月月度认购低于10套时，应作为重难点项目重点关注并进行策略矫正。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-distressed-project-plan]
+    applicability: 持销住宅项目
+
+  - id: OPM-011
+    domain: sales-velocity
+    type: enterprise-rule
+    statement: 项目剩余可售房源不足50套即进入尾盘管理，不再按正常项目或重难点项目分类，应针对剩余货量结构判断去化难度。
+    target_nodes: [foundation-project-model, business-plan-pricing-inventory, deliverable-tail-inventory-report, deliverable-operating-review]
+    applicability: 住宅项目尾盘识别
+
+  - id: OPM-012
+    domain: sales-velocity
+    type: heuristic
+    statement: 重难点项目月度认购10至20套可视为阶段改善达到预期，但不代表项目已经恢复为正常状态。
+    target_nodes: [foundation-project-model, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-distressed-project-plan]
+    applicability: 已进入重难点管理的持销住宅项目
+
+  - id: OPM-013
+    domain: transaction
+    type: enterprise-rule
+    statement: 认筹可随时退出，不具备销售效率考核效力，只用于观察客储和客户意向；认购用于日常流速和销售过程考核，退房会扣除定金。
+    target_nodes: [foundation-metric-dictionary, foundation-customer-model, business-analyze-customer-reservoir, business-manage-contract-collection]
+    applicability: 客储、首开和持销过程管理
+
+  - id: OPM-014
+    domain: transaction
+    type: enterprise-rule
+    statement: 签约以明源签约为主要口径、政府网签为参考，是最重要的销售考核口径；回款由财务重点管理，营销在半年和年度节点重点关注，并将其作为销售质量的检验。
+    target_nodes: [foundation-metric-dictionary, foundation-financial-standards, business-manage-contract-collection, deliverable-operating-review]
+    applicability: 签约、回款和销售质量管理
+
+  - id: OPM-015
+    domain: transaction-quality
+    type: enterprise-rule
+    statement: 认购日至明源签约日的自然天数为签约周期，平均3至7天通常正常；超过7天即不健康，只有可核实的特殊原因可例外，持销期不可长期接受；超过14天属于高风险。
+    target_nodes: [foundation-metric-dictionary, business-manage-contract-collection, business-analyze-project-health, deliverable-operating-review]
+    applicability: 住宅认购转签约管理
+
+  - id: OPM-016
+    domain: transaction-quality
+    type: enterprise-rule
+    statement: 认购退房率和签约退房率原则上均不超过5%，超过5%提示客户违约、销售质量或虚假销售风险，需要核查客户底表和退房原因。
+    target_nodes: [foundation-metric-dictionary, foundation-fact-governance, business-manage-contract-collection, business-analyze-project-health, deliverable-operating-review]
+    applicability: 住宅销售质量监控
+    risk_note: 超过阈值是风险信号，不能在没有证据时直接认定虚假销售。
+
+  - id: OPM-017
+    domain: transaction-governance
+    type: governance-rule
+    statement: 认购退房由地区公司总经理审批，签约退房由集团总部总裁审批，退房分析必须保留审批状态和发生周期。
+    target_nodes: [foundation-organization-governance, foundation-fact-governance, business-manage-contract-collection]
+    applicability: 当前企业住宅退房管理
+
+  - id: OPM-018
+    domain: operating-monitoring
+    type: enterprise-rule
+    statement: 签约周期、退房和回款作为销售质量参考和独立考核，不直接决定项目属于正常、重难点或尾盘，但其异常必须在经营分析中单独提示风险。
+    target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, business-manage-contract-collection, deliverable-operating-review]
+    applicability: 项目状态和销售质量并行管理
+
+  - id: OPM-019
+    domain: organization
+    type: enterprise-rule
+    statement: 地区采用`1+N+n`架构，`1`为地区公司，`N`为管理多个项目的城市公司虚拟组织，`n`为单独项目公司；总部地区对接人在此基础上汇总地区和项目经营情况。
+    target_nodes: [foundation-organization-governance, marketing-liaison, deliverable-operating-review]
+    applicability: 当前企业组织和汇报关系
+
+  - id: OPM-020
+    domain: organization
+    type: enterprise-rule
+    statement: 地区公司对城市公司虚拟组织和单独项目公司实施较细致的日常管理；城市公司虚拟组织承担多项目组合管理，但其岗位和授权由地区安排。
+    target_nodes: [foundation-organization-governance, marketing-liaison, business-coordinate-project-functions, deliverable-operating-review]
+    applicability: 地区日常经营管理
+
+  - id: OPM-021
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 周度汇报先呈现地区层面本周新访、新增销售与认筹金额，再呈现月度指标、已售、认筹、在手、预计销售额、预计合约额和一句话市场判断。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
+    applicability: 总部地区对接周度简报
+
+  - id: OPM-022
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 项目层周报依次汇报来访、销售与认筹及产品构成、月度目标完成和预测、竞品量价及动作、工程展示预售交付节点、本周策略和待支持事项。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
+    applicability: 总部地区对接周度简报逐项目汇报
+
+  - id: OPM-023
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 周报中的事实、预计和策略应分开表达；竞品价格或营销动作需同时说明观察效果，策略项需明确重点工作和待支持事项。
+    target_nodes: [foundation-fact-governance, business-analyze-market-competition, business-analyze-project-health, deliverable-operating-review]
+    applicability: 周度经营汇报质量控制
+
+  - id: OPM-024
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 周报模板中的“销售”对应认购；周度最新销售动态按认购加认筹口径合并观察，同时保留认购和认筹拆分，正式合约额仍使用明源签约金额。
+    target_nodes: [foundation-metric-dictionary, deliverable-operating-review]
+    applicability: 当前周报模板字段治理
+
+  - id: OPM-025
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 周度经营工作优先关注新增来访、新增销售动态即认购加认筹，以及主要竞品来访、成交、价格和营销动作变化。
+    target_nodes: [foundation-metric-dictionary, business-analyze-market-competition, business-analyze-project-health, deliverable-operating-review]
+    applicability: 总部地区对接周度简报
+
+  - id: OPM-026
+    domain: sales-forecast
+    type: enterprise-rule
+    statement: 预计全月销售额通常由已认购金额、现有认筹预计转认购金额和月内剩余时间预计新增认购金额组成；预计合约额通常由已签约金额、已认购待签金额和后续新增认购预计在月内签约金额组成。
+    target_nodes: [foundation-metric-dictionary, business-analyze-project-health, business-plan-target-budget, deliverable-operating-review]
+    applicability: 月度销售及合约预测
+
+  - id: OPM-027
+    domain: sales-forecast
+    type: enterprise-rule
+    statement: 月度预测需显式考虑节日节点和项目加推计划。月初主要由项目负责人结合经验、前期趋势、市场及后续节点综合判断；月底主要依据认购、认筹、待签等在手数据逐项盘点。
+    target_nodes: [foundation-metric-dictionary, foundation-organization-governance, business-analyze-project-health, business-plan-target-budget, deliverable-operating-review]
+    applicability: 周度经营汇报中的全月预测
+
+  - id: OPM-028
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 已提供的地区周报模板由总部地区对接人向总部领导汇报，属于地区及项目经营动态的简明管理材料，不是地区内部一线销售周报模板。
+    target_nodes: [foundation-organization-governance, marketing-liaison, deliverable-operating-review]
+    applicability: 总部地区对接周度汇报
+
+  - id: OPM-029
+    domain: project-management
+    type: enterprise-rule
+    statement: 地区一线通常由项目梳理更详细的销售周报和客户分析，包括来访总数、趋势、分类、渠道，具体成交房源、价格、房车同售和销售员，以及客储、营销策划、老带新和新媒体动作及计划。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-customer-reservoir, business-plan-sales, business-plan-marketing-strategy]
+    applicability: 地区和项目一线周度操盘
+
+  - id: OPM-030
+    domain: organization
+    type: enterprise-rule
+    statement: 地区公司对项目日常管理和具体工作安排拥有自主性，总部地区对接人主要汇总结果、趋势、风险、策略和待支持事项，不默认替地区决定具体执行安排。
+    target_nodes: [foundation-organization-governance, marketing-liaison, business-coordinate-project-functions, deliverable-operating-review]
+    applicability: 总部、地区和项目管理边界
+
+  - id: OPM-031
+    domain: weekly-reporting
+    type: enterprise-rule
+    statement: 总部周度简报应从地区和项目详细周报中提炼关键信息，保持短、准、可讲，同时允许通过具体房源、价格、客户和动作底表追溯关键结论。
+    target_nodes: [foundation-fact-governance, marketing-liaison, deliverable-operating-review]
+    applicability: 总部地区对接周度汇报质量控制

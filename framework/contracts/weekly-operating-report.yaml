@@ -1,0 +1,119 @@
+contract: weekly-operating-report
+version: 0.1.0
+
+metadata:
+  region_company: null
+  report_week_start: null
+  report_week_end: null
+  as_of_date: null
+  presenter: null
+  prepared_by_role: headquarters-regional-liaison
+  target_audience: headquarters-leadership
+  source_project_weekly_inputs: []
+  data_source_versions: []
+
+regional_summary:
+  weekly:
+    new_visit_groups: null
+    new_purchase_amount: null
+    new_subscription_amount: null
+    combined_purchase_and_subscription_amount: null
+  monthly:
+    monthly_sales_target_amount: null
+    month_to_date_purchase_amount: null
+    month_to_date_subscription_amount: null
+    on_hand_amount: null
+    forecast_purchase_amount: null
+    forecast_contract_amount: null
+    forecast_basis:
+      forecast_stage: month-start-judgment | month-end-on-hand | other
+      accountable_project_owner: null
+      completed_purchase_amount: null
+      subscription_expected_to_purchase_amount: null
+      expected_new_purchase_amount: null
+      completed_contract_amount: null
+      purchased_pending_signing_amount: null
+      expected_future_purchase_signing_amount: null
+      holiday_node_impacts: []
+      planned_launch_impacts: []
+      trend_and_market_assumptions: []
+  market_assessment:
+    one_sentence: null
+    evidence_ids: []
+
+projects:
+  - project_name: null
+    city_company_virtual_or_standalone_project_company: null
+    weekly_visits:
+      current_new_visit_groups: null
+      previous_week_new_visit_groups: null
+      week_on_week_change_groups: null
+      week_on_week_change_rate: null
+    weekly_sales:
+      new_purchase_units: null
+      new_purchase_amount: null
+      new_subscription_units: null
+      new_subscription_amount: null
+      combined_units: null
+      combined_amount: null
+      previous_week_combined_units: null
+      week_on_week_change_units: null
+      week_on_week_change_rate: null
+      product_mix:
+        - product_or_area: null
+          purchase_units: null
+          subscription_units: null
+    monthly:
+      monthly_purchase_target_amount: null
+      monthly_contract_target_amount: null
+      completed_purchase_units: null
+      completed_purchase_amount: null
+      completed_subscription_units: null
+      completed_subscription_amount: null
+      combined_on_hand_units: null
+      combined_on_hand_amount: null
+      forecast_purchase_amount: null
+      forecast_contract_amount: null
+      forecast_basis:
+        forecast_stage: month-start-judgment | month-end-on-hand | other
+        accountable_project_owner: null
+        completed_purchase_amount: null
+        subscription_expected_to_purchase_amount: null
+        expected_new_purchase_amount: null
+        completed_contract_amount: null
+        purchased_pending_signing_amount: null
+        expected_future_purchase_signing_amount: null
+        holiday_node_impacts: []
+        planned_launch_impacts: []
+        trend_and_market_assumptions: []
+      previous_month_residential_sales_units: null
+      previous_month_residential_sales_amount: null
+    competitors:
+      - competitor_name: null
+        weekly_visit_groups: null
+        weekly_sales_units: null
+        marketing_actions: []
+        price_changes: []
+        observed_effect: null
+        evidence_ids: []
+    project_nodes:
+      display_and_engineering: []
+      presale_permit: []
+      delivery: []
+      other: []
+    strategy:
+      current_week_priorities: []
+      support_needed: []
+      owner_and_deadline: []
+
+definition_status:
+  sales_label: confirmed_as_purchase
+  weekly_sales_dynamic: purchase_plus_subscription
+  subscription: confirmed_as_reference_not_efficiency_assessment
+  contract_amount: confirmed_as_mingyuan_formal_signing_amount
+
+data_quality:
+  missing_fields: []
+  inconsistent_scopes: []
+  stale_sources: []
+  reconciliation_items: []

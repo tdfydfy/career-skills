@@ -1,0 +1,378 @@
+source:
+  id: customer-liaison-notes-001
+  title: 客户盘点与总部地区项目对接管理认知
+  provided_by: marketing-lead
+  received_at: 2026-07-19
+  updated_at: 2026-07-20
+  status: normalized-draft
+
+atom_types:
+  enterprise-rule: 企业内部明确执行的制度或要求
+  domain-framework: 可复用的业务分析框架
+  heuristic: 有适用条件和例外的经验规则
+  observation: 需要结合事实验证的组织或市场倾向
+  checklist: 固定工作或成果资料清单
+
+atoms:
+  - id: CUST-001
+    domain: customer
+    type: enterprise-rule
+    statement: 盘点客户时应了解性别、年龄、家庭结构、工作和受教育程度，并明确无法获取或客户未披露的字段。
+    target_nodes: [foundation-customer-model, sales-officer, business-analyze-customer-reservoir]
+    applicability: 客户接待、客户盘点和客储分析
+    normalization_note: 将“缺一不可”调整为分级采集并允许未知，避免诱导猜测或过度收集个人信息。
+
+  - id: CUST-002
+    domain: customer
+    type: domain-framework
+    statement: 购房直接动机可按分家、成家、教育、改善、养老和投资进行初步分类，允许多选并记录主次。
+    target_nodes: [foundation-customer-model, sales-officer, saletricks]
+    applicability: 住宅及投资类物业客户诊断
+    risk_note: 教育和投资相关表达需要调用合规规则，不得承诺入学、升值或回报。
+
+  - id: CUST-003
+    domain: customer
+    type: enterprise-rule
+    statement: 记录客户现有居住区域，用于判断生活半径、通勤习惯、板块认知和迁移阻力。
+    target_nodes: [foundation-customer-model, sales-officer, business-analyze-customer-reservoir]
+    applicability: 客户画像和区域来源分析
+
+  - id: CUST-004
+    domain: customer-governance
+    type: enterprise-rule
+    statement: 每次客户接待完成后，由销售人员完成单客盘点和系统录入。
+    target_nodes: [foundation-customer-model, sales-officer]
+    applicability: 日常客户管理
+
+  - id: CUST-005
+    domain: customer-governance
+    type: enterprise-rule
+    statement: 每日晚会由销售经理结合当日来访成交逐客梳理，形成个性跟进策略和共性问题判断。
+    target_nodes: [foundation-customer-model, sales-officer, business-analyze-customer-reservoir]
+    applicability: 日常客户管理
+
+  - id: CUST-006
+    domain: customer-governance
+    type: domain-framework
+    statement: 大节点客储盘点分为探索性、验证性和确定性三个阶段，分别服务于认识客户、验证策略和预测结果。
+    target_nodes: [foundation-customer-model, business-analyze-customer-reservoir, deliverable-launch-report]
+    applicability: 首开、加推和集中销售节点
+
+  - id: CUST-007
+    domain: customer-governance
+    type: enterprise-rule
+    statement: 客户盘点以销售经理为主，项目负责人原则上一周参加三次，部门经理一个月参加三次，分管领导一个月参加一次。
+    target_nodes: [foundation-customer-model, foundation-organization-governance, business-plan-sales]
+    applicability: 当前企业客户盘点机制
+    review_note: 需要确认不同项目规模、不同阶段是否使用同一频次。
+
+  - id: CUST-008
+    domain: customer
+    type: domain-framework
+    statement: 区分显性需求和隐性需求；显性需求是客户能够直接表达的功能目标，隐性需求是身份、关系、补偿、比较和自我实现等深层动机。
+    target_nodes: [foundation-customer-model, sales-officer, saletricks, sales-talk-coach]
+    applicability: 客户挖需和价值匹配
+    normalization_note: 隐性需求必须通过提问验证，不得根据职业、年龄或家庭情况武断推断，也不得用于操纵客户。
+
+  - id: CUST-009
+    domain: customer
+    type: domain-framework
+    statement: MAN中的M表示资金条件，包括定金、首付、月供承受能力、贷款资格、付款方式和置换房屋的出售进展。
+    target_nodes: [foundation-customer-model, sales-officer, saletricks]
+    applicability: 成交条件判断
+    risk_note: 融资和杠杆建议必须符合客户适配、金融政策和合规要求。
+
+  - id: CUST-010
+    domain: customer
+    type: domain-framework
+    statement: MAN中的A表示决策权限，应识别使用人、出资人、影响人和最终决策人，并尽量让关键决策角色参与沟通。
+    target_nodes: [foundation-customer-model, sales-officer, saletricks, sales-talk-coach]
+    applicability: 成交条件判断
+
+  - id: CUST-011
+    domain: customer
+    type: domain-framework
+    statement: MAN中的N表示需求和供给匹配，既要确认客户真实购房需要，也要确认位置、面积、楼层、价格和交付时间存在匹配房源。
+    target_nodes: [foundation-customer-model, sales-officer, saletricks]
+    applicability: 成交条件判断
+
+  - id: CUST-012
+    domain: customer
+    type: enterprise-rule
+    statement: 客户意向分为A、B、C、D四类；A类非常稳定、基本确定能够成交，B类成交概率较大且短期有明确购房意向但仍有一至两个可克服问题，C类有跟进价值但短期无法成交或需克服的问题较大，D类基本无意向且无需继续跟进；B、C两类可用加号和减号细分意向强弱。
+    target_nodes: [foundation-customer-model, sales-officer, business-analyze-customer-reservoir, deliverable-launch-report, deliverable-launch-price-report]
+    applicability: 单客盘点、客储分析、首开成交预测和未转筹分析
+    normalization_note: 当前未设定数值成交概率；评级须记录事实依据，B/C加减级仅表达相对意向，不替代MAN条件和具体障碍记录。
+
+  - id: CUST-013
+    domain: customer-analysis
+    type: enterprise-rule
+    statement: 地区内部和项目专题客户分析通常按年龄段、家庭结构、工作、渠道、意向、产品需求和抗性因素等维度拆分，并结合趋势和成交表现判断。
+    target_nodes: [foundation-customer-model, business-analyze-customer-reservoir, deliverable-sustained-sales-report, deliverable-project-diagnosis-report]
+    applicability: 地区内部客户分析和项目专题分析
+
+  - id: CUST-014
+    domain: visit-governance
+    type: enterprise-rule
+    statement: 日常来访通常不强制区分有效和无效客户，除纯参加活动且没有看房或购房沟通的客户通常不计入来访外，其他到访均计入；如专题另设有效客户标准，必须单独说明。
+    target_nodes: [foundation-customer-model, foundation-metric-dictionary, business-analyze-customer-reservoir, deliverable-operating-review]
+    applicability: 项目来访统计和客户分析
+
+  - id: CUST-015
+    domain: customer-analysis
+    type: enterprise-rule
+    statement: 客户与客储分析首先看量和质；量是客户数量及其变化，质是客户来源、年龄家庭工作等特征、产品需求、价格预期、成交周期和抗性因素。
+    target_nodes: [foundation-customer-model, business-analyze-customer-reservoir, business-plan-customer-acquisition, deliverable-sustained-sales-report]
+    applicability: 地区内部客户分析和项目专题分析
+
+  - id: CUST-016
+    domain: customer-forecast
+    type: enterprise-rule
+    statement: 客户分析需要预测未来客户数量和质量如何变化、是否符合预期，并结合成交转化判断当前及预计客储能否支撑销售业绩指标。
+    target_nodes: [foundation-customer-model, foundation-metric-dictionary, business-analyze-customer-reservoir, business-plan-target-budget, deliverable-launch-report, deliverable-sustained-sales-report]
+    applicability: 客储预测和业绩支撑判断
+
+  - id: CUST-017
+    domain: customer-strategy
+    type: enterprise-rule
+    statement: 客户端发现问题后，应判断是解决现有老客户障碍，还是转向获取新客户，并明确目标区域、行业、渠道、价值点、价格策略或加推房源；客户导向是营销决策的关键依据。
+    target_nodes: [foundation-customer-model, business-analyze-customer-reservoir, business-plan-marketing-strategy, business-plan-pricing-inventory, business-plan-customer-acquisition, business-plan-promotion, deliverable-sustained-sales-report]
+    applicability: 客户问题诊断和策略选择
+
+  - id: CUST-018
+    domain: customer-forecast
+    type: enterprise-rule
+    statement: 客户预测采用宏观和微观双层方法；宏观按业绩目标、套均总价和转化率反推所需客户量，微观通过逐客盘点需求、价格、决策和房源匹配判断具体客户能否成交。
+    target_nodes: [foundation-customer-model, foundation-metric-dictionary, business-analyze-customer-reservoir, business-plan-target-budget, deliverable-launch-report]
+    applicability: 首开、持销和专题客户预测
+
+  - id: CUST-019
+    domain: customer-governance
+    type: enterprise-rule
+    statement: 微观客户成交判断通常由项目销售经理负责，应基于具体客户事实形成评级、障碍、房源价格匹配、预计成交时间和跟进动作，不只给出主观总数。
+    target_nodes: [foundation-customer-model, foundation-organization-governance, sales-officer, business-analyze-customer-reservoir, business-plan-sales]
+    applicability: 项目客户盘点和成交预测
+
+  - id: GOV-001
+    domain: organization
+    type: domain-framework
+    statement: 总部营销对接人承担双向翻译和经营推动职责，向上传递一线事实与决策需求，向下传递战略方向和管理要求。
+    target_nodes: [foundation-organization-governance, marketing-liaison]
+    applicability: 总部、地区、项目三级沟通
+
+  - id: GOV-002
+    domain: organization
+    type: checklist
+    statement: 对接工作需要拉通投资、设计、工程、成本、财务和人力，同时掌握地区及项目的销售、市场、客户、量价和策略动作。
+    target_nodes: [foundation-organization-governance, marketing-liaison, business-coordinate-project-functions]
+    applicability: 跨专业经营判断
+
+  - id: GOV-003
+    domain: organization
+    type: enterprise-rule
+    statement: 地区采用`1+N+n`架构，`1`为地区公司，`N`为管理多个项目的城市公司虚拟组织，`n`为单独项目公司；城市公司是虚拟管理单元而非独立正式组织实体。
+    target_nodes: [foundation-organization-governance, marketing-liaison]
+    applicability: 当前企业地区组织和项目管理关系
+
+  - id: GOV-004
+    domain: organization
+    type: enterprise-rule
+    statement: 地区主要营销考核包括销售合约额、车位商业库存专项指标、销售转化率、营销费率、人员编制和薪酬额度；项目层面重点考核首开完成情况。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, deliverable-operating-review]
+    applicability: 地区和项目营销经营管理
+
+  - id: GOV-005
+    domain: organization
+    type: enterprise-rule
+    statement: 全面指标按年度制定，销售指标按月度制定，对接人需要掌握地区整体和各项目指标完成情况。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, marketing-liaison]
+    applicability: 目标管理和经营汇报
+
+  - id: GOV-006
+    domain: organization
+    type: enterprise-rule
+    statement: 地区营销组织通常包括地区总经理、营销分管领导、营销部门经理、平台职能、项目操盘手、策划、销售经理、销售、客储和签约岗位。
+    target_nodes: [foundation-organization-governance, business-plan-sales]
+    applicability: 地区和项目营销组织设计
+
+  - id: GOV-007
+    domain: management-cadence
+    type: enterprise-rule
+    statement: 每周沟通上周来访成交、竞品和市场变化、下一阶段打法及支持事项，汇总为销售情况、潜在问题和应对策略。
+    target_nodes: [foundation-organization-governance, marketing-liaison, deliverable-operating-review]
+    applicability: 周度经营管理
+
+  - id: GOV-008
+    domain: management-cadence
+    type: enterprise-rule
+    statement: 原则上每一至两个月到地区现场走场、与销售座谈并走访竞品，并根据需要陪同领导调研项目。
+    target_nodes: [foundation-organization-governance, marketing-liaison]
+    applicability: 现场经营检查
+
+  - id: GOV-009
+    domain: organization
+    type: observation
+    statement: 总部通常更关注整体业绩、利润、品牌和集团平衡，地区更关注经营考核和资源争取，项目更关注当期业绩、费用和人员约束。
+    target_nodes: [foundation-organization-governance, marketing-liaison, deliverable-project-diagnosis-report]
+    applicability: 三级诉求分析
+    risk_note: 这是常见倾向，不得替代对具体团队和具体事项的事实判断。
+
+  - id: GOV-010
+    domain: team
+    type: heuristic
+    statement: 成熟团队可侧重授权、目标牵引和新方法激活；成长型团队可边做边教、允许受控试错；执行较弱团队需要细化任务、责任和完成时间。
+    target_nodes: [foundation-organization-governance, business-plan-sales, marketing-liaison]
+    applicability: 团队判断和带教
+    risk_note: 团队成熟度需要基于能力和执行事实评估，不得使用固定身份标签。
+
+  - id: BENCH-001
+    domain: operating-benchmark
+    type: heuristic
+    statement: 持销阶段，同一批去重到访客户在约定观察窗口内转为净成交客户的经验转化率可按约10%作为缺少项目历史数据时的测算起点。
+    target_nodes: [foundation-metric-dictionary, business-analyze-project-health, business-plan-target-budget, deliverable-sustained-sales-report]
+    applicability: 住宅持销阶段目标反推和经营诊断
+    normalization_note: 这是一般经验值，不是考核红线；必须明确客户队列、去重规则、成交状态和观察窗口，并优先使用项目自身滚动数据。
+
+  - id: BENCH-002
+    domain: operating-benchmark
+    type: heuristic
+    statement: 新开盘阶段，同一批去重到访客户转为有效认筹客户的经验转化率可按约15%作为缺少项目历史数据时的测算起点。
+    target_nodes: [foundation-metric-dictionary, business-plan-marketing-strategy, business-plan-customer-acquisition, deliverable-launch-report]
+    applicability: 新项目首开或重大开盘节点的漏斗反推
+    normalization_note: 必须明确认筹有效条件和观察窗口；项目价值、展示、渠道质量、价格口径和客户成熟度会造成显著偏差。
+
+  - id: BENCH-003
+    domain: operating-benchmark
+    type: heuristic
+    statement: 新开盘阶段，有效认筹客户转为净成交客户的经验转化率可按约60%作为缺少项目历史数据时的测算起点。
+    target_nodes: [foundation-metric-dictionary, business-analyze-customer-reservoir, business-plan-marketing-strategy, deliverable-launch-report, deliverable-launch-price-report]
+    applicability: 新项目首开或重大开盘节点的认筹目标反推
+    normalization_note: 该比例不等于ABCD评级概率；应按户型、价格、客户等级、房号落位和未解决问题继续验证。
+
+  - id: BENCH-004
+    domain: expense-benchmark
+    type: heuristic
+    statement: 整盘营销费率一般以约2.5%作为动态控制基准；首开阶段可适度提高至约3%，后续阶段通过压降费用，使整盘累计费率回归约2.5%。
+    target_nodes: [foundation-financial-standards, foundation-metric-dictionary, business-analyze-marketing-expense, business-plan-target-budget, business-plan-marketing-strategy, deliverable-launch-report]
+    applicability: 项目整盘及首开阶段费用预算与动态控制
+    normalization_note: 必须先确认费用分子、销售或回款分母、跨期和分摊规则；2.5%和3%是经验基准，不替代正式预算和审批。
+
+  - id: PROJ-001
+    domain: project
+    type: checklist
+    statement: 项目事实应覆盖城市、区位、定位、规模、规划、户型、配置、展示、竞争、推售、价格和人员团队。
+    target_nodes: [foundation-project-model, project-context, deliverable-project-diagnosis-report]
+    applicability: 项目事实包和项目诊断
+
+  - id: PROJ-002
+    domain: project
+    type: domain-framework
+    statement: 项目分析应观察近三个月来访成交的量价与结构，结合未来竞争、在售和待售货量，形成阶段推售思路。
+    target_nodes: [foundation-project-model, business-analyze-project-health, business-plan-pricing-inventory]
+    applicability: 持销、加推、尾盘和调价判断
+
+  - id: PROJ-003
+    domain: project
+    type: domain-framework
+    statement: 重点推售房源需要同时定义位置、产品、价格、战略作用和配合动作。
+    target_nodes: [foundation-project-model, business-plan-pricing-inventory, foundation-marketing-action-library]
+    applicability: 推售策略
+
+  - id: PROJ-004
+    domain: project
+    type: domain-framework
+    statement: 推售房源的战略作用可包括新开加推、平价走量、顶底清栋、立标杆以及掩护其他产品去化。
+    target_nodes: [foundation-project-model, foundation-marketing-action-library, business-plan-pricing-inventory]
+    applicability: 推售策略分类
+
+  - id: MKT-001
+    domain: market
+    type: domain-framework
+    statement: 市场大势以近十二个月成交量价和去化周期趋势为基础，结合当前竞品、未来竞品和潜在土地供应进行判断。
+    target_nodes: [business-analyze-market-competition, business-analyze-project-health]
+    applicability: 市场趋势判断
+
+  - id: MKT-002
+    domain: market
+    type: domain-framework
+    statement: 竞争预测还应考虑竞企经营风格、资金压力和规模压力，区分历史客观数据与未来情景判断。
+    target_nodes: [foundation-fact-governance, business-analyze-market-competition]
+    applicability: 竞争情景分析
+
+  - id: MKT-003
+    domain: market
+    type: heuristic
+    statement: 总体竞争中可能存在板块、时点、面积段或业态的结构性机会，机会需要由局部供需错配和可验证客户需求共同支持。
+    target_nodes: [business-analyze-market-competition, business-plan-marketing-strategy]
+    applicability: 市场机会识别
+
+  - id: MKT-004
+    domain: market
+    type: heuristic
+    statement: 客户对板块和业态的心理偏好可能长期稳定，尤其在中小城市，宣传通常难以独立改变根深蒂固的区域认知。
+    target_nodes: [business-analyze-market-competition, business-analyze-customer-reservoir, business-plan-promotion]
+    applicability: 板块迁移和客户教育判断
+
+  - id: STRAT-001
+    domain: strategy
+    type: heuristic
+    statement: 长期价格支撑依赖资源、产品价值和展示兑现，也可通过真实、合规的非产品价值进行补充。
+    target_nodes: [business-plan-marketing-strategy, business-plan-pricing-inventory, storyline-creation]
+    applicability: 中长期价值策略
+    risk_note: 学区、赠送和装修等内容必须以合同、政策和审批为边界。
+
+  - id: STRAT-002
+    domain: strategy
+    type: heuristic
+    statement: 核心资源和高端项目可评估高举高打、建立标杆后以势能带动后续产品，但必须验证客户容量、展示兑现和价格接受度。
+    target_nodes: [business-plan-marketing-strategy, business-plan-pricing-inventory]
+    applicability: 高端及稀缺资源项目
+
+  - id: STRAT-003
+    domain: strategy
+    type: heuristic
+    statement: 普通质素或竞争激烈项目可评估紧跟市场主导价格和动作、强化转化并平稳走量。
+    target_nodes: [business-plan-marketing-strategy, business-plan-pricing-inventory]
+    applicability: 同质竞争和普通项目
+
+  - id: STRAT-004
+    domain: strategy
+    type: heuristic
+    statement: 难点、滞销或亏损项目应结合利润、现金流、未来市场和持有成本，在低价走量、减少损失与坚守价格之间比较情景。
+    target_nodes: [business-analyze-project-health, deliverable-distressed-project-plan, deliverable-loss-making-project-plan]
+    applicability: 重点难点和亏损项目
+
+  - id: STRAT-005
+    domain: strategy
+    type: domain-framework
+    statement: 中短期价格策略需要与有效客储和房源供给联动，不能只看客户数量，还应看客户质量、价格接受度和转化条件。
+    target_nodes: [business-analyze-customer-reservoir, business-plan-pricing-inventory]
+    applicability: 首开、加推和价格调整
+
+  - id: STRAT-006
+    domain: strategy
+    type: checklist
+    statement: 做大有效客储可组合使用地推、新媒体、分销、老带新和圈层等动作，并按来访、有效客户和成交贡献复盘。
+    target_nodes: [foundation-marketing-action-library, business-plan-customer-acquisition, business-plan-channel]
+    applicability: 获客和客储建设
+
+  - id: STRAT-007
+    domain: strategy
+    type: heuristic
+    statement: 新产品或新楼栋在热度高、客户反馈好且预计流速充足时可评估集中开盘；客户少、转化周期长时可评估持续推售。
+    target_nodes: [foundation-project-model, business-plan-customer-acquisition, deliverable-launch-report]
+    applicability: 首开和加推模式选择
+
+  - id: WORK-001
+    domain: management-work
+    type: checklist
+    statement: 总部营销对接核心工作包括新项目营销定位、营销策略与执行、市场跟踪、价格调整检讨、团队管理和领导沟通。
+    target_nodes: [foundation-organization-governance, marketing-liaison]
+    applicability: 对接人职责范围
+
+  - id: WORK-002
+    domain: price-approval
+    type: checklist
+    statement: 调价准备应包括标注楼栋位置的总平图和销控图、调价房源明细、近三个月成交明细、后续货量去化思路、文字请示和集团财务沟通意见。
+    target_nodes: [business-plan-pricing-inventory, marketing-liaison, deliverable-price-adjustment-proposal]
+    applicability: 价格调整沟通和审批

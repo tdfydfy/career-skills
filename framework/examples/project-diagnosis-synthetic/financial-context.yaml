@@ -1,0 +1,81 @@
+example: true
+synthetic: true
+contract: financial-context
+version: 0.1.0
+
+scope:
+  company: 示例公司
+  region: 示例地区公司
+  project_name: 示例项目A
+  property_type: residential
+  unit_scope: 下半年可售及待售住宅
+  as_of_date: 2026-06-30
+  model_version: 示例草案V1
+
+price:
+  list_amount: null
+  approved_target_amount: null
+  current_net_amount: null
+  proposed_net_amount: null
+  approved_floor_amount: null
+  resource_equivalent_cost: null
+
+profit:
+  revenue: null
+  direct_cost: null
+  tax: null
+  allocated_cost: null
+  gross_profit: null
+  gross_margin: null
+  company_profit_metric: null
+  loss_status_confirmed_by_finance: false
+
+cashflow:
+  expected_collection: 175000000
+  expected_collection_dates: []
+  committed_outflow: null
+  forecast_net_cashflow: null
+  cash_gap: null
+
+marketing_expense:
+  approved_budget: 12000000
+  committed_expense: 7800000
+  recognized_expense: 6500000
+  paid_expense: 5200000
+  forecast_expense: 13500000
+  expense_rate: null
+
+authority:
+  current_authority: 项目无权自行调价或新增渠道佣金
+  requested_authority: null
+  approval_level: 地区及总部
+  required_reviews: [财务, 营销管理]
+  valid_scope: null
+  valid_period: null
+
+scenarios:
+  - name: baseline
+    contract_units: 150
+    contract_amount: 180000000
+    net_price: 12500
+    collection_amount: 145000000
+    marketing_expense: 7000000
+    profit_impact: null
+    inventory_months: 12
+    assumptions: [保持当前价格和动作]
+  - name: cautious
+    contract_units: 110
+    contract_amount: 132000000
+    net_price: 12400
+    collection_amount: 105000000
+    marketing_expense: 6500000
+    profit_impact: null
+    inventory_months: 16
+    assumptions: [竞品持续增加低总价供应]
+
+data_gaps:
+  - 价格底线
+  - 动态利润
+  - 现金流出
+finance_confirmation:
+  - 当前示例不能支持调价或亏损判断

@@ -1,0 +1,57 @@
+example: true
+synthetic: true
+contract: deliverable-request
+version: 0.1.0
+
+deliverable:
+  id: deliverable-project-diagnosis-report
+  title: 示例项目A经营诊断报告
+  requested_at: 2026-07-01
+
+purpose:
+  business_question: 上半年目标仅完成60%，下半年应优先解决什么问题
+  primary_objective: sales
+  target_audience: 地区及总部营销管理层
+  decision_needed: 是否启动专项诊断并调整下半年价格货量和获客动作
+
+scope:
+  project_name: 示例项目A
+  horizon: half-year
+  property_type: residential
+  sales_stage: sustained
+  operating_status: undetermined
+  organization_level: project
+
+required_capabilities:
+  - business-analyze-market-competition
+  - business-analyze-customer-reservoir
+  - business-analyze-project-health
+  - business-plan-pricing-inventory
+  - business-analyze-marketing-expense
+optional_capabilities: []
+available_inputs:
+  - project-context
+  - metric-snapshot
+  - partial-financial-context
+missing_inputs:
+  - 客储及客户价格测试
+  - 财务底价和动态利润
+  - 竞品真实成交
+
+output:
+  format: markdown
+  required_sections: [管理摘要, 年度完成压力, 趋势与流速, 问题线索, 情景, 动作, 决策事项]
+  detail_level: management
+  deadline: 2026-07-03
+
+quality_gates:
+  metric_consistency: true
+  financial_boundary: true
+  evidence_traceability: true
+  legal_and_content_compliance: true
+  cross_section_consistency: true
+  action_accountability: true
+
+constraints:
+  - 未取得财务数据前不得建议具体调价幅度
+approval_route: [项目, 地区, 总部]

@@ -1,0 +1,96 @@
+source:
+  id: launch-price-standards-001
+  title: 首开价格评审与财务价格口径
+  provided_by: marketing-lead
+  received_at: 2026-07-20
+  status: normalized-draft
+
+atom_types:
+  enterprise-rule: 企业内部明确使用的制度、定义或原则
+  domain-framework: 可复用的业务分析与比较框架
+  finance-interface: 由财务提供结果或模型的输入接口
+
+atoms:
+  - id: LPR-001
+    domain: project-governance
+    type: enterprise-rule
+    statement: 启动会在拿地后召开，用于确定项目整体策略和核心经营指标，是后续项目经营的重要基准。
+    target_nodes: [foundation-project-model, foundation-investment-criteria, deliverable-launch-report, deliverable-launch-price-report]
+
+  - id: LPR-002
+    domain: project-governance
+    type: enterprise-rule
+    statement: 首开价格评审会在首次开盘前召开，用于明确首次开盘范围、价格以及开盘量价目标，通常距启动会三至六个月。
+    target_nodes: [foundation-project-model, foundation-organization-governance, deliverable-launch-price-report]
+
+  - id: LPR-003
+    domain: project-governance
+    type: domain-framework
+    statement: 首开价格评审时应将最新经济技术指标、市场和量价方案与启动会基准对比；允许因三至六个月内的项目及市场变化出现偏差，但原则上应尽量保持或超越启动会指标，并解释未达标项。
+    target_nodes: [foundation-investment-criteria, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: FIN-001
+    domain: finance
+    type: enterprise-rule
+    statement: 全投资计息是统一的项目财务测算整体，“全计息”和“全投资”均为其简称，不应拆成两套财务模型。
+    target_nodes: [foundation-financial-standards, foundation-investment-criteria, deliverable-launch-price-report]
+
+  - id: FIN-002
+    domain: finance
+    type: finance-interface
+    statement: 全投资计息净利润、成本利润率、毛利率、净利润率和IRR等结果原则上由财务提供；未提供专门公式时按指标字面含义理解和标注，不另造企业公式。
+    target_nodes: [foundation-financial-standards, foundation-investment-criteria, deliverable-launch-price-report]
+
+  - id: FIN-003
+    domain: cashflow
+    type: enterprise-rule
+    statement: 土地款回正是累计销售回款达到或超过已投入土地款金额的时点。
+    target_nodes: [foundation-financial-standards, foundation-investment-criteria, deliverable-launch-price-report]
+
+  - id: FIN-004
+    domain: cashflow
+    type: enterprise-rule
+    statement: 现金流回正是累计销售回款覆盖土地、工程、设计、营销及其他纳入项目现金流的投入的时点，通常晚于土地款回正。
+    target_nodes: [foundation-financial-standards, foundation-investment-criteria, deliverable-launch-price-report]
+
+  - id: FIN-005
+    domain: finance
+    type: enterprise-rule
+    statement: 剔除精装修后的售价等于带装修售价减去精装修成本；单价比较时应使用同一面积和成本单位。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: FIN-006
+    domain: parking
+    type: finance-interface
+    statement: 车位成本利润及其敏感性经营指标由财务单独测算，营销侧提供价格、分类、去化和销售情景输入。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: PRICE-001
+    domain: price
+    type: enterprise-rule
+    statement: 启动会批复价是启动会确定的整盘均价及各业态均价。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: PRICE-002
+    domain: price
+    type: enterprise-rule
+    statement: 首开申请价格是本次首开范围的整体均价和各业态均价。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: PRICE-003
+    domain: price
+    type: enterprise-rule
+    statement: 房号底价是经集团审批备案的一房一价表，原则上实际成交价格不得低于对应房号底价。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: PRICE-004
+    domain: price
+    type: enterprise-rule
+    statement: 表价是对外展示价格，净成交价是表价经过已批准优惠和折扣后的实际成交价格，净成交价应高于或等于房号底价。
+    target_nodes: [foundation-financial-standards, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: FIN-007
+    domain: finance
+    type: enterprise-rule
+    statement: 住宅、商业和车位均纳入同一个项目利润框架，分业态分析后应汇总到统一项目经营结果。
+    target_nodes: [foundation-financial-standards, foundation-investment-criteria, deliverable-launch-price-report, deliverable-parking-commercial-report]

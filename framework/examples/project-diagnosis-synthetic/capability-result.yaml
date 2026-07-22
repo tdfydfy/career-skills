@@ -1,0 +1,61 @@
+example: true
+synthetic: true
+contract: capability-result
+version: 0.2.0
+
+capability:
+  id: business-analyze-project-health
+  title: 示例项目A经营趋势与问题分析
+  executed_at: 2026-07-01
+
+scope:
+  project_name: 示例项目A
+  period: 2026年上半年
+  objective: 识别下半年优先经营矛盾
+
+inputs_used: [project-context, metric-snapshot, partial-financial-context]
+
+facts:
+  - statement: 上半年合约额目标完成率为60%
+    evidence_ids: [EX-EV-001]
+  - statement: 当前可售库存约为近六个月月均成交的14.4个月
+    evidence_ids: []
+
+assumptions:
+  - statement: 下半年市场保持弱势但不继续显著下滑
+    reason: 用于形成暂定基准情景
+    impact_if_wrong: 销售和库存预测需要重做
+
+findings:
+  - finding: 项目存在目标缺口和库存周期压力
+    cause: 客户、竞品、价格和销售执行原因尚未完整验证
+    impact: 下半年现有打法可能无法完成全年目标
+    confidence: medium
+    evidence_ids: [EX-EV-001, EX-EV-002]
+  - finding: 当前不能判断项目属于正常、重难点或尾盘
+    cause: 缺少年度合约额目标、近三个月月均合约额、剩余有效销售月份及连续两个月认购流速
+    impact: 无法计算后续月均合约额要求及完成压力比
+    confidence: high
+    evidence_ids: []
+
+recommendations:
+  - action: 一周内完成有效客储、竞品成交和价格底线核验
+    owner: 项目与地区营销
+    deadline: 2026-07-08
+    expected_result: 具备价格货量和获客方案决策条件
+    prerequisite: CRM、市场和财务数据到位
+    risk: 数据口径不一致
+
+options: []
+decisions_needed:
+  - 是否先补齐年度目标、近期合约额和认购流速，再决定是否启动重难点专项
+risks:
+  - 财务数据不足，不能判断亏损或提出具体降价
+data_gaps:
+  - 年度合约额目标及年度累计完成
+  - 近三个月月均合约额
+  - 剩余有效销售月份
+  - 连续两个月认购套数
+  - 有效客储
+  - 价格实现率
+  - 财务底价和利润

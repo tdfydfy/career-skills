@@ -1,0 +1,138 @@
+example: true
+synthetic: true
+contract: metric-snapshot
+version: 0.2.0
+
+scope:
+  company: 示例公司
+  region: 示例地区公司
+  city: 示例市
+  project_name: 示例项目A
+  property_type: residential
+  sales_stage: sustained
+  additional_dimensions: {}
+
+period:
+  start_date: 2026-01-01
+  end_date: 2026-06-30
+  as_of_date: 2026-06-30
+  comparison_period: 2025-07-01至2025-12-31
+
+dictionary:
+  source_id: metric-baseline-001
+  version: 0.3.0
+
+values:
+  - metric_id: target_contract_amount
+    value: 150000000
+    unit: yuan
+    numerator: {metric_id: null, value: null}
+    denominator: {metric_id: null, value: null}
+    formula_version: source
+    data_source: 虚构目标表
+    source_updated_at: 2026-01-01
+    quality_status: verified
+    notes: 上半年分解目标
+  - metric_id: net_contract_amount
+    value: 90000000
+    unit: yuan
+    numerator: {metric_id: gross_contract_amount, value: 93000000}
+    denominator: {metric_id: null, value: null}
+    formula_version: 0.1.0
+    data_source: 虚构销售台账
+    source_updated_at: 2026-06-30
+    quality_status: verified
+    notes: 已扣除退订
+  - metric_id: target_amount_achievement
+    value: 0.6
+    unit: rate
+    numerator: {metric_id: net_contract_amount, value: 90000000}
+    denominator: {metric_id: target_contract_amount, value: 150000000}
+    formula_version: 0.1.0
+    data_source: 计算值
+    source_updated_at: 2026-06-30
+    quality_status: verified
+    notes: null
+  - metric_id: new_visit_groups
+    value: 420
+    unit: customer_group
+    numerator: {metric_id: null, value: null}
+    denominator: {metric_id: null, value: null}
+    formula_version: 0.1.0
+    data_source: 虚构CRM
+    source_updated_at: 2026-06-30
+    quality_status: provisional
+    notes: 跨渠道去重待复核
+  - metric_id: net_contract_customers
+    value: 73
+    unit: customer
+    numerator: {metric_id: gross_contract_customers, value: 76}
+    denominator: {metric_id: cancellation_customers, value: 3}
+    formula_version: 0.1.0
+    data_source: 虚构CRM
+    source_updated_at: 2026-06-30
+    quality_status: verified
+    notes: null
+  - metric_id: visit_to_contract_conversion
+    value: 0.174
+    unit: rate
+    numerator: {metric_id: net_contract_customers, value: 73}
+    denominator: {metric_id: unique_visit_customers, value: 420}
+    formula_version: 0.1.0
+    data_source: 示例计算
+    source_updated_at: 2026-06-30
+    quality_status: provisional
+    notes: 示例简化为同期口径，正式分析应使用客户队列
+  - metric_id: available_inventory_units
+    value: 180
+    unit: unit
+    numerator: {metric_id: null, value: null}
+    denominator: {metric_id: null, value: null}
+    formula_version: 0.1.0
+    data_source: 虚构销控
+    source_updated_at: 2026-06-30
+    quality_status: verified
+    notes: null
+  - metric_id: inventory_months
+    value: 14.4
+    unit: month
+    numerator: {metric_id: available_inventory_units, value: 180}
+    denominator: {metric_id: rolling_average_monthly_net_contract_units, value: 12.5}
+    formula_version: 0.1.0
+    data_source: 示例计算
+    source_updated_at: 2026-06-30
+    quality_status: verified
+    notes: 使用近六个月平均
+  - metric_id: recognized_marketing_expense
+    value: 6500000
+    unit: yuan
+    numerator: {metric_id: null, value: null}
+    denominator: {metric_id: null, value: null}
+    formula_version: 0.1.0
+    data_source: 虚构财务台账
+    source_updated_at: 2026-06-30
+    quality_status: provisional
+    notes: 等待财务结账
+  - metric_id: marketing_expense_rate
+    value: 0.0722
+    unit: rate
+    numerator: {metric_id: recognized_marketing_expense, value: 6500000}
+    denominator: {metric_id: net_contract_amount, value: 90000000}
+    formula_version: 0.1.0
+    data_source: 示例计算
+    source_updated_at: 2026-06-30
+    quality_status: provisional
+    notes: 企业正式分母待确认
+
+comparisons: []
+
+data_quality:
+  missing_metrics:
+    - launch_valid_reservoir
+    - price_realization_rate
+    - due_collection_achievement
+  inconsistent_scopes: []
+  stale_sources: []
+  reconciliation_items:
+    - CRM到访去重
+    - 财务费用结账

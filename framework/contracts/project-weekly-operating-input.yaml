@@ -1,0 +1,99 @@
+contract: project-weekly-operating-input
+version: 0.1.0
+
+metadata:
+  region_company: null
+  city_company_virtual_or_standalone_project_company: null
+  project_name: null
+  report_week_start: null
+  report_week_end: null
+  as_of_date: null
+  prepared_by: null
+  regional_template_reference: null
+
+visit_analysis:
+  total_new_visit_groups: null
+  previous_week_new_visit_groups: null
+  trend: improving | stable | worsening | volatile | unknown
+  pure_activity_only_groups_excluded: null
+  classifications:
+    age_bands: []
+    family_structures: []
+    occupations: []
+    intention_ratings: []
+    product_or_area_preferences: []
+    resistance_factors: []
+  channels:
+    - channel: null
+      visit_groups: null
+      purchase_units: null
+      subscription_units: null
+      notes: null
+
+sales_details:
+  purchases:
+    - unit_id: null
+      building: null
+      room: null
+      product_or_area: null
+      purchase_date: null
+      purchase_price: null
+      approved_floor_price: null
+      parking_purchased_together: null
+      parking_space_id: null
+      salesperson: null
+      customer_or_evidence_reference: null
+  subscriptions:
+    - customer_or_group_reference: null
+      intended_product_or_area: null
+      intended_unit: null
+      subscription_date: null
+      salesperson: null
+      maturity_or_notes: null
+
+customer_reservoir:
+  volume:
+    current_counts: []
+    changes_this_week: []
+    trend: null
+  quality:
+    source_and_profile: []
+    product_and_price_expectations: []
+    decision_cycles: []
+    resistance_factors: []
+  forecast:
+    expected_volume_changes: []
+    expected_quality_changes: []
+    conversion_assumptions: []
+    macro_required_customer_volume: null
+    micro_sales_manager_forecast_units: null
+    macro_micro_gap: null
+    sales_manager_review_reference: null
+    performance_support_gap: null
+  actions_completed: []
+  next_week_plan: []
+
+marketing_planning:
+  work_completed: []
+  next_week_plan: []
+  node_and_campaign_impacts: []
+
+owner_referral:
+  actions_completed: []
+  leads_visits_and_sales: []
+  next_week_plan: []
+
+new_media:
+  content_and_live_actions: []
+  leads_visits_and_sales: []
+  next_week_plan: []
+
+competitor_updates: []
+project_nodes: []
+support_needed: []
+regional_management_notes: []
+
+data_quality:
+  missing_fields: []
+  reconciliation_items: []
+  evidence_references: []

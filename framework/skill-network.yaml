@@ -1,0 +1,948 @@
+version: 0.21.0
+updated_at: 2026-07-22
+
+network:
+  id: real-estate-marketing-skill-network
+  title: 房地产营销 Skill 网络
+  layers:
+    - foundation
+    - business
+    - deliverable
+  node_kinds:
+    - reference-module
+    - executable-skill
+    - orchestrator-skill
+  status_values:
+    - existing
+    - planned
+    - draft
+    - active
+    - deprecated
+
+governance:
+  task_router: framework/task-router.yaml
+  enterprise_inputs: framework/enterprise-inputs.yaml
+  build_roadmap: framework/BUILD-ROADMAP.md
+  network_map: framework/NETWORK-MAP.md
+  implementation_checklist: framework/templates/skill-implementation-checklist.md
+  validator: framework/scripts/validate_network.py
+
+contracts:
+  project_context: framework/contracts/project-context.yaml
+  market_context: framework/contracts/market-context.yaml
+  customer_context: framework/contracts/customer-context.yaml
+  inventory_context: framework/contracts/inventory-context.yaml
+  organization_context: framework/contracts/organization-context.yaml
+  weekly_operating_report: framework/contracts/weekly-operating-report.yaml
+  project_weekly_operating_input: framework/contracts/project-weekly-operating-input.yaml
+  metric_snapshot: framework/contracts/metric-snapshot.yaml
+  fact_record: framework/contracts/fact-record.yaml
+  financial_context: framework/contracts/financial-context.yaml
+  marketing_action_plan: framework/contracts/marketing-action-plan.yaml
+  content_brief: framework/contracts/content-brief.yaml
+  capability_result: framework/contracts/capability-result.yaml
+  deliverable_request: framework/contracts/deliverable-request.yaml
+  deliverable_package: framework/contracts/deliverable-package.yaml
+
+knowledge_sources:
+  - id: customer-liaison-notes-001
+    title: 客户盘点与总部地区项目对接管理认知
+    path: framework/knowledge/customer-liaison-notes-001.yaml
+    status: normalized-draft
+
+  - id: metric-baseline-001
+    title: 房地产营销经营指标基线
+    path: framework/knowledge/metric-baseline-001.yaml
+    status: generated-draft
+
+  - id: marketing-action-baseline-001
+    title: 房地产营销动作基线
+    path: framework/knowledge/marketing-action-baseline-001.yaml
+    status: generated-draft
+
+  - id: launch-price-standards-001
+    title: 首开价格评审与财务价格口径
+    path: framework/knowledge/launch-price-standards-001.yaml
+    status: normalized-draft
+
+  - id: marketing-strategy-template-001
+    title: 项目营销策略报告模板认知
+    path: framework/knowledge/marketing-strategy-template-001.yaml
+    status: normalized-template
+
+  - id: sustained-sales-diagnosis-001
+    title: 持销期专题诊断与房车同售认知
+    path: framework/knowledge/sustained-sales-diagnosis-001.yaml
+    status: normalized-draft
+
+  - id: project-operating-monitoring-001
+    title: 项目经营监控、流速与销售质量口径
+    path: framework/knowledge/project-operating-monitoring-001.yaml
+    status: normalized-draft
+
+  - id: existing-content-compliance
+    title: 现有房地产营销内容合规规则
+    path: content-compliance/SKILL.md
+    status: existing
+
+  - id: existing-project-strategy
+    title: 现有项目研判与操盘策略
+    path: marketing-liaison/references/project-strategy.md
+    status: existing
+
+  - id: existing-price-resources
+    title: 现有调价与资源协调规则
+    path: marketing-liaison/references/price-and-resources.md
+    status: existing
+
+  - id: existing-sales-red-lines
+    title: 现有销售应答红线
+    path: saletricks/references/99-red-lines.md
+    status: existing
+
+  - id: existing-storyline
+    title: 现有地产故事线创作方法
+    path: storyline-creation/SKILL.md
+    status: existing
+
+existing_nodes:
+  - id: content-compliance
+    title: 房地产营销内容合规审核
+    layer: foundation
+    kind: executable-skill
+    status: existing
+    path: content-compliance
+    domains: [content-standard, compliance]
+    provides: [compliance-review]
+
+  - id: marketing-liaison
+    title: 总部地区项目营销对接
+    layer: business
+    kind: executable-skill
+    status: existing
+    path: marketing-liaison
+    domains: [coordination, management-communication]
+    provides: [coordination-plan, management-brief]
+
+  - id: sales-officer
+    title: 销售客户盘点
+    layer: business
+    kind: executable-skill
+    status: existing
+    path: sales-officer
+    domains: [customer-analysis, sales]
+    provides: [customer-diagnosis, follow-up-plan]
+
+  - id: sales-talk-coach
+    title: 销售话术训练与考核
+    layer: business
+    kind: executable-skill
+    status: existing
+    path: sales-talk-coach
+    domains: [sales-training, assessment]
+    provides: [training-session, assessment-report]
+
+  - id: saletricks
+    title: 新房销售异议与成交推进
+    layer: business
+    kind: executable-skill
+    status: existing
+    path: saletricks
+    domains: [sales-reception, objection-handling, closing]
+    provides: [sales-response, closing-action]
+
+  - id: storyline-creation
+    title: 地产项目故事线创作
+    layer: business
+    kind: executable-skill
+    status: existing
+    path: storyline-creation
+    domains: [product-value, project-storyline]
+    provides: [storyline, value-narrative, marketing-toolkit]
+
+foundation_nodes:
+  - id: foundation-project-model
+    title: 项目分类与阶段模型
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/project-model.md
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001]
+    provides: [project-type-standard, sales-stage-standard, health-status-standard]
+
+  - id: foundation-customer-model
+    title: 客户模型与盘点标准
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/customer-model.md
+    knowledge_sources: [customer-liaison-notes-001]
+    provides: [customer-profile-standard, customer-motive-standard, man-standard, reservoir-stage-standard]
+
+  - id: foundation-organization-governance
+    title: 营销组织与三级治理模型
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/organization-governance.md
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001]
+    provides: [organization-level-standard, role-standard, management-cadence, approval-context]
+
+  - id: foundation-metric-dictionary
+    title: 营销经营指标字典
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/metric-dictionary.md
+    knowledge_sources: [customer-liaison-notes-001, metric-baseline-001]
+    resources:
+      - framework/knowledge/metric-baseline-001.yaml
+      - framework/contracts/metric-snapshot.yaml
+    provides: [metric-definition, calculation-rule, reporting-period-rule]
+
+  - id: foundation-financial-standards
+    title: 财务标准与经营边界
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/financial-standards.md
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001, sustained-sales-diagnosis-001, existing-price-resources]
+    resources: [framework/contracts/financial-context.yaml]
+    provides: [price-floor, profit-boundary, cashflow-boundary, expense-boundary]
+
+  - id: foundation-investment-criteria
+    title: 房地产投资标尺
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P1
+    path: framework/foundations/investment-criteria.md
+    depends_on: [foundation-financial-standards]
+    knowledge_sources: [launch-price-standards-001]
+    resources: [framework/contracts/financial-context.yaml]
+    provides: [investment-metric, investment-assumption, feasibility-boundary]
+
+  - id: foundation-marketing-action-library
+    title: 营销动作库
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/marketing-action-library.md
+    knowledge_sources: [customer-liaison-notes-001, marketing-action-baseline-001, marketing-strategy-template-001, sustained-sales-diagnosis-001, existing-project-strategy, existing-price-resources]
+    resources:
+      - framework/knowledge/marketing-action-baseline-001.yaml
+      - framework/contracts/marketing-action-plan.yaml
+    provides: [marketing-action, applicable-condition, expected-effect, risk-note]
+
+  - id: foundation-fact-governance
+    title: 事实、假设与证据管理标准
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/fact-governance.md
+    knowledge_sources: [customer-liaison-notes-001, marketing-strategy-template-001, sustained-sales-diagnosis-001, existing-sales-red-lines, existing-content-compliance]
+    resources:
+      - framework/contracts/fact-record.yaml
+      - framework/foundations/decision-reasoning-standard.md
+    provides: [evidence-rule, freshness-rule, assumption-rule, confidence-rule, decision-reasoning-rule]
+
+  - id: foundation-copy-standards
+    title: 房地产文案标准
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P0
+    path: framework/foundations/copy-standards.md
+    knowledge_sources: [existing-content-compliance, existing-sales-red-lines, existing-storyline]
+    resources: [framework/contracts/content-brief.yaml]
+    provides: [copy-style, copy-structure, channel-copy-rule, claim-rule]
+
+  - id: foundation-image-standards
+    title: 房地产图片与平面视觉标准
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P1
+    path: framework/foundations/image-standards.md
+    knowledge_sources: [existing-content-compliance, existing-storyline]
+    resources: [framework/contracts/content-brief.yaml]
+    provides: [image-rule, layout-rule, typography-rule, disclaimer-rule]
+
+  - id: foundation-video-standards
+    title: 房地产视频内容标准
+    layer: foundation
+    kind: reference-module
+    status: draft
+    priority: P1
+    path: framework/foundations/video-standards.md
+    knowledge_sources: [existing-content-compliance, existing-storyline]
+    resources: [framework/contracts/content-brief.yaml]
+    provides: [video-format-rule, shot-rule, subtitle-rule, platform-rule]
+
+business_nodes:
+  - id: business-plan-project-positioning
+    title: 新项目营销定位
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/strategy-workflows.md
+    section: business-plan-project-positioning
+    depends_on: [foundation-project-model, foundation-customer-model, foundation-metric-dictionary, foundation-financial-standards, foundation-investment-criteria, foundation-fact-governance, business-analyze-market-competition]
+    consumes: [project-context, market-context, customer-context, financial-context]
+    produces: [customer-positioning, product-positioning, price-assumption, first-phase-strategy]
+
+  - id: business-analyze-market-competition
+    title: 市场与竞品分析
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/analysis-workflows.md
+    section: business-analyze-market-competition
+    depends_on: [foundation-metric-dictionary, foundation-fact-governance]
+    consumes: [project-context, market-context]
+    produces: [market-finding, competitor-finding, market-opportunity, market-risk]
+
+  - id: business-analyze-customer-reservoir
+    title: 客户量质与客储分析
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/analysis-workflows.md
+    section: business-analyze-customer-reservoir
+    depends_on: [foundation-customer-model, foundation-metric-dictionary, foundation-fact-governance, sales-officer]
+    consumes: [project-context, customer-data, visit-data, subscription-data]
+    produces: [customer-volume-trend, customer-quality-structure, reservoir-forecast, performance-support-gap, conversion-barrier, customer-led-decision]
+
+  - id: business-analyze-project-health
+    title: 项目经营趋势与问题分析
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/analysis-workflows.md
+    section: business-analyze-project-health
+    knowledge_sources: [customer-liaison-notes-001, project-operating-monitoring-001, sustained-sales-diagnosis-001]
+    depends_on: [foundation-project-model, foundation-organization-governance, foundation-metric-dictionary, foundation-financial-standards, foundation-investment-criteria, foundation-fact-governance]
+    consumes: [project-context, metric-snapshot, financial-context, fact-record]
+    produces: [annual-forecast, completion-pressure, velocity-alert, transaction-quality-risk, problem-clue, intervention-priority]
+
+  - id: business-plan-marketing-strategy
+    title: 营销策略制定
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/strategy-workflows.md
+    section: business-plan-marketing-strategy
+    knowledge_sources: [customer-liaison-notes-001, marketing-strategy-template-001, sustained-sales-diagnosis-001, existing-project-strategy]
+    depends_on: [foundation-project-model, foundation-customer-model, foundation-organization-governance, foundation-metric-dictionary, foundation-financial-standards, foundation-marketing-action-library, foundation-fact-governance, business-analyze-market-competition, business-analyze-customer-reservoir, marketing-liaison, storyline-creation]
+    consumes: [project-context, market-context, customer-context, inventory-context, financial-context, organization-context, capability-result]
+    produces: [strategy-objective, core-conflict, strategy-path, alternative-path, action-portfolio, target-funnel, budget-allocation, milestone, review-rule]
+
+  - id: business-plan-pricing-inventory
+    title: 价格、货量与推售策略
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/strategy-workflows.md
+    section: business-plan-pricing-inventory
+    knowledge_sources: [launch-price-standards-001, sustained-sales-diagnosis-001]
+    depends_on: [foundation-project-model, foundation-metric-dictionary, foundation-financial-standards, foundation-fact-governance]
+    consumes: [project-context, inventory-context, financial-context]
+    produces: [price-strategy, inventory-classification, launch-sequence, risk]
+
+  - id: business-plan-customer-acquisition
+    title: 客储与蓄客策略
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/strategy-workflows.md
+    section: business-plan-customer-acquisition
+    depends_on: [foundation-customer-model, foundation-metric-dictionary, foundation-marketing-action-library, sales-officer]
+    consumes: [project-context, customer-analysis, launch-target]
+    produces: [reservoir-target, acquisition-path, validation-plan, conversion-plan]
+
+  - id: business-plan-media
+    title: 媒体策略与投放计划
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/strategy-workflows.md
+    section: business-plan-media
+    depends_on: [foundation-customer-model, foundation-metric-dictionary, foundation-marketing-action-library, foundation-copy-standards, foundation-image-standards, foundation-video-standards]
+    consumes: [project-context, customer-segment, communication-objective, budget]
+    produces: [media-mix, flighting-plan, budget-allocation, performance-metric]
+
+  - id: business-plan-channel
+    title: 渠道策略
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/strategy-workflows.md
+    section: business-plan-channel
+    depends_on: [foundation-customer-model, foundation-metric-dictionary, foundation-financial-standards, foundation-marketing-action-library]
+    consumes: [project-context, customer-source, competitor-channel, budget]
+    produces: [channel-mix, commission-rule, target, review-rule]
+
+  - id: business-plan-campaign
+    title: 营销活动策划
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/execution-workflows.md
+    section: business-plan-campaign
+    depends_on: [foundation-customer-model, foundation-organization-governance, foundation-financial-standards, foundation-marketing-action-library, content-compliance]
+    consumes: [project-context, activity-objective, target-customer, budget]
+    produces: [campaign-concept, event-flow, invitation-plan, conversion-plan, budget]
+
+  - id: business-plan-promotion
+    title: 宣传推广策划
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/execution-workflows.md
+    section: business-plan-promotion
+    depends_on: [foundation-fact-governance, foundation-copy-standards, foundation-image-standards, foundation-video-standards, storyline-creation, content-compliance]
+    consumes: [project-context, storyline, communication-objective]
+    produces: [campaign-theme, message-system, content-matrix, communication-rhythm]
+
+  - id: business-plan-display
+    title: 营销展示策划
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/execution-workflows.md
+    section: business-plan-display
+    depends_on: [foundation-project-model, foundation-customer-model, foundation-financial-standards, foundation-fact-governance, storyline-creation, content-compliance]
+    consumes: [project-context, product-value, customer-segment, milestone]
+    produces: [display-objective, display-route, experience-point, opening-plan]
+
+  - id: business-plan-sales
+    title: 销售组织与执行策划
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/execution-workflows.md
+    section: business-plan-sales
+    depends_on: [foundation-customer-model, foundation-organization-governance, foundation-metric-dictionary, foundation-fact-governance, sales-officer, saletricks, sales-talk-coach]
+    consumes: [project-context, sales-target, customer-analysis, inventory-plan]
+    produces: [sales-organization, reception-process, assessment-rule, execution-plan]
+
+  - id: business-manage-sales-reception
+    title: 客户接待与跟进
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/execution-workflows.md
+    section: business-manage-sales-reception
+    depends_on: [foundation-customer-model, foundation-fact-governance, sales-officer, saletricks, sales-talk-coach]
+    consumes: [project-context, customer-context, inventory-context]
+    produces: [reception-path, customer-summary, next-action, handoff-record]
+
+  - id: business-manage-contract-collection
+    title: 签约、按揭与回款管理
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/execution-workflows.md
+    section: business-manage-contract-collection
+    depends_on: [foundation-organization-governance, foundation-metric-dictionary, foundation-financial-standards, foundation-fact-governance]
+    consumes: [transaction-data, payment-plan, risk-policy]
+    produces: [collection-forecast, overdue-risk, follow-up-action, escalation-item]
+
+  - id: business-write-soft-article
+    title: 房地产软文写作
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/content-workflows.md
+    section: business-write-soft-article
+    depends_on: [foundation-fact-governance, foundation-copy-standards, storyline-creation, content-compliance]
+    consumes: [project-context, message-system, copy-standard]
+    produces: [article-outline, article-draft, headline-options, claim-checklist]
+
+  - id: business-compose-graphic-content
+    title: 图文编排
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/content-workflows.md
+    section: business-compose-graphic-content
+    depends_on: [foundation-fact-governance, foundation-copy-standards, foundation-image-standards, content-compliance]
+    consumes: [copy, image-assets, image-standard, channel-format]
+    produces: [content-structure, layout-brief, image-copy-map, publishing-spec]
+
+  - id: business-brief-image-creative
+    title: 图片创意与设计任务书
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/content-workflows.md
+    section: business-brief-image-creative
+    depends_on: [foundation-fact-governance, foundation-image-standards, content-compliance]
+    consumes: [project-context, communication-objective, image-standard]
+    produces: [creative-concept, key-visual-brief, format-list, review-checklist]
+
+  - id: business-plan-video-content
+    title: 视频选题、脚本与分镜
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/content-workflows.md
+    section: business-plan-video-content
+    depends_on: [foundation-fact-governance, foundation-copy-standards, foundation-video-standards, content-compliance]
+    consumes: [project-context, communication-objective, video-standard]
+    produces: [video-topic, script, storyboard, production-brief, publishing-plan]
+
+  - id: business-coordinate-project-functions
+    title: 项目跨专业协同
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/execution-workflows.md
+    section: business-coordinate-project-functions
+    depends_on: [foundation-organization-governance, foundation-fact-governance]
+    consumes: [project-context, issue-list, stakeholder-list]
+    produces: [responsibility-map, coordination-plan, decision-item, follow-up-log]
+
+  - id: business-analyze-marketing-expense
+    title: 营销费用分析
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/analysis-workflows.md
+    section: business-analyze-marketing-expense
+    depends_on: [foundation-metric-dictionary, foundation-financial-standards, foundation-marketing-action-library]
+    consumes: [budget, actual-expense, marketing-action, performance-data]
+    produces: [variance-analysis, efficiency-analysis, expense-risk, adjustment-action]
+
+  - id: business-plan-target-budget
+    title: 营销目标与预算分解
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P0
+    path: framework/business/management-workflows.md
+    section: business-plan-target-budget
+    depends_on: [foundation-project-model, foundation-organization-governance, foundation-metric-dictionary, foundation-financial-standards, foundation-investment-criteria, foundation-fact-governance]
+    consumes: [project-context, metric-snapshot, financial-context]
+    produces: [target-tree, monthly-plan, budget-allocation, scenario, warning-rule]
+
+  - id: business-manage-team-performance
+    title: 营销团队与绩效管理
+    layer: business
+    kind: executable-skill
+    status: draft
+    priority: P1
+    path: framework/business/management-workflows.md
+    section: business-manage-team-performance
+    depends_on: [foundation-organization-governance, foundation-metric-dictionary, foundation-fact-governance, sales-talk-coach]
+    consumes: [organization-context, metric-snapshot, assessment-data]
+    produces: [organization-diagnosis, capability-matrix, talent-risk, development-plan]
+
+deliverable_nodes:
+  - id: deliverable-project-positioning-report
+    title: 新项目营销定位报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/stage-and-operating-reports.md
+    section: deliverable-project-positioning-report
+    depends_on:
+      - foundation-project-model
+      - foundation-customer-model
+      - foundation-financial-standards
+      - foundation-investment-criteria
+      - business-analyze-market-competition
+      - business-plan-project-positioning
+      - business-coordinate-project-functions
+
+  - id: deliverable-launch-report
+    title: 项目首开营销策略报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: active
+    priority: P0
+    path: launch-marketing-report
+    spec_path: framework/deliverables/stage-and-operating-reports.md
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001, marketing-strategy-template-001, sustained-sales-diagnosis-001]
+    resources:
+      - framework/examples/launch-marketing-synthetic/source-data.yaml
+      - framework/examples/launch-marketing-synthetic/report.md
+      - framework/examples/launch-marketing-synthetic/quality-review.md
+      - framework/examples/launch-marketing-synthetic/validate_case.py
+    depends_on:
+      - foundation-project-model
+      - foundation-customer-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-marketing-strategy
+      - storyline-creation
+      - business-plan-pricing-inventory
+      - business-plan-customer-acquisition
+      - business-plan-media
+      - business-plan-channel
+      - business-plan-display
+      - business-plan-sales
+
+  - id: deliverable-launch-price-report
+    title: 首开价格报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: active
+    priority: P0
+    path: launch-price-report
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001, marketing-strategy-template-001]
+    resources:
+      - framework/examples/launch-price-synthetic/source-data.yaml
+      - framework/examples/launch-price-synthetic/report.md
+      - framework/examples/launch-price-synthetic/quality-review.md
+      - framework/examples/launch-price-synthetic/validate_case.py
+    depends_on:
+      - foundation-project-model
+      - foundation-customer-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - foundation-investment-criteria
+      - foundation-fact-governance
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - marketing-liaison
+
+  - id: deliverable-sustained-sales-report
+    title: 持销期专题诊断与改善方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: active
+    priority: P0
+    path: sustained-sales-diagnosis
+    spec_path: framework/deliverables/stage-and-operating-reports.md
+    knowledge_sources: [customer-liaison-notes-001, sustained-sales-diagnosis-001, existing-project-strategy, existing-price-resources]
+    resources:
+      - framework/examples/sustained-sales-diagnosis-synthetic/source-data.yaml
+      - framework/examples/sustained-sales-diagnosis-synthetic/report.md
+      - framework/examples/sustained-sales-diagnosis-synthetic/quality-review.md
+      - framework/examples/sustained-sales-diagnosis-synthetic/validate_case.py
+    depends_on:
+      - foundation-project-model
+      - foundation-customer-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - foundation-marketing-action-library
+      - foundation-fact-governance
+      - business-analyze-project-health
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-analyze-marketing-expense
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - business-plan-customer-acquisition
+      - business-plan-media
+      - business-plan-channel
+      - business-plan-campaign
+      - business-plan-promotion
+      - business-plan-display
+      - business-plan-sales
+      - business-coordinate-project-functions
+      - content-compliance
+
+  - id: deliverable-annual-marketing-report
+    title: 年度营销报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/stage-and-operating-reports.md
+    section: deliverable-annual-marketing-report
+    depends_on:
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - business-analyze-market-competition
+      - business-analyze-project-health
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - business-plan-customer-acquisition
+      - business-analyze-marketing-expense
+
+  - id: deliverable-semiannual-marketing-report
+    title: 半年度营销报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/stage-and-operating-reports.md
+    section: deliverable-semiannual-marketing-report
+    depends_on:
+      - foundation-metric-dictionary
+      - business-analyze-project-health
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - business-analyze-marketing-expense
+
+  - id: deliverable-tail-inventory-report
+    title: 尾盘去化报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/stage-and-operating-reports.md
+    section: deliverable-tail-inventory-report
+    depends_on:
+      - business-analyze-project-health
+      - business-analyze-customer-reservoir
+      - business-plan-pricing-inventory
+      - business-plan-channel
+      - business-plan-campaign
+      - saletricks
+
+  - id: deliverable-parking-commercial-report
+    title: 车位与商业营销报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/stage-and-operating-reports.md
+    section: deliverable-parking-commercial-report
+    depends_on:
+      - foundation-project-model
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-pricing-inventory
+      - business-plan-channel
+      - business-plan-sales
+
+  - id: deliverable-project-diagnosis-report
+    title: 项目诊断报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-project-diagnosis-report
+    depends_on:
+      - foundation-project-model
+      - foundation-customer-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - foundation-fact-governance
+      - business-analyze-project-health
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-pricing-inventory
+      - business-analyze-marketing-expense
+
+  - id: deliverable-distressed-project-plan
+    title: 重点难点项目扭转方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-distressed-project-plan
+    depends_on:
+      - deliverable-project-diagnosis-report
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - business-plan-channel
+      - business-plan-sales
+      - marketing-liaison
+
+  - id: deliverable-loss-making-project-plan
+    title: 亏损项目经营改善方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-loss-making-project-plan
+    depends_on:
+      - foundation-financial-standards
+      - foundation-investment-criteria
+      - deliverable-project-diagnosis-report
+      - business-plan-marketing-strategy
+      - business-plan-pricing-inventory
+      - business-analyze-marketing-expense
+
+  - id: deliverable-expense-analysis-report
+    title: 营销费用分析报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-expense-analysis-report
+    depends_on:
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - foundation-marketing-action-library
+      - business-analyze-marketing-expense
+
+  - id: deliverable-price-adjustment-proposal
+    title: 调价报告与审批请示
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-price-adjustment-proposal
+    depends_on:
+      - foundation-project-model
+      - foundation-organization-governance
+      - foundation-financial-standards
+      - business-analyze-market-competition
+      - business-analyze-customer-reservoir
+      - business-plan-pricing-inventory
+      - marketing-liaison
+
+  - id: deliverable-campaign-proposal
+    title: 营销活动方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/execution-deliverables.md
+    section: deliverable-campaign-proposal
+    depends_on:
+      - foundation-marketing-action-library
+      - business-plan-campaign
+      - business-plan-promotion
+      - business-analyze-marketing-expense
+      - content-compliance
+
+  - id: deliverable-promotion-plan
+    title: 整合推广方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/execution-deliverables.md
+    section: deliverable-promotion-plan
+    depends_on:
+      - storyline-creation
+      - business-plan-promotion
+      - business-plan-media
+      - business-write-soft-article
+      - business-compose-graphic-content
+      - business-brief-image-creative
+      - business-plan-video-content
+      - content-compliance
+
+  - id: deliverable-sales-pitch-manual
+    title: 项目销售说辞手册
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/execution-deliverables.md
+    section: deliverable-sales-pitch-manual
+    depends_on:
+      - storyline-creation
+      - sales-officer
+      - saletricks
+      - sales-talk-coach
+      - business-manage-sales-reception
+      - content-compliance
+
+  - id: deliverable-operating-review
+    title: 周度与月度营销经营汇报
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/diagnosis-and-decisions.md
+    section: deliverable-operating-review
+    depends_on:
+      - foundation-project-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - business-analyze-project-health
+      - business-analyze-customer-reservoir
+      - business-plan-pricing-inventory
+      - business-analyze-marketing-expense
+      - marketing-liaison
+
+  - id: deliverable-target-budget-plan
+    title: 营销目标与预算方案
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/management-deliverables.md
+    section: deliverable-target-budget-plan
+    depends_on:
+      - foundation-project-model
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - foundation-financial-standards
+      - business-analyze-market-competition
+      - business-plan-target-budget
+      - business-plan-pricing-inventory
+      - business-analyze-marketing-expense
+
+  - id: deliverable-team-capability-review
+    title: 营销团队能力盘点报告
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P1
+    path: framework/deliverables/management-deliverables.md
+    section: deliverable-team-capability-review
+    depends_on:
+      - foundation-organization-governance
+      - foundation-metric-dictionary
+      - business-manage-team-performance
+      - business-plan-sales
+      - sales-talk-coach
+
+  - id: deliverable-management-decision-brief
+    title: 管理决策请示
+    layer: deliverable
+    kind: orchestrator-skill
+    status: draft
+    priority: P0
+    path: framework/deliverables/management-deliverables.md
+    section: deliverable-management-decision-brief
+    depends_on:
+      - foundation-organization-governance
+      - foundation-financial-standards
+      - foundation-fact-governance
+      - business-analyze-project-health
+      - business-plan-marketing-strategy
+      - marketing-liaison
