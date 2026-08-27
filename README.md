@@ -36,6 +36,7 @@
 | [sales-talk-coach](./sales-talk-coach) | 项目说辞考核和客户接待实战对练 |
 | [saletricks](./saletricks) | 买方异议诊断、销售应答和成交推进 |
 | [storyline-creation](./storyline-creation) | 项目故事定位、营造指引和营销工具包 |
+| [project-value-strategy](./project-value-strategy) | 项目价值点梳理、落地执行与传播转化策略 |
 
 ## 已形成的成果技能
 
