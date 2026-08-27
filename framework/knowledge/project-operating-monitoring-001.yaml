@@ -3,7 +3,7 @@ source:
   title: 项目经营监控、流速与销售质量口径
   provided_by: marketing-lead
   received_at: 2026-07-20
-  updated_at: 2026-07-20
+  updated_at: 2026-07-23
   status: normalized-draft
 
 atom_types:
@@ -15,21 +15,21 @@ atoms:
   - id: OPM-001
     domain: operating-monitoring
     type: enterprise-rule
-    statement: 项目经营状态在每周操盘监控中逐步形成，不单独依靠一次健康度评分；日常至少观察销售流速、指标完成、来访、价格和后续供应。
+    statement: 项目经营分析在每周操盘监控中逐步形成，不采用一次性健康度评分；日常至少观察销售流速、指标完成、来访、价格和后续供应，并为管理关注度复核提供证据。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
     applicability: 项目周度经营监控和阶段复盘
 
   - id: OPM-002
     domain: target-management
     type: enterprise-rule
-    statement: 项目状态优先以年度合约额目标及预计实现情况判断，套数只作为流速和运营效率参考，不作为核心考核指标。
+    statement: 项目长期经营结果以年度合约额目标完成及全年预计实现判断，短期执行以月度销售任务完成及全月预计判断；两者同时管理、相互校验，套数只作为流速和运营效率参考，不替代金额考核。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
     applicability: 年度、月度和周度经营分析
 
   - id: OPM-003
     domain: target-management
     type: enterprise-rule
-    statement: 月度指标是阶段性分解，允许随市场、价格、房源和政策变化；应通过月度完成趋势判断全年风险，不能因单月偏差直接判定项目状态。
+    statement: 月度任务是正式的短期管理目标，应记录完成情况和全月预计；允许按正式机制随市场、价格、房源和政策变化调整并保留版本。月度未完成必须解释原因和补救动作，但单月偏差不自动决定管理关注度，仍需结合年度预计实现和后续压力综合判断。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
     applicability: 月度经营分析
 
@@ -46,7 +46,7 @@ atoms:
     statement: 后续月均合约额要求与近三个月月均合约额的比值原则上最好低于0.8，超过1.2属于危险信号；0.8至1.2区间需结合后续供货、价格、市场和政策判断。
     target_nodes: [foundation-metric-dictionary, business-plan-target-budget, business-analyze-project-health, deliverable-operating-review]
     applicability: 住宅项目年度指标压力判断
-    caveat: 该比值反映完成压力，不单独替代全年预测和项目状态结论。
+    caveat: 该比值反映完成压力，不单独替代年度预测、月度完成和管理关注度综合判断。
 
   - id: OPM-006
     domain: transaction
@@ -58,57 +58,57 @@ atoms:
   - id: OPM-007
     domain: sales-velocity
     type: heuristic
-    statement: 新开盘项目通常观察首开前三天住宅认购套数，100套以上可视为形成基本开盘规模；不同项目可因总体规模达到300套或500套，不以100套替代正式首开目标。
+    statement: 首开业绩窗口为首次开盘日及之后两个自然日（D0-D+2），该窗口内形成的有效认购均计入首开销售业绩；住宅认购100套以上可视为形成基本开盘规模，但不同项目可因总体规模达到300套或500套，不以100套替代正式首开目标。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, deliverable-launch-report, deliverable-launch-price-report]
-    applicability: 新开盘住宅项目
+    applicability: 住宅项目首开业绩统计
 
   - id: OPM-008
     domain: sales-velocity
     type: heuristic
     statement: 持销住宅项目月度认购30至50套通常具备较健康的绝对流速，但仍需满足年度合约额完成和价格利润等经营要求。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-operating-review]
-    applicability: 剩余可售房源不少于50套的持销住宅项目
+    applicability: 全盘剩余住宅套数不少于50套的持销住宅项目
 
   - id: OPM-009
     domain: sales-velocity
     type: heuristic
-    statement: 持销住宅项目月度认购低于20套时，售楼处和团队固定运营成本容易摊薄利润，即使完成阶段目标也不视为健康，应尽可能提速。
+    statement: 持销住宅项目月度认购低于20套时，售楼处和团队固定运营成本容易摊薄利润，常规项目应研判提速空间；已确认利润优先的重点、难点或亏损项目，应按利润边界重新设定流速和价格预期。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-operating-review]
-    applicability: 剩余可售房源不少于50套的持销住宅项目
-    caveat: 存在明确利润压力时可以不降价，但利润约束不将低流速重新定义为健康。
+    applicability: 全盘剩余住宅套数不少于50套的持销住宅项目
+    caveat: 该指标用于判断运营效率和目标压力，不用于自动决定管理关注度。
 
   - id: OPM-010
     domain: sales-velocity
-    type: enterprise-rule
-    statement: 剩余可售房源不少于50套且连续两个月月度认购低于10套时，应作为重难点项目重点关注并进行策略矫正。
+    type: heuristic
+    statement: 全盘剩余住宅套数不少于50套且连续两个月月度认购低于10套时，应触发难题研判和策略复核，但不能仅凭该阈值自动把项目归类为难点。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-distressed-project-plan]
     applicability: 持销住宅项目
 
   - id: OPM-011
     domain: sales-velocity
     type: enterprise-rule
-    statement: 项目剩余可售房源不足50套即进入尾盘管理，不再按正常项目或重难点项目分类，应针对剩余货量结构判断去化难度。
+    statement: 全盘剩余住宅套数严格少于50套时进入尾盘销售阶段，开始重点管理尾货清理和团队调整；尾盘项目仍可具有正常、重点或难点管理关注度。
     target_nodes: [foundation-project-model, business-plan-pricing-inventory, deliverable-tail-inventory-report, deliverable-operating-review]
     applicability: 住宅项目尾盘识别
 
   - id: OPM-012
     domain: sales-velocity
     type: heuristic
-    statement: 重难点项目月度认购10至20套可视为阶段改善达到预期，但不代表项目已经恢复为正常状态。
+    statement: 难点项目月度认购10至20套可作为阶段改善参考，但难点通常已不易解决，应结合利润边界和现实条件设定销售、价格预期；单一流速改善不自动改变管理关注度。
     target_nodes: [foundation-project-model, business-analyze-project-health, deliverable-sustained-sales-report, deliverable-distressed-project-plan]
-    applicability: 已进入重难点管理的持销住宅项目
+    applicability: 已确认为难点关注度的持销住宅项目
 
   - id: OPM-013
     domain: transaction
     type: enterprise-rule
-    statement: 认筹可随时退出，不具备销售效率考核效力，只用于观察客储和客户意向；认购用于日常流速和销售过程考核，退房会扣除定金。
+    statement: 认筹可随时退出，不计入销售业绩，只用于观察客储、客户意向和预计转认购；有效认购套数和金额用于月度销售任务、日常流速及销售过程考核，并反映后续签约储备，退房会扣除定金。
     target_nodes: [foundation-metric-dictionary, foundation-customer-model, business-analyze-customer-reservoir, business-manage-contract-collection]
     applicability: 客储、首开和持销过程管理
 
   - id: OPM-014
     domain: transaction
     type: enterprise-rule
-    statement: 签约以明源签约为主要口径、政府网签为参考，是最重要的销售考核口径；回款由财务重点管理，营销在半年和年度节点重点关注，并将其作为销售质量的检验。
+    statement: 年度正式销售考核以明源签约合约额为主，政府网签为参考；月度同时看认购销售额和明源合约额，认购反映当期销售实现及待签储备，合约额反映正式业绩；回款由财务重点管理，营销在半年和年度节点重点关注，并将其作为销售质量的检验。
     target_nodes: [foundation-metric-dictionary, foundation-financial-standards, business-manage-contract-collection, deliverable-operating-review]
     applicability: 签约、回款和销售质量管理
 
@@ -137,9 +137,9 @@ atoms:
   - id: OPM-018
     domain: operating-monitoring
     type: enterprise-rule
-    statement: 签约周期、退房和回款作为销售质量参考和独立考核，不直接决定项目属于正常、重难点或尾盘，但其异常必须在经营分析中单独提示风险。
+    statement: 签约周期、退房和回款作为销售质量参考和独立考核，不直接决定项目属于正常、重点或难点，也不决定首开、持销或尾盘阶段，但其异常必须在经营分析中单独提示风险。
     target_nodes: [foundation-project-model, foundation-metric-dictionary, business-analyze-project-health, business-manage-contract-collection, deliverable-operating-review]
-    applicability: 项目状态和销售质量并行管理
+    applicability: 销售阶段、管理关注度和销售质量并行管理
 
   - id: OPM-019
     domain: organization
@@ -158,14 +158,14 @@ atoms:
   - id: OPM-021
     domain: weekly-reporting
     type: enterprise-rule
-    statement: 周度汇报先呈现地区层面本周新访、新增销售与认筹金额，再呈现月度指标、已售、认筹、在手、预计销售额、预计合约额和一句话市场判断。
+    statement: 总部周度汇报只用于快速掌握地区和项目的大概经营数据及重点事项，不进行月度级全面分析。地区层面可用本周新访、认购与认筹动态，以及月度认购、签约完成和预计形成概览，但不要求把全部底表字段搬入周报。
     target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
     applicability: 总部地区对接周度简报
 
   - id: OPM-022
     domain: weekly-reporting
     type: enterprise-rule
-    statement: 项目层周报依次汇报来访、销售与认筹及产品构成、月度目标完成和预测、竞品量价及动作、工程展示预售交付节点、本周策略和待支持事项。
+    statement: 总部项目层周报只展开主力贡献、明显偏差、重大变化或临近关键节点的项目，重点说明少量结果数据、重大节点或变化及待支持事项；稳态项目只保留必要数字或一句判断，客户、竞品、货量、价格和动作明细仅在其构成重点事项时展开。
     target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
     applicability: 总部地区对接周度简报逐项目汇报
 
@@ -228,6 +228,174 @@ atoms:
   - id: OPM-031
     domain: weekly-reporting
     type: enterprise-rule
-    statement: 总部周度简报应从地区和项目详细周报中提炼关键信息，保持短、准、可讲，同时允许通过具体房源、价格、客户和动作底表追溯关键结论。
+    statement: 总部周度简报应从地区和项目详细周报中提炼大概数据和重点事项，保持短、准、可讲；详细字段作为追溯底表存在，不代表周度必须逐项汇报，关键结论仍应能追溯到具体房源、价格、客户或动作记录。
     target_nodes: [foundation-fact-governance, marketing-liaison, deliverable-operating-review]
     applicability: 总部地区对接周度汇报质量控制
+
+  - id: OPM-032
+    domain: project-classification
+    type: enterprise-rule
+    statement: 销售阶段仅包括首开、持销和尾盘；售楼处开放、样板房开放、蓄客、认筹、加推和选房属于销售技术动作或关键事件，不作为长期阶段；交付是可与销售阶段并行的独立维度。
+    target_nodes: [foundation-project-model, deliverable-launch-report, deliverable-sustained-sales-report, deliverable-tail-inventory-report]
+    applicability: 项目分类、任务路由和经营汇报
+
+  - id: OPM-033
+    domain: project-management
+    type: enterprise-rule
+    statement: 项目管理关注度分为正常、重点、难点，主要由总部以销售业绩完成情况为首要依据综合判断，其中年度目标及全年预计反映长期结果，月度任务完成及全月预计反映短期执行；所有项目都会投入管理精力，正常项目按常规节奏管理，重点项目因具有重大意义需要总部聚焦，难点项目因已遇到较难解决的问题需要高度关注并采用符合现实的销售和价格预期。重点不等于问题，正常不等于不管，难点也不是健康度评分结果。
+    target_nodes: [foundation-project-model, foundation-organization-governance, business-analyze-project-health, deliverable-operating-review, deliverable-project-diagnosis-report]
+    applicability: 项目分级管理、经营汇报和资源配置
+
+  - id: OPM-034
+    domain: objective-management
+    type: enterprise-rule
+    statement: 大多数项目以销售业绩为主要目标并兼顾利润；个别重点、难点或亏损项目利润压力较大时，可明确让流速让位于利润；政府沟通、配套落地、换地和精装等要求作为个性化专项任务单独管理。
+    target_nodes: [foundation-project-model, foundation-financial-standards, business-plan-marketing-strategy, business-analyze-project-health, deliverable-project-diagnosis-report]
+    applicability: 项目目标、策略取舍、预算和经营诊断
+
+  - id: OPM-035
+    domain: project-governance
+    type: enterprise-rule
+    statement: 首开阶段总部关注售楼处开放、样板房开放、认筹和首次开盘等节点的时间、效果和数据；首开日及之后两个自然日形成的有效认购计入首开销售业绩，D+2结束后进入持销；持销期储客和加推原则上由地区公司自行把控；全盘剩余住宅套数严格少于50套后进入尾盘并重点管理尾货清理和团队调整。
+    target_nodes: [foundation-project-model, foundation-organization-governance, foundation-metric-dictionary, deliverable-launch-report, deliverable-operating-review, deliverable-tail-inventory-report]
+    applicability: 销售阶段切换、总部地区分工和经营汇报
+
+  - id: OPM-036
+    domain: pricing-strategy
+    type: enterprise-rule
+    statement: 项目策略分析应综合市场、客户、销售、货量、价格、利润和专项目标等客观数据，形成维持现状、加快销售、保护价格等情景及项目层面的策略倾向；不得自行判断公司整体业绩缺口、宏观市场方向或跨项目取舍，也不得代替最终经营决策。公司整体缺数或管理层判断市场下行时，集团、地区可决定降价抢跑；公司业绩充足且管理层判断市场好转时，可决定提价或保留货量等待。公司级判断作为正式管理输入单独记录，最终由集团、地区综合决策。
+    target_nodes: [foundation-project-model, foundation-financial-standards, foundation-fact-governance, business-plan-marketing-strategy, business-plan-pricing-inventory, deliverable-project-diagnosis-report]
+    applicability: 项目客观分析、量价情景、调价决策材料和经营复盘
+
+  - id: OPM-037
+    domain: diagnosis-deliverable
+    type: enterprise-rule
+    statement: 项目诊断报告采用五部分结构：管理摘要、目标与缺口、项目客观分析、综合诊断与策略动作、最后小结。数据、来源、专业判断和缺口随项目客观分析直接呈现，不单设数据依据章节；综合诊断与策略动作合并并采用总—分结构，先给总体判断，再按主因分别说明依据、影响和动作；情景比较按需嵌入，不单设必选章节；最后小结归纳项目执行、地区协调和集团决策事项。
+    target_nodes: [business-analyze-project-health, foundation-fact-governance, deliverable-project-diagnosis-report]
+    applicability: 项目诊断报告编排和质量审查
+
+  - id: OPM-038
+    domain: market-analysis
+    type: enterprise-rule
+    statement: 项目客观分析中的市场部分主要使用城市和板块宏观数据：新房按月展示供应量、成交量、成交均价和去化周期，二手房按月展示挂牌量、成交量和成交折扣情况，并形成年度汇总。期间流量年度累计，均价按同口径成交额和面积计算，挂牌量及去化周期等存量或滚动指标不得按月简单相加。
+    target_nodes: [foundation-metric-dictionary, business-analyze-market-competition, deliverable-project-diagnosis-report]
+    applicability: 项目诊断、年度复盘和市场趋势分析
+
+  - id: OPM-039
+    domain: competition-analysis
+    type: enterprise-rule
+    statement: 竞争部分以具体竞品项目为分析单位，至少覆盖项目基本信息、推售动作、产品、价格和经营策略，并结合货量、展示、渠道、流速及动作效果判断其对本项目的影响；竞品分析与城市板块宏观市场数据分开呈现。
+    target_nodes: [business-analyze-market-competition, business-plan-marketing-strategy, deliverable-project-diagnosis-report]
+    applicability: 项目诊断、竞品专题和营销策略
+
+  - id: OPM-040
+    domain: customer-analysis
+    type: enterprise-rule
+    statement: 项目客观分析中的客户部分应重点分析成交客户各项特征和未成交原因，同时结合当前客储量质；成交客户以特征分布和占比呈现，未成交原因允许一客多因但应区分首要原因和伴随原因，并保留客户反馈、销售判断或管理判断等来源。
+    target_nodes: [foundation-customer-model, business-analyze-customer-reservoir, deliverable-project-diagnosis-report]
+    applicability: 项目诊断、客户复盘和客储策略
+
+  - id: OPM-041
+    domain: sales-analysis
+    type: enterprise-rule
+    statement: 项目客观分析中的销售部分先看年度及月度认购、签约目标完成和预计，再按月分析来访、认筹、认购、签约漏斗，并拆解到产品或面积段、楼栋房源、来源渠道和销售人员，识别业绩缺口发生的时间、结构和转化环节。漏斗使用同一客户队列，结构分项与项目总数对账；渠道和人员表现结合客户房源分配及项目条件解释，不按绝对业绩简单排名。
+    target_nodes: [foundation-metric-dictionary, business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-operating-review]
+    applicability: 项目诊断、周月经营分析和销售复盘
+
+  - id: OPM-042
+    domain: inventory-analysis
+    type: enterprise-rule
+    statement: 项目货量使用一张分楼栋统计表并设置全盘合计行，核对各楼栋已售、未售、认筹预留、待推及不可售状态；销控图是单栋或多栋楼的房号明细图，用于观察具体未售房源在楼栋位置和顶底高中低区的分布，不是另一层货量结构。销控图应注明日期、来源和图例，说明已售采用认购还是正式签约口径，并与统计表和房号明细核验；需区分优质房源滞销与抗性房源积压，两类情形对应策略不同。
+    target_nodes: [foundation-metric-dictionary, business-plan-pricing-inventory, deliverable-project-diagnosis-report, deliverable-sustained-sales-report, deliverable-tail-inventory-report]
+    applicability: 项目诊断、货量分析、调价、持销和尾盘去化
+
+  - id: OPM-043
+    domain: price-volume-analysis
+    type: enterprise-rule
+    statement: 项目价格分析必须与成交量联动，根据目的复盘过去整盘累计或近三个月实际成交套数、面积、金额和均价，并按业态、户型拆分。底价和破底折扣情况作为检验过去定价是否合理的参考，破底交易保留底价版本、折扣定义和审批状态，但不直接决定未来价格。后续可实现价格应根据历史量价关系、宏观市场和客户分析综合判断，并同时说明对应成交量、时间范围和假设。
+    target_nodes: [foundation-metric-dictionary, foundation-financial-standards, business-plan-pricing-inventory, deliverable-project-diagnosis-report, deliverable-price-adjustment-proposal]
+    applicability: 项目诊断、价格复盘、调价和推售策略
+
+  - id: OPM-044
+    domain: action-execution-analysis
+    type: enterprise-rule
+    statement: AI通常无法仅凭经营结果知道项目实际执行了哪些营销动作。项目诊断中的动作信息由项目通过现有周月报或专题材料填报，也可由AI从会议纪要、费用记录、媒体渠道后台和系统记录中提取后交项目确认，不另设通用问卷。每项动作必须区分计划、实际执行和执行后结果；缺少填报或可验证记录时标记未知，不得根据销量变化反推动作事实。项目人员可补充非纸面执行和现场效果，并按专业判断记录来源和理由。
+    target_nodes: [foundation-marketing-action-library, foundation-fact-governance, business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-operating-review]
+    applicability: 项目诊断、动作复盘和周月经营分析
+
+  - id: OPM-045
+    domain: action-reporting
+    type: enterprise-rule
+    statement: 项目动作管理汇报只纳入重要节点和关键行动，例如拓客活动、佣金调整、展示开放、认筹启动、开盘加推、价格调整和重大渠道政策，并同步汇报费用、实际效果和客储变化。一般邀约、物料修改、例行培训等细节执行动作无需常规汇报，除非其执行偏差被判断为项目问题的重要原因。
+    target_nodes: [foundation-marketing-action-library, foundation-organization-governance, business-analyze-project-health, deliverable-operating-review, deliverable-project-diagnosis-report]
+    applicability: 项目周月汇报、专题诊断和动作复盘
+
+  - id: OPM-046
+    domain: diagnosis-deliverable
+    type: enterprise-rule
+    statement: 项目诊断报告第四部分采用总—分装配：总述形成整体经营判断、核心矛盾关系和项目策略倾向；分述以每条主因为组织单元，闭合项目证据、专业判断、影响对象或漏斗环节、对应策略、关键行动、项目责任、目标结果、复盘规则及所需地区支持或集团决策，不再按专业模块平铺。第五部分不新增分析，只按项目直接执行、地区协调支持和集团决策审批三类统一收口。
+    target_nodes: [foundation-fact-governance, business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-package]
+    applicability: 项目诊断报告综合诊断、策略动作和最后小结的装配与审查
+
+  - id: OPM-047
+    domain: profit-analysis
+    type: enterprise-rule
+    statement: 项目利润分析以项目净利润、项目毛利润和项目成本利润率为三项核心指标，其他利润率、IRR、投资回收期和现金流指标作为补充延伸。同一比较列内的三项核心指标使用同一财务测算版本，注明项目与业态范围、基准日期和财务确认状态；营销分析不得根据售价、底价或费用自行重建项目利润公式，底价也不得替代利润判断。
+    target_nodes: [foundation-financial-standards, foundation-metric-dictionary, business-analyze-project-health, deliverable-project-diagnosis-report, financial-context]
+    applicability: 项目诊断、量价策略、利润边界判断和经营复盘
+
+  - id: OPM-048
+    domain: profit-analysis
+    type: enterprise-rule
+    statement: 一般项目诊断对项目净利润、毛利润和成本利润率采用三列比较：第一列为正式利润目标或启动会批准基准，第二列为最新动态测算，第三列为策略方案后预测；多个方案分别展示。只有正式目标和启动会基准均缺失时，才使用上一版动态测算作为替代参照并明确标注；仍无参照时不判断改善或恶化。各列项目与业态范围、指标口径、基准日期和财务版本必须可比，否则先说明差异或交财务对齐。
+    target_nodes: [foundation-financial-standards, business-analyze-project-health, deliverable-project-diagnosis-report, financial-context]
+    applicability: 一般项目利润诊断、策略方案比较和经营复盘
+
+  - id: OPM-049
+    domain: special-task-management
+    type: enterprise-rule
+    statement: 政府沟通、配套落地、换地、精装及其他个性化任务作为专项任务与销售业绩、利润目标、销售阶段和交付维度并行管理。每项任务至少记录正式来源、任务目标与成功标准、责任人和协同方、关键节点、当前进展、阻碍、下一动作、地区支持及集团决策事项；进展优先从既有周月报、会议纪要和专题材料提取并交责任人确认，资料不足时标记未知，不从销售、工程或交付结果反推任务事实。
+    target_nodes: [foundation-project-model, business-analyze-project-health, deliverable-project-diagnosis-report, project-context, deliverable-request, deliverable-package, project-weekly-operating-input]
+    applicability: 项目分类、项目诊断、周月跟踪和专项任务决策支持
+
+  - id: OPM-050
+    domain: monthly-reporting
+    type: enterprise-rule
+    statement: 总部月度经营管理对地区和项目进行全面梳理，覆盖目标与预计、市场和竞争、客户和销售、货量和量价、利润、关键动作执行及专项任务，并形成月度判断、下月安排、地区协调和集团决策事项。团队不作为月报固定分析模块，只有出现重大缺岗、编制薪酬变化或关键岗位胜任问题时才提示。月度全面梳理不等于每个项目都必须制作完整专题诊断；持续偏差、重大变化或管理要求出现时，再按需启动五部分项目诊断。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review, deliverable-project-diagnosis-report, marketing-liaison]
+    applicability: 总部月度经营梳理、周月分工和专题诊断触发
+
+  - id: OPM-051
+    domain: monthly-reporting
+    type: enterprise-rule
+    statement: 多个项目位于同一城市时，城市宏观市场数据可以按相同数据期、物业范围、统计口径和来源版本建立共同底盘并复用；板块数据只有在统计边界一致时共享。竞品集合、成交客户特征、未成交原因、当前客储及宏观市场对项目的影响应按项目分别分析。同城项目可以存在竞品或客户交叉，但不得用城市汇总或另一项目结论直接替代。
+    target_nodes: [foundation-organization-governance, business-analyze-market-competition, business-analyze-customer-reservoir, deliverable-operating-review, deliverable-project-diagnosis-report, market-context, customer-context]
+    applicability: 同城多项目月度梳理、市场数据复用、竞品和客户分析
+
+  - id: OPM-052
+    domain: period-comparison
+    type: enterprise-rule
+    statement: 总部月度经营材料的主要时间比较为当月、上月和去年同期，分别用于判断当前结果、月度环比和年度同比；当月未结束时采用同进度日期或明确标记不可直接比较。半年度复盘在上述口径基础上增加近三个月趋势。完成压力比、价格专题等具有独立分析目的的滚动三个月指标仍按其专项口径使用，不要求因此把近三个月设为每月固定章节。
+    target_nodes: [foundation-metric-dictionary, business-analyze-market-competition, business-analyze-customer-reservoir, business-analyze-project-health, deliverable-operating-review, deliverable-semiannual-marketing-report]
+    applicability: 月度经营比较、半年度复盘和滚动窗口使用
+
+  - id: OPM-053
+    domain: profit-monitoring
+    type: enterprise-rule
+    statement: 月度经营梳理需要呈现项目利润约束，但不要求每月重新测算项目净利润、毛利润和成本利润率。没有重大变化时引用最近一次仍适用、经财务确认的版本并注明基准日期、版本和确认状态；发生重大调价、成本变化、货量或业态范围调整、重要资源政策变化、重大经营方案调整，或财务认为原测算已不再适用时，由项目、地区和财务判断是否更新动态测算。已触发变化但尚未更新时标记待财务复核，不得无提示沿用。
+    target_nodes: [foundation-financial-standards, business-analyze-project-health, deliverable-operating-review, deliverable-project-diagnosis-report, financial-context]
+    applicability: 月度利润监控、财务版本沿用和动态测算更新
+
+  - id: OPM-054
+    domain: team-analysis
+    type: enterprise-rule
+    statement: 项目团队通常在半年度复盘、首开准备和项目诊断阶段进行系统分析，内容包括岗位配置及胜任度、销售人数与周均接待和月均成交反映的工作强度、弱项岗位补强、佣金底薪及预计年度薪酬费用。月度经营不固定重复完整团队分析；只有出现重大缺岗、编制或薪酬变化、关键岗位胜任问题时，才作为重点事项提示或按需启动团队分析。
+    target_nodes: [foundation-organization-governance, business-analyze-project-health, business-manage-team-performance, deliverable-launch-report, deliverable-semiannual-marketing-report, deliverable-operating-review, deliverable-project-diagnosis-report]
+    applicability: 团队分析触发、月度汇报、半年度复盘、首开和项目诊断
+
+  - id: OPM-055
+    domain: expense-monitoring
+    type: enterprise-rule
+    statement: 月度经营固定查看当月已确认营销费用、当月营销费率、累计已确认营销费用和累计营销费率，并按实际花费渠道或费用科目拆分。费用效果结合线索、来访、有效客户、客储变化、认购和签约等适用结果分析；当月与累计费率分别使用同周期费用分子和公司正式销售或回款分母，保持跨期、分摊和公式版本一致。渠道归因不足时呈现整体或组合效果、有来源的专业判断及置信度，不制造精确ROI。
+    target_nodes: [foundation-financial-standards, foundation-metric-dictionary, business-analyze-marketing-expense, deliverable-operating-review, deliverable-expense-analysis-report, financial-context, marketing-action-plan]
+    applicability: 月度费用监控、费率分析、渠道效果和费用调整

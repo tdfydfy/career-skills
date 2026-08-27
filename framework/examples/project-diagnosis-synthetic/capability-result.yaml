@@ -32,9 +32,9 @@ findings:
     impact: 下半年现有打法可能无法完成全年目标
     confidence: medium
     evidence_ids: [EX-EV-001, EX-EV-002]
-  - finding: 当前不能判断项目属于正常、重难点或尾盘
-    cause: 缺少年度合约额目标、近三个月月均合约额、剩余有效销售月份及连续两个月认购流速
-    impact: 无法计算后续月均合约额要求及完成压力比
+  - finding: 当前管理关注度尚未由管理主体确认
+    cause: 样例只提供问题信号，没有提供总部关注度判断、原因和复核节点
+    impact: 分析可以提供经营压力和问题证据，但不能自动把项目归类为正常、重点或难点
     confidence: high
     evidence_ids: []
 
@@ -48,7 +48,7 @@ recommendations:
 
 options: []
 decisions_needed:
-  - 是否先补齐年度目标、近期合约额和认购流速，再决定是否启动重难点专项
+  - 是否先补齐年度目标、近期合约额和认购流速，再由管理主体确认关注度及专项安排
 risks:
   - 财务数据不足，不能判断亏损或提出具体降价
 data_gaps:

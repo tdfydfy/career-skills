@@ -16,6 +16,10 @@ diagnosis:
 actions:
   - action_id: null
     title: null
+    management_reporting:
+      required: null
+      key_action_type: acquisition-event | commission-adjustment | display-opening | subscription-start | launch-or-release | price-adjustment | channel-policy | other-important
+      importance_reason: null
     rationale: null
     owner: null
     collaborators: []
@@ -29,6 +33,28 @@ actions:
     lagging_metrics: []
     stop_or_adjust_rule: null
     risks: []
+    execution:
+      status: not-started | in-progress | completed | stopped | unknown
+      actual_start_date: null
+      actual_end_date: null
+      actual_scope: null
+      actual_quantity_or_frequency: null
+      actual_spend: null
+      deliverables_completed: []
+      deviations_from_plan: []
+      reported_by: null
+      reported_at: null
+      evidence_ids: []
+    results:
+      leading_metric_actuals: []
+      lagging_metric_actuals: []
+      customer_reservoir_impact: []
+      customer_feedback: []
+      sales_impact_observed: null
+      attribution_confidence: null
+      project_assessment: null
+      professional_judgment_ids: []
+      next_adjustment: null
 
 dependencies: []
 decisions_needed: []

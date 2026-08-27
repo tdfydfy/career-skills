@@ -66,6 +66,20 @@ competition_and_objections:
   accepted_points: []
   objections: []
 
+transaction_outcome:
+  status: unknown
+  outcome_date: null
+  purchased_unit: null
+  purchased_product: null
+  purchased_area: null
+  purchased_total_price: null
+  payment_method: null
+  primary_non_purchase_reason: null
+  secondary_non_purchase_reasons: []
+  reason_source: customer-feedback | sales-judgment | management-judgment | unknown
+  competitor_selected: null
+  follow_up_status: null
+
 reservoir:
   review_stage: unknown
   intention_rating: unknown
@@ -90,6 +104,15 @@ evidence: []
 assumptions: []
 data_gaps: []
 next_actions: []
+
+cohort_analysis:
+  observation_window: null
+  transacted_customer_count: null
+  transacted_feature_distributions: []
+  non_transacted_customer_count: null
+  primary_non_purchase_reason_distribution: []
+  secondary_non_purchase_reason_distribution: []
+  cross_analysis: []
 
 privacy:
   collection_purpose: null

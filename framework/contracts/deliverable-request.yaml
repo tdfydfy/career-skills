@@ -1,5 +1,5 @@
 contract: deliverable-request
-version: 0.2.0
+version: 0.4.0
 
 deliverable:
   id: null
@@ -8,16 +8,24 @@ deliverable:
 
 purpose:
   business_question: null
-  primary_objective: null
+  management_objective: null
+  profit_requirement: balanced | priority
+  special_tasks:
+    - task_id: null
+      task_goal: null
+      decision_or_support_requested: null
   target_audience: null
   decision_needed: null
+  analysis_scope: project_objective_analysis
+  final_decision_levels: [group, region]
 
 scope:
   project_name: null
   horizon: null
   property_type: null
-  sales_stage: null
-  operating_status: null
+  sales_stage: launch | sustained | tail
+  delivery_active: null
+  management_attention: normal | key | difficult
   organization_level: null
 
 required_capabilities: []
@@ -41,4 +49,5 @@ quality_gates:
   reasoning_closure: true
 
 constraints: []
+management_inputs: []
 approval_route: []

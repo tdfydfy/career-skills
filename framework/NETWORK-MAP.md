@@ -25,10 +25,10 @@
 
 | 领域 | 节点 | 核心输出 |
 | --- | --- | --- |
-| 项目 | `foundation-project-model` | 物业、阶段、健康、战略任务和推售模式 |
+| 项目 | `foundation-project-model` | 物业、销售阶段、交付维度、管理关注度、目标关系和推售模式 |
 | 客户 | `foundation-customer-model` | 画像、动机、MAN和三阶段盘点 |
 | 组织 | `foundation-organization-governance` | 总部地区项目职责、节奏和权限接口 |
-| 指标 | `foundation-metric-dictionary` | 61项指标及计算口径 |
+| 指标 | `foundation-metric-dictionary` | 98项指标及计算口径 |
 | 财务 | `foundation-financial-standards` | 价格、利润、现金流、费用和权限边界 |
 | 投资 | `foundation-investment-criteria` | 投资假设、偏差和敏感性 |
 | 动作 | `foundation-marketing-action-library` | 22项营销动作及适用条件 |
@@ -41,9 +41,9 @@
 
 ### 分析
 
-- `business-analyze-market-competition`：市场、竞品、供应和博弈。
-- `business-analyze-customer-reservoir`：客户量质、未来客储、业绩支撑和客户导向决策。
-- `business-analyze-project-health`：兼容节点ID，实际执行项目经营趋势、年度完成压力、流速预警和问题分析，不单独做健康度评分。
+- `business-analyze-market-competition`：宏观市场月度量价及年度汇总，与竞品项目推售、产品、价格和经营策略分析。
+- `business-analyze-customer-reservoir`：成交客户特征、未成交原因、客户量质、未来客储和业绩支撑。
+- `business-analyze-project-health`：兼容节点ID，实际执行项目经营趋势、年度完成压力、流速预警和问题分析，为关注度复核提供证据，不做健康度评分或自动分类。
 - `business-analyze-marketing-expense`：预算、费率和动作效率。
 
 ### 策略
@@ -93,7 +93,7 @@
 ### 诊断与经营决策
 
 - `deliverable-project-diagnosis-report`：项目诊断报告。
-- `deliverable-distressed-project-plan`：重点难点项目扭转方案。
+- `deliverable-distressed-project-plan`：难点项目扭转方案；重点项目按其重大任务选择对应成果，不默认进入扭转。
 - `deliverable-loss-making-project-plan`：亏损项目经营改善方案。
 - `deliverable-expense-analysis-report`：营销费用分析报告。
 - `deliverable-price-adjustment-proposal`：调价报告与审批请示。
@@ -117,9 +117,9 @@
 | --- | --- | --- |
 | 首开营销策略 | 项目、客户、指标、财务、事实、推导 | 市场、客储、营销策略、价格货量、获客、媒体、渠道、展示、销售 |
 | 首开价格会 | 项目、客户、指标、财务、投资、事实、推导 | 市场、客储、营销策略、价格货量、跨专业协调 |
-| 持销专题 | 项目、指标、动作、财务、事实、组织 | 前期得失、内外部多因诊断、客户、价格货量、价值展示、渠道、激励、房车同售、费用 |
-| 年度 | 项目、指标、财务、投资、组织 | 市场、健康、策略、价格货量、获客、费用 |
-| 项目诊断 | 项目、指标、事实、财务、投资 | 市场、客户、健康、价格货量、费用 |
+| 持销专题 | 项目、指标、动作、财务、事实、组织 | 五部分项目诊断、前期得失、多因诊断、总—分策略动作，以及适用时的房车同售和老业主风险 |
+| 年度 | 项目、指标、财务、投资、组织 | 市场、经营趋势、策略、价格货量、获客、费用 |
+| 项目诊断 | 项目、指标、事实、财务、组织 | 市场、竞争、客户、销售、货量、量价、三项核心利润、团队编制费用、动作执行和专项任务 |
 | 调价 | 指标、事实、财务、组织 | 市场、客户、价格货量、跨专业协调 |
 | 推广 | 事实、文案、图片、视频、合规 | 故事线、推广、媒体、内容生产 |
 

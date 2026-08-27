@@ -3,7 +3,7 @@ source:
   title: 客户盘点与总部地区项目对接管理认知
   provided_by: marketing-lead
   received_at: 2026-07-19
-  updated_at: 2026-07-20
+  updated_at: 2026-07-23
   status: normalized-draft
 
 atom_types:
@@ -177,7 +177,7 @@ atoms:
   - id: GOV-004
     domain: organization
     type: enterprise-rule
-    statement: 地区主要营销考核包括销售合约额、车位商业库存专项指标、销售转化率、营销费率、人员编制和薪酬额度；项目层面重点考核首开完成情况。
+    statement: 地区主要营销考核包括销售合约额、车位商业库存专项指标、销售转化率、营销费率、人员编制和薪酬额度；总部通常不直接干预项目一线团队具体配置，主要通过批复编制和费用边界实施管理，需要突破时按权限提交审批。
     target_nodes: [foundation-organization-governance, foundation-metric-dictionary, deliverable-operating-review]
     applicability: 地区和项目营销经营管理
 
@@ -191,7 +191,7 @@ atoms:
   - id: GOV-006
     domain: organization
     type: enterprise-rule
-    statement: 地区营销组织通常包括地区总经理、营销分管领导、营销部门经理、平台职能、项目操盘手、策划、销售经理、销售、客储和签约岗位。
+    statement: 地区营销组织通常包括地区总经理、营销分管领导、营销部门经理和平台职能；项目团队分析重点覆盖项目操盘手、策划、销售经理、销售、拓客、签约和网络岗位，具体配置由项目、地区安排。
     target_nodes: [foundation-organization-governance, business-plan-sales]
     applicability: 地区和项目营销组织设计
 
@@ -219,11 +219,10 @@ atoms:
 
   - id: GOV-010
     domain: team
-    type: heuristic
-    statement: 成熟团队可侧重授权、目标牵引和新方法激活；成长型团队可边做边教、允许受控试错；执行较弱团队需要细化任务、责任和完成时间。
-    target_nodes: [foundation-organization-governance, business-plan-sales, marketing-liaison]
-    applicability: 团队判断和带教
-    risk_note: 团队成熟度需要基于能力和执行事实评估，不得使用固定身份标签。
+    type: enterprise-rule
+    statement: 项目团队分析不采用抽象成熟度分级，主要查看各岗位人员配置及胜任度；重点结合销售人数、周均接待量和月均成交量判断销售工作强度与饱和度；识别弱项岗位补强需要；同时查看佣金标准、底薪标准和预计年度薪酬费用。销售强度应注明观察周期和成交口径，并结合项目总量及人均值综合判断，不使用未经确认的统一阈值。
+    target_nodes: [foundation-organization-governance, foundation-metric-dictionary, business-analyze-project-health, business-plan-sales, business-manage-team-performance, deliverable-project-diagnosis-report, organization-context]
+    applicability: 项目诊断、团队配置、编制费用管理和补强建议
 
   - id: BENCH-001
     domain: operating-benchmark
@@ -340,7 +339,7 @@ atoms:
     type: heuristic
     statement: 难点、滞销或亏损项目应结合利润、现金流、未来市场和持有成本，在低价走量、减少损失与坚守价格之间比较情景。
     target_nodes: [business-analyze-project-health, deliverable-distressed-project-plan, deliverable-loss-making-project-plan]
-    applicability: 重点难点和亏损项目
+    applicability: 难点、滞销和亏损项目
 
   - id: STRAT-005
     domain: strategy

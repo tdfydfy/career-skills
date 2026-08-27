@@ -1,5 +1,5 @@
 contract: project-context
-version: 0.2.0
+version: 0.5.0
 
 identity:
   project_name: null
@@ -10,24 +10,66 @@ identity:
 
 classification:
   property_type: null
-  sales_stage: null
-  operating_status: normal | key-difficult | tail | undetermined
-  attention_flags: []
-  strategic_role:
-    primary: null
-    secondary: []
+  sales_stage: launch | sustained | tail
+  delivery_context:
+    active: false
+    phase: null
+    milestones: []
+    risks: []
+    cross_function_tasks: []
+  management_attention: normal | key | difficult
+  attention_reasons: []
+  attention_assessed_by: null
+  attention_review_date: null
   market_condition: null
   sales_mode: null
   organization_level: null
 
 objectives:
   horizon: null
-  primary_objective: null
-  target_sales_amount: null
+  sales_objective: primary
+  profit_requirement: balanced | priority
+  sales_expectation: null
+  price_expectation: null
+  special_tasks:
+    - task_id: null
+      task_type: government-coordination | supporting-facility | land-exchange | fit-out | other
+      task_goal: null
+      formal_management_source: null
+      owner: null
+      collaborators: []
+      success_criteria: null
+      status: not-started | in-progress | blocked | completed | unknown
+      current_progress: null
+      milestones:
+        - milestone: null
+          target_date: null
+          actual_date: null
+          status: not-started | in-progress | delayed | completed | unknown
+          evidence_ids: []
+      blockers: []
+      next_action: null
+      regional_support_needed: []
+      group_decisions_needed: []
+      review_date: null
+  target_purchase_amount: null
+  target_contract_amount: null
   target_sales_units: null
   target_collection_amount: null
   target_profit: null
   target_inventory_reduction: null
+
+management_inputs:
+  - level: group | region
+    instruction: null
+    source: null
+    confirmed_by: null
+    effective_until: null
+
+analysis_boundary:
+  scope: project_objective_analysis
+  infer_company_wide_conditions: false
+  final_decision_levels: [group, region]
 
 project_facts:
   location: null
@@ -38,8 +80,49 @@ project_facts:
   display: null
   competition: null
   team: null
+  team_analysis_reference: null
   launch_and_supply_plan: null
-  sales: null
+  sales:
+    annual:
+      target_purchase_amount: null
+      year_to_date_purchase_amount: null
+      forecast_full_year_purchase_amount: null
+      target_contract_amount: null
+      year_to_date_contract_amount: null
+      forecast_full_year_contract_amount: null
+    monthly_series:
+      - month: null
+        purchase_target_amount: null
+        purchase_actual_amount: null
+        purchase_target_achievement_rate: null
+        forecast_purchase_amount: null
+        contract_target_amount: null
+        contract_actual_amount: null
+        target_amount_achievement: null
+        forecast_contract_amount: null
+    funnel_cohorts:
+      - cohort_period: null
+        observation_end_date: null
+        visit_customer_groups: null
+        subscription_customers: null
+        purchase_customers: null
+        contract_customers: null
+        conversion_rates: []
+    breakdowns:
+      by_product_or_area: []
+      by_building_or_unit: []
+      by_source_channel: []
+      by_salesperson: []
+    sales_quality:
+      purchased_pending_signing: []
+      purchase_cancellations: []
+      contract_cancellations: []
+      signing_cycle: null
+    findings:
+      gap_periods: []
+      gap_products_or_units: []
+      gap_channels_or_salespersons: []
+      gap_funnel_stages: []
   collection: null
   marketing_expense: null
   milestones: []

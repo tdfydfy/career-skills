@@ -56,7 +56,7 @@ atoms:
   - id: MSTR-008
     domain: promotion
     type: template-pattern
-    statement: 推广按入市、强蓄、认筹、升筹、开盘等节点组织时，每阶段应明确客户任务、释放信息、展示证据、活动、渠道和转化承接。
+    statement: 推广按入市、强蓄、认筹、升筹、开盘等首开技术节点组织时，每个节点应明确客户任务、释放信息、展示证据、活动、渠道和转化承接。
     target_nodes: [business-plan-promotion, business-plan-media, business-plan-campaign, deliverable-launch-report]
 
   - id: MSTR-009

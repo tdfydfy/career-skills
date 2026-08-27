@@ -1,5 +1,5 @@
 contract: organization-context
-version: 0.2.0
+version: 0.3.0
 
 scope:
   company: null
@@ -24,6 +24,45 @@ organization:
   accountable_owner: null
   roles: []
   vacancies_or_gaps: []
+
+team_analysis:
+  role_staffing:
+    - role: project-lead | planning | sales-manager | sales | customer-acquisition | signing | digital-marketing | other
+      approved_headcount: null
+      actual_headcount: null
+      vacancy_or_gap: null
+      competency_judgment: null
+      judgment_source_or_ids: []
+      business_impact: null
+  sales_capacity:
+    sales_headcount: null
+    weekly_average_reception_groups_total: null
+    weekly_average_reception_groups_per_salesperson: null
+    monthly_average_transaction_units_total: null
+    monthly_average_transaction_units_per_salesperson: null
+    transaction_definition: purchase | mingyuan-contract | other
+    observation_period: null
+    workload_and_saturation_judgment: null
+    evidence_ids: []
+  weak_role_reinforcement:
+    - role: null
+      gap: null
+      affected_work_or_funnel_stage: []
+      reinforcement_option: recruitment | reassignment | coaching | external-support | responsibility-adjustment | other
+      owner: null
+      timing: null
+      headcount_or_expense_impact: null
+  compensation_and_cost:
+    commission_standard: null
+    base_salary_standard: null
+    approved_payroll_budget: null
+    forecast_annual_payroll_expense: null
+    forecast_variance: null
+    definition_and_scope: null
+  headquarters_management:
+    managed_through: [headcount, expense]
+    direct_frontline_configuration_intervention: false
+    exceptions_or_decisions_needed: []
 
 objectives:
   annual: []

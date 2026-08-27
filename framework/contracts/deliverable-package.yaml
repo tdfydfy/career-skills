@@ -1,5 +1,5 @@
 contract: deliverable-package
-version: 0.2.0
+version: 0.5.0
 
 metadata:
   deliverable_id: null
@@ -13,7 +13,10 @@ metadata:
 
 executive_summary:
   conclusion: null
-  business_status: null
+  project_analysis_conclusion: null
+  project_strategy_tendency: null
+  recommendation_scope: project-analysis-only
+  management_attention: null
   primary_conflicts: []
   recommendation: null
   decisions_needed: []
@@ -23,14 +26,36 @@ context:
   scope: null
   constraints: []
 
+special_task_analysis:
+  - task_id: null
+    task_type: government-coordination | supporting-facility | land-exchange | fit-out | other
+    task_goal: null
+    success_criteria: null
+    owner: null
+    status: not-started | in-progress | blocked | completed | unknown
+    current_progress: null
+    milestone_status: []
+    blockers: []
+    next_action: null
+    evidence_ids: []
+    regional_support_needed: []
+    group_decisions_needed: []
+
 strategy_thesis:
   company_intent: null
+  formal_management_inputs: []
   project_task: null
   core_conflicts: []
   core_opportunities: []
   chosen_path: null
   rejected_paths: []
   not_doing: []
+
+decision_boundary:
+  analysis_scope: project_objective_analysis
+  company_wide_conditions_inferred: false
+  final_decision_levels: [group, region]
+  matters_submitted_for_decision: []
 
 reasoning_chain:
   - decision_question: null
@@ -57,6 +82,27 @@ capability_results:
     result_reference: null
     key_findings: []
 
+integrated_diagnosis_and_actions:
+  overall:
+    operating_judgment: null
+    core_conflicts: []
+    conflict_relationship: null
+    project_strategy_tendency: null
+    applicability_and_risks: []
+  cause_branches:
+    - primary_cause: null
+      affected_objects_or_funnel_links: []
+      evidence_ids: []
+      professional_judgment_ids: []
+      project_strategy: null
+      alternative_scenarios: []
+      key_actions: []
+      project_owner: null
+      target_results: []
+      review_rule: null
+      regional_support_needed: []
+      group_decisions_needed: []
+
 strategy:
   objective: null
   choices: []
@@ -78,6 +124,11 @@ risks:
     impact: null
     mitigation: null
     trigger: null
+
+closing_summary:
+  project_execution: []
+  regional_coordination: []
+  group_decisions: []
 
 quality_gates:
   metric_consistency: null

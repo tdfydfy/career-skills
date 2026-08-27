@@ -1,4 +1,4 @@
-version: 0.21.0
+version: 0.22.0
 updated_at: 2026-07-22
 
 network:
@@ -168,8 +168,8 @@ foundation_nodes:
     status: draft
     priority: P0
     path: framework/foundations/project-model.md
-    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001]
-    provides: [project-type-standard, sales-stage-standard, health-status-standard]
+    knowledge_sources: [customer-liaison-notes-001, launch-price-standards-001, project-operating-monitoring-001]
+    provides: [project-type-standard, sales-stage-standard, delivery-context-standard, management-attention-standard, objective-priority-standard]
 
   - id: foundation-customer-model
     title: 客户模型与盘点标准
@@ -769,7 +769,7 @@ deliverable_nodes:
       - business-analyze-marketing-expense
 
   - id: deliverable-distressed-project-plan
-    title: 重点难点项目扭转方案
+    title: 难点项目扭转方案
     layer: deliverable
     kind: orchestrator-skill
     status: draft

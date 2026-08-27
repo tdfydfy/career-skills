@@ -63,8 +63,8 @@ routes:
     primary_node: deliverable-project-diagnosis-report
 
   - id: ROUTE-008
-    intent: 重点难点项目扭转
-    triggers: [困难项目, 重难点项目, 滞销项目扭转, 专项帮扶]
+    intent: 难点项目扭转
+    triggers: [难点项目, 困难项目, 滞销项目扭转, 专项帮扶]
     primary_node: deliverable-distressed-project-plan
 
   - id: ROUTE-009

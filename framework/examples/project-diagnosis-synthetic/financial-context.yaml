@@ -1,7 +1,7 @@
 example: true
 synthetic: true
 contract: financial-context
-version: 0.1.0
+version: 0.7.0
 
 scope:
   company: 示例公司
@@ -21,14 +21,49 @@ price:
   resource_equivalent_cost: null
 
 profit:
+  primary_metrics: [net_profit, gross_profit, cost_profit_rate]
   revenue: null
   direct_cost: null
   tax: null
   allocated_cost: null
+  net_profit: null
   gross_profit: null
+  cost_profit_rate: null
+  finance_confirmation_status: missing
+  supplementary_metrics: []
+  update_governance:
+    monthly_recalculation_required: false
+    latest_confirmed_version_reused: false
+    last_confirmed_at: null
+    material_change_detected: null
+    material_change_types: []
+    material_change_evidence: []
+    finance_update_status: unknown
+    applicability_notes: [示例缺少已确认动态利润版本，不能判断是否可沿用]
   gross_margin: null
   company_profit_metric: null
   loss_status_confirmed_by_finance: false
+  comparison:
+    reference_selection_rule: formal_target_or_startup_approved; fallback_to_previous_dynamic_only_when_both_missing
+    reference:
+      type: unavailable
+      version: null
+      as_of_date: null
+      scope: 下半年可售及待售住宅
+      net_profit: null
+      gross_profit: null
+      cost_profit_rate: null
+      finance_confirmation_status: missing
+    latest_dynamic:
+      version: null
+      as_of_date: 2026-06-30
+      scope: 下半年可售及待售住宅
+      net_profit: null
+      gross_profit: null
+      cost_profit_rate: null
+      finance_confirmation_status: missing
+    proposed_scenarios: []
+    comparability_notes: [无可比基准，不判断利润改善或恶化]
 
 cashflow:
   expected_collection: 175000000
@@ -44,6 +79,25 @@ marketing_expense:
   paid_expense: 5200000
   forecast_expense: 13500000
   expense_rate: null
+  rate_definition:
+    expense_numerator_definition: 财务已确认营销费用
+    sales_or_collection_denominator_definition: 待企业确认
+    allocation_and_cross_period_rule: 待企业确认
+    formula_version: null
+  monthly:
+    month: 2026-06
+    recognized_expense: null
+    rate_denominator_amount: null
+    expense_rate: null
+  cumulative:
+    start_date: null
+    end_date: 2026-06-30
+    recognized_expense: 6500000
+    rate_denominator_amount: null
+    expense_rate: null
+  by_spend_channel: []
+  unallocated_expense: 6500000
+  reconciliation_notes: [缺少渠道费用拆分及正式费率分母]
 
 authority:
   current_authority: 项目无权自行调价或新增渠道佣金

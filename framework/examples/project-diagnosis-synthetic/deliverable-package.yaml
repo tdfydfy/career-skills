@@ -1,7 +1,7 @@
 example: true
 synthetic: true
 contract: deliverable-package
-version: 0.1.0
+version: 0.5.0
 
 metadata:
   deliverable_id: deliverable-project-diagnosis-report
@@ -14,8 +14,8 @@ metadata:
   as_of_date: 2026-06-30
 
 executive_summary:
-  conclusion: 当前存在合约额缺口和库存压力，但缺少年度目标、近三个月合约额及认购流速，暂不能判断是否进入重难点管理
-  business_status: undetermined
+  conclusion: 当前存在合约额缺口和库存压力，但缺少年度目标、近三个月合约额及认购流速；经营分析只能提供关注度复核证据，不能自动确定正常、重点或难点
+  management_attention: null
   primary_conflicts:
     - 目标缺口与库存周期压力
     - 客户和价格证据不足
@@ -28,6 +28,21 @@ context:
   scope: 住宅持销
   constraints: [财务底价和利润缺失]
 
+special_task_analysis:
+  - task_id: EX-ST-001
+    task_type: supporting-facility
+    task_goal: 核验并推进示例配套节点
+    success_criteria: 形成经责任人确认的节点计划
+    owner: 示例项目负责人
+    status: unknown
+    current_progress: null
+    milestone_status: []
+    blockers: [缺少责任人确认的进展材料]
+    next_action: 补充专题纪要并确认节点
+    evidence_ids: []
+    regional_support_needed: []
+    group_decisions_needed: []
+
 evidence:
   facts: [上半年目标完成率60%, 项目库存周期14.4个月]
   metric_snapshot_ids: [target_amount_achievement, inventory_months]
@@ -37,7 +52,30 @@ evidence:
 capability_results:
   - capability_id: business-analyze-project-health
     result_reference: capability-result.yaml
-    key_findings: [合约额缺口, 库存周期压力, 经营状态暂不能判定]
+    key_findings: [合约额缺口, 库存周期压力, 管理关注度待有权主体确认]
+
+integrated_diagnosis_and_actions:
+  overall:
+    operating_judgment: 当前证据支持确认目标与库存压力，但不足以确认客户、价格或执行中的首要根因
+    core_conflicts: [目标缺口与库存周期压力, 客户和价格证据不足]
+    conflict_relationship: 目标缺口是结果，库存压力是经营表现，客户与价格证据缺口阻碍首要根因判断
+    project_strategy_tendency: 先做低成本专项核验，再依据核验结果选择价格、货量和获客动作
+    applicability_and_risks: [适用于财务底价和客户证据补齐前, 不适用于直接形成调价决策]
+  cause_branches:
+    - primary_cause: 客户和价格证据不足导致根因尚不能确认
+      affected_objects_or_funnel_links: [有效客储, 来访至认购转化, 待售库存]
+      evidence_ids: [metric-snapshot.yaml]
+      professional_judgment_ids: []
+      project_strategy: 优先核验有效客储、竞品成交和财务边界
+      alternative_scenarios:
+        - 若核验显示客户承价不足，再比较价格调整与产品价值补强情景
+        - 若核验显示客户量不足但承价稳定，优先调整获客和渠道动作
+      key_actions: [客储盘点, 竞品成交核验, 财务底价和利润确认]
+      project_owner: 示例项目营销负责人
+      target_results: [形成可追溯的客户、竞品和财务核验结论]
+      review_rule: 一周后复盘；未补齐核心证据前不提交具体调价建议
+      regional_support_needed: [协调财务确认底价和利润边界]
+      group_decisions_needed: []
 
 strategy:
   objective: 先核验根因再配置资源
@@ -63,6 +101,11 @@ risks:
     impact: high
     mitigation: 完成财务和客户核验
     trigger: 提交具体调价方案前
+
+closing_summary:
+  project_execution: [完成客储盘点和竞品成交核验]
+  regional_coordination: [协调财务确认底价和利润边界]
+  group_decisions: []
 
 quality_gates:
   metric_consistency: true

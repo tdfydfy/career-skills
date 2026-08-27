@@ -3,6 +3,7 @@ source:
   title: 持销期专题诊断与房车同售认知
   provided_by: marketing-lead
   received_at: 2026-07-20
+  updated_at: 2026-07-23
   status: normalized-draft
 
 atom_types:
@@ -82,3 +83,16 @@ atoms:
     type: enterprise-rule
     statement: 房车同售必须分别设置住宅和车位量价目标、车住销售比、客户意向、财务结果和复盘机制，住宅、车位再汇总到同一项目利润框架。
     target_nodes: [foundation-metric-dictionary, foundation-financial-standards, deliverable-sustained-sales-report, deliverable-parking-commercial-report]
+
+  - id: SUST-013
+    domain: diagnosis
+    type: enterprise-rule
+    statement: 用户、项目负责人、销售经理和一线人员可以提出、补充或修正项目主因；人的现场感知可承载组织状态、客户情绪、真实执行和合作关系等非纸面因素，不因缺少系统或书面材料而机械排除。专业判断应记录提供者、角色、观察场景、理由、范围和置信度，与数据交叉验证；发生冲突时并列呈现并设置验证动作。
+    target_nodes: [foundation-fact-governance, business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-sustained-sales-report]
+
+  - id: SUST-014
+    domain: deliverable-assembly
+    type: enterprise-rule
+    statement: 持销专题诊断沿用管理摘要、目标与缺口、项目客观分析、综合诊断与策略动作、最后小结的五部分项目诊断结构；持销多因素分析、干预阶梯、房车同售、权益组合和老业主风险按适用性嵌入，不单设固定章节。行动周期按项目实际窗口和验证需要确定，不强制采用两周、四周或八周；最后小结只归纳项目执行、地区协调和集团决策事项。
+    target_nodes: [business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-sustained-sales-report]
+    applicability: 持销专题诊断、快速诊断和改善方案编排

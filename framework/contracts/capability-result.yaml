@@ -22,6 +22,15 @@ assumptions:
     reason: null
     impact_if_wrong: null
 
+professional_judgments:
+  - statement: null
+    provided_by: null
+    role: null
+    observed_context: null
+    rationale: null
+    confidence: null
+    evidence_ids: []
+
 findings:
   - finding: null
     cause: null

@@ -1,5 +1,5 @@
 contract: weekly-operating-report
-version: 0.1.0
+version: 0.2.0
 
 metadata:
   region_company: null
@@ -19,7 +19,8 @@ regional_summary:
     new_subscription_amount: null
     combined_purchase_and_subscription_amount: null
   monthly:
-    monthly_sales_target_amount: null
+    monthly_purchase_target_amount: null
+    monthly_contract_target_amount: null
     month_to_date_purchase_amount: null
     month_to_date_subscription_amount: null
     on_hand_amount: null
@@ -108,9 +109,12 @@ projects:
 
 definition_status:
   sales_label: confirmed_as_purchase
+  purchase_amount: confirmed_as_effective_purchase_amount
   weekly_sales_dynamic: purchase_plus_subscription
   subscription: confirmed_as_reference_not_efficiency_assessment
   contract_amount: confirmed_as_mingyuan_formal_signing_amount
+  annual_official_performance: mingyuan_contract_amount
+  monthly_performance_views: [purchase_amount, mingyuan_contract_amount]
 
 data_quality:
   missing_fields: []

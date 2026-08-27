@@ -1,7 +1,7 @@
 example: true
 synthetic: true
 contract: deliverable-request
-version: 0.1.0
+version: 0.4.0
 
 deliverable:
   id: deliverable-project-diagnosis-report
@@ -10,7 +10,12 @@ deliverable:
 
 purpose:
   business_question: 上半年目标仅完成60%，下半年应优先解决什么问题
-  primary_objective: sales
+  management_objective: 销售业绩主导并兼顾利润
+  profit_requirement: balanced
+  special_tasks:
+    - task_id: EX-ST-001
+      task_goal: 核验并推进示例配套节点
+      decision_or_support_requested: 暂无，先补齐责任人确认的进展材料
   target_audience: 地区及总部营销管理层
   decision_needed: 是否启动专项诊断并调整下半年价格货量和获客动作
 
@@ -19,7 +24,8 @@ scope:
   horizon: half-year
   property_type: residential
   sales_stage: sustained
-  operating_status: undetermined
+  delivery_active: false
+  management_attention: null
   organization_level: project
 
 required_capabilities:

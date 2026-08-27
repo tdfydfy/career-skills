@@ -1,5 +1,5 @@
 contract: project-weekly-operating-input
-version: 0.1.0
+version: 0.2.0
 
 metadata:
   region_company: null
@@ -88,8 +88,48 @@ new_media:
   leads_visits_and_sales: []
   next_week_plan: []
 
+key_action_execution_records:
+  - action_id: null
+    key_action_type: acquisition-event | commission-adjustment | display-opening | subscription-start | launch-or-release | price-adjustment | channel-policy | other-important
+    action_title: null
+    importance_reason: null
+    planned_objective: null
+    planned_customer_or_inventory: []
+    planned_period: null
+    execution_status: not-started | in-progress | completed | stopped | unknown
+    actual_execution: null
+    actual_quantity_or_frequency: null
+    expense:
+      approved_or_planned: null
+      actual: null
+      variance_and_notes: null
+    leading_results: []
+    customer_reservoir_results:
+      leads_or_visits: []
+      reservoir_before: []
+      reservoir_after: []
+      new_or_upgraded_reservoir: []
+      subscriptions: []
+    sales_results: []
+    project_effect_assessment: null
+    reported_by: null
+    evidence_references: []
+    deviations_and_reasons: []
+    next_step: null
+
 competitor_updates: []
 project_nodes: []
+special_task_updates:
+  - task_id: null
+    status: not-started | in-progress | blocked | completed | unknown
+    progress_this_week: null
+    milestone_change: null
+    new_or_resolved_blockers: []
+    next_action: null
+    owner: null
+    evidence_references: []
+    regional_support_needed: []
+    group_decisions_needed: []
 support_needed: []
 regional_management_notes: []
 

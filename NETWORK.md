@@ -16,7 +16,7 @@
 执行结果、复盘数据和新案例回流基础能力层
 ```
 
-现有技能保持原目录、原名称和原内容不变，通过注册表接入网络。
+现有技能保持原目录、原名称和独立使用方式，通过注册表接入网络；与公共口径和高频成果直接相关的接口按实际使用逐步校准。
 
 ## 2. 三层定义
 
@@ -24,7 +24,7 @@
 
 基础能力层回答“依据什么标准工作”，包括：
 
-- 项目分类、物业类型、营销阶段和经营健康度。
+- 项目分类、物业类型、销售阶段、交付维度和管理关注度。
 - 指标口径、财务标准、投资标尺和审批边界。
 - 项目、客户、市场、货量、价格和费用的数据结构。
 - 营销动作库以及动作适用条件。
@@ -85,13 +85,14 @@
 ```yaml
 horizon: annual | half-year | quarter | month | campaign
 property_type: residential | parking | commercial | mixed
-sales_stage: pre-launch | launch | sustained | tail | delivery
-operating_status: normal | key-difficult | tail | undetermined
-primary_objective: sales | cashflow | profit | inventory | brand
+sales_stage: launch | sustained | tail
+delivery_active: true | false
+management_attention: normal | key | difficult
+profit_requirement: balanced | priority
 organization_level: project | regional | headquarters
 ```
 
-场景参数用于选择业务模块和参考资料，不应直接产生大量重复技能。
+销售阶段、交付维度和管理关注度相互独立。项目默认以销售业绩为主并兼顾利润；个别重点、难点或亏损项目可明确利润优先，政府沟通、配套落地、换地、精装等个性化要求另列专项任务。场景参数用于选择业务模块和参考资料，不应直接产生大量重复技能。
 
 ## 5. 公共数据契约
 
@@ -161,7 +162,7 @@ career-skills/
 2. 判断它应是共享知识模块、业务技能还是成果编排技能。
 3. 确认没有与现有节点重复后，再初始化技能目录。
 4. 使用公共契约定义输入输出。
-5. 添加真实业务样例并验证。
+5. 使用虚构案例或具体成果任务中获授权的项目资料验证。
 6. 通过验收后，把状态从 `planned` 更新为 `active`。
 
 ## 7. 成果技能运行顺序
@@ -195,7 +196,7 @@ career-skills/
 | `active` | 已验证，可投入使用 |
 | `deprecated` | 停止新增使用，等待迁移 |
 
-当前阶段已完成网络骨架、基础标准、业务工作流和成果编排草案，不改造现有技能。草案经企业校准和真实案例前测后，再逐个初始化为独立技能。
+当前阶段已完成网络骨架、基础标准、业务工作流和成果编排草案。现有技能保持独立可用，并按公共口径和成果接口逐步校准；草案经企业口径校准和适用场景验证后，再根据复用价值决定是否初始化为独立技能。
 
 ## 9. 当前覆盖与校准
 

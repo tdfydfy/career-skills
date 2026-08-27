@@ -31,13 +31,25 @@ standard_dimensions:
   - property_type
   - sales_stage
   - building
+  - unit_id
+  - floor_zone
   - product_type
   - area_band
   - source_channel
+  - salesperson
   - customer_segment
   - period
 
 metrics:
+  - id: target_purchase_amount
+    title: 认购销售额目标
+    category: target
+    definition: 指定周期内要求实现的有效认购金额目标，主要用于月度短期销售任务管理。
+    unit: yuan
+    formula: source_value
+    source_atoms: [OPM-002, OPM-003, OPM-013, OPM-021]
+    status: enterprise-supported-draft
+
   - id: target_contract_amount
     title: 销售合约额目标
     category: target
@@ -142,6 +154,24 @@ metrics:
     unit: unit
     formula: count(unit_id where purchase_status = valid and purchase_date in period)
     source_atoms: [OPM-007, OPM-008, OPM-009, OPM-010, OPM-013]
+    status: enterprise-supported-draft
+
+  - id: purchase_amount
+    title: 认购销售额
+    category: sales-process
+    definition: 指定周期内有效认购对应的成交金额，用于反映当期销售实现和后续签约储备；不替代明源正式签约合约额。
+    unit: yuan
+    formula: sum(purchase_amount where purchase_status = valid and purchase_date in period)
+    source_atoms: [OPM-003, OPM-013, OPM-014, OPM-021]
+    status: enterprise-supported-draft
+
+  - id: purchase_target_achievement_rate
+    title: 认购销售额目标完成率
+    category: performance
+    definition: 指定周期认购销售额相对同期认购销售额目标的完成比例，主要用于月度短期任务管理。
+    unit: rate
+    formula: purchase_amount / target_purchase_amount
+    source_atoms: [OPM-002, OPM-003]
     status: enterprise-supported-draft
 
   - id: purchase_cancellation_units
@@ -402,6 +432,16 @@ metrics:
     formula: net_average_unit_price / approved_target_average_price
     status: baseline-draft
 
+  - id: below_floor_discount_rate
+    title: 破底成交折扣率
+    category: price
+    definition: 对实际净成交价低于成交时适用房号底价的交易，衡量其实际净成交金额相对同批房源底价金额的比例，用于复盘历史定价和破底幅度。
+    unit: rate
+    formula: below_floor_transaction_amount / applicable_approved_floor_amount_for_same_units
+    source_atoms: [OPM-043]
+    status: needs-enterprise-confirmation
+    calibration: 确认破底认定采用认购还是签约净价、优惠资源是否折算、底价版本、审批状态、房源范围和加权方式；没有破底交易时返回null而非100%。
+
   - id: available_inventory_units
     title: 可售库存套数
     category: inventory
@@ -410,6 +450,16 @@ metrics:
     formula: count(unit_id where saleable = true and net_contract_status != valid)
     source_atoms: [PROJ-001, PROJ-002]
     status: enterprise-supported-draft
+
+  - id: full_project_remaining_residential_units
+    title: 全盘剩余住宅套数
+    category: inventory
+    definition: 数据截止时，项目全盘计划销售的住宅中尚未形成有效净成交的房源套数，包括当前可售和尚未推售的剩余住宅，不包含车位、商业及明确不纳入销售范围的住宅。
+    unit: unit
+    formula: count(unit_id where property_type = residential and planned_for_sale = true and net_contract_status != valid)
+    source_atoms: [OPM-011, OPM-035]
+    status: enterprise-supported-draft
+    management_rule: 严格少于50套时进入尾盘销售阶段；等于50套时仍属于持销阶段。
 
   - id: available_inventory_value
     title: 可售库存货值
@@ -511,6 +561,36 @@ metrics:
     source_atoms: [MKT-001]
     status: baseline-draft
 
+  - id: secondhand_active_listing_units
+    title: 二手房有效挂牌套数
+    category: market
+    definition: 指定城市或板块在统计月末处于有效挂牌状态的二手住宅套数，属于时点存量指标。
+    unit: unit
+    formula: count_distinct(secondhand_unit_id where listing_status = active at period_end)
+    source_atoms: [OPM-038]
+    status: needs-enterprise-confirmation
+    calibration: 确认有效挂牌、重复房源、跨平台去重、下架及月末时点规则；年度不得将各月挂牌量直接相加。
+
+  - id: secondhand_transaction_units
+    title: 二手房成交套数
+    category: market
+    definition: 指定城市或板块在统计周期内按统一备案或数据平台口径形成的二手住宅成交套数。
+    unit: unit
+    formula: sum(secondhand_transaction_units in market_scope and period)
+    source_atoms: [OPM-038]
+    status: needs-enterprise-confirmation
+    calibration: 确认成交采用签约、网签、备案或数据平台口径，并保持跨月一致。
+
+  - id: secondhand_transaction_discount_rate
+    title: 二手房成交折扣率
+    category: market
+    definition: 用于反映二手房实际成交价格相对成交前有效挂牌价格的折让程度，优先使用同套房源匹配结果或正式数据源发布值。
+    unit: rate
+    formula: source_value_or_sum(transaction_amount) / sum(last_effective_listing_amount_for_same_units)
+    source_atoms: [OPM-038]
+    status: needs-enterprise-confirmation
+    calibration: 确认挂牌价取首次、末次还是议价前价格，匹配房源范围、加权方式及异常值处理；不可跨数据源直接比较。
+
   - id: launch_supply_units
     title: 首开或加推供应套数
     category: launch
@@ -521,9 +601,9 @@ metrics:
     status: enterprise-supported-draft
 
   - id: opening_three_day_purchase_units
-    title: 首开前三天认购套数
+    title: 首开期认购套数（D0-D+2）
     category: launch
-    definition: 项目首次开盘日起连续三个自然日内形成的有效住宅认购套数。
+    definition: 项目首次开盘日及之后两个自然日（D0-D+2）内形成的有效住宅认购套数，计入首开业绩。
     unit: unit
     formula: count(unit_id where purchase_status = valid and purchase_date between launch_date and launch_date_plus_2_days)
     source_atoms: [OPM-007]
@@ -720,6 +800,36 @@ metrics:
     formula: count(employee_id where employment_status = active)
     status: needs-enterprise-confirmation
 
+  - id: sales_headcount
+    title: 一线销售人数
+    category: organization
+    definition: 指定观察周期内实际承担客户接待和成交工作的平均在岗销售人数。
+    unit: person
+    formula: average(active_frontline_sales_headcount_by_day_or_company_period)
+    source_atoms: [GOV-010]
+    status: needs-enterprise-confirmation
+    calibration: 确认兼职、借调、休假、渠道人员和销售经理是否计入，以及采用日均、周均还是期末人数。
+
+  - id: average_weekly_reception_groups_per_salesperson
+    title: 销售人均周接待组数
+    category: organization-efficiency
+    definition: 指定观察周期内，项目每周平均有效接待客户组数相对同期平均一线销售人数的比值，用于辅助判断工作强度和饱和度。
+    unit: customer_group_per_salesperson_per_week
+    formula: average_weekly_valid_reception_groups / average_sales_headcount
+    source_atoms: [GOV-010]
+    status: needs-enterprise-confirmation
+    calibration: 确认有效接待、自然周、轮班、渠道客户重复到访和销售人数口径；不得脱离项目阶段及客户难度设置统一阈值。
+
+  - id: average_monthly_transaction_units_per_salesperson
+    title: 销售人均月成交套数
+    category: organization-efficiency
+    definition: 指定观察周期内，项目月均成交套数相对同期平均一线销售人数的比值，用于辅助判断产能、工作强度和团队配置。
+    unit: unit_per_salesperson_per_month
+    formula: average_monthly_transaction_units / average_sales_headcount
+    source_atoms: [GOV-010]
+    status: needs-enterprise-confirmation
+    calibration: 必须明确成交采用有效认购还是明源正式签约、退房冲减、观察月份、房源和客户分配以及销售人数口径；不得单独用于个人排名。
+
   - id: payroll_budget
     title: 薪酬额度
     category: organization
@@ -728,6 +838,16 @@ metrics:
     formula: source_value
     source_atoms: [GOV-004]
     status: enterprise-supported-draft
+
+  - id: forecast_annual_payroll_expense
+    title: 预计年度薪酬费用
+    category: organization
+    definition: 按当前及计划编制、底薪、佣金和企业正式薪酬费用范围预测的项目营销团队年度薪酬费用。
+    unit: yuan
+    formula: finance_or_hr_confirmed_forecast_annual_payroll_expense
+    source_atoms: [GOV-004, GOV-010]
+    status: needs-enterprise-confirmation
+    calibration: 确认是否包含奖金、提成、社保公积金、外包人员、跨项目分摊和已发生费用，并与批复薪酬额度使用同一范围。
 
   - id: per_capita_contract_amount
     title: 人均合约额
@@ -756,10 +876,32 @@ metrics:
   - id: forecast_gross_profit
     title: 预计毛利润
     category: finance
-    definition: 预计销售收入扣除企业毛利润口径所包含成本后的利润金额。
+    definition: 同一财务测算版本下，预计销售收入扣除企业毛利润口径所包含成本后的利润金额，是项目利润分析的核心指标之一。
     unit: yuan
     formula: forecast_sales_revenue - forecast_total_cost_in_gross_profit_scope
+    source_atoms: [OPM-047]
     status: needs-enterprise-confirmation
+    calibration: 由财务确认毛利润成本范围、项目与业态范围、基准日期和版本；营销侧不得自行定义成本范围。
+
+  - id: forecast_net_profit
+    title: 预计项目净利润
+    category: finance
+    definition: 同一财务测算版本下，按企业项目净利润口径计算的预计利润金额，是项目利润分析的核心指标之一。
+    unit: yuan
+    formula: finance_confirmed_project_net_profit
+    source_atoms: [OPM-047]
+    status: needs-enterprise-confirmation
+    calibration: 由财务确认净利润成本范围、计息及税费口径、项目与业态范围、基准日期和版本；营销侧不得自行重建公式。
+
+  - id: forecast_cost_profit_rate
+    title: 预计项目成本利润率
+    category: finance
+    definition: 同一财务测算版本下，按企业正式成本利润率口径计算的项目利润率，是项目利润分析的核心指标之一。
+    unit: rate
+    formula: finance_confirmed_project_cost_profit_rate
+    source_atoms: [OPM-047]
+    status: needs-enterprise-confirmation
+    calibration: 由财务确认利润分子、成本分母、计息及税费口径、项目与业态范围、基准日期和版本；营销侧不得自行定义公式。
 
   - id: forecast_gross_margin
     title: 预计毛利率

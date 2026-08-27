@@ -1,30 +1,30 @@
-version: 0.3.0
-updated_at: 2026-07-20
+version: 0.4.0
+updated_at: 2026-07-23
 
 status_values: [missing, partial, provided, validated]
 
 inputs:
   - id: ENT-001
     priority: P0
-    title: 项目阶段正式定义
-    status: missing
-    request: 提供公司项目启动、蓄客、认筹、首开、持销、尾盘和交付的正式名称及进入退出节点。
-    accepted_formats: [制度文件, 流程图, 会议模板, 文字说明]
+    title: 销售阶段与交付维度
+    status: partial
+    request: 已确认销售阶段仅包括首开、持销、尾盘；售楼处开放、样板房开放、蓄客、认筹和加推属于技术动作或事件；首开日及之后两个自然日计入首开业绩，随后进入持销；全盘剩余住宅套数严格少于50套时进入尾盘；交付为可与销售阶段并行的独立维度。仍需共创首开筹备正式起点及交付维度细分状态。
+    accepted_formats: [共创确认, 文字说明]
     affects: [foundation-project-model, deliverable-launch-report, deliverable-sustained-sales-report]
 
   - id: ENT-002
     priority: P0
-    title: 项目健康度阈值
-    status: missing
-    request: 提供正常、承压、困难、亏损项目的现行认定规则、观察周期和升级机制。
-    accepted_formats: [项目分级制度, 经营预警表, 真实案例]
+    title: 项目管理关注度
+    status: partial
+    request: 已确认关注度分为正常、重点、难点，主要由总部以销售业绩完成情况为首要依据综合判断；所有项目都会投入管理精力，正常项目按常规节奏管理，重点项目因重大意义需要总部聚焦，难点项目因难题已较难解决而需要高度关注并合理调整销售和价格预期。仍需共创复核频次、升级降级和退出机制。
+    accepted_formats: [共创确认, 文字说明]
     affects: [business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-distressed-project-plan]
 
   - id: ENT-003
     priority: P0
     title: 经营指标正式口径
     status: partial
-    request: 已提供持销来访成交约10%、首开来访认筹约15%、认筹成交约60%的经验基准；仍需确认合约额、成交、转化率、去化率、签约和回款的正式分子、分母、状态、观察窗口及历史分布。
+    request: 已确认年度正式考核以明源合约额为主；月度同时管理认购销售额和合约额，认购反映当期销售实现及待签储备，合约额反映正式业绩；年度与月度同时管理、相互校验，认筹不计入销售业绩。已提供持销来访成交约10%、首开来访认筹约15%、认筹成交约60%的经验基准。仍需继续共创转化率、去化率、签约和回款的正式分子、分母、状态及观察窗口。
     accepted_formats: [经营报表, 指标字典, 系统字段表]
     affects: [foundation-metric-dictionary, business-analyze-project-health, deliverable-operating-review]
 
@@ -64,7 +64,7 @@ inputs:
     priority: P0
     title: 营销费用口径
     status: partial
-    request: 已提供整盘营销费率约2.5%、首开阶段可适度至约3%并后续压降的经验基准；仍需提供费用科目、预算、承诺、确认、支付、分摊、费率分母和跨期规则。
+    request: 已提供整盘营销费率约2.5%、首开阶段可适度至约3%并后续压降的经验基准；已确认月度固定查看当月费用、当月费率、累计费用、累计费率，并按具体花费渠道结合客户、客储和销售结果分析效果。仍需提供正式费用科目、预算、承诺、确认、支付、分摊、费率分母、跨期规则和渠道归因窗口。
     accepted_formats: [预算模板, 费用台账, 财务科目表]
     affects: [foundation-financial-standards, business-analyze-marketing-expense, deliverable-expense-analysis-report]
 
@@ -112,16 +112,16 @@ inputs:
     priority: P0
     title: 常用成果正式模板
     status: partial
-    request: 已提供首开价格报告25页文字模板及项目营销策略报告文字模板；仍需提供两类报告的原始PPT版式资产，以及年度、半年度、持销、诊断、调价、费用和周月汇报模板。
+    request: 已提供首开价格报告25页文字模板、项目营销策略报告文字模板和总部周度简报文字模板；已确认总部周度只看大概数据和重点事项，月度进行全面经营梳理。仍需提供两类首开报告的原始PPT版式资产，以及年度、半年度、持销、诊断、调价、费用和月度汇报正式模板。
     accepted_formats: [PPT, Word, Excel, PDF]
     affects: [deliverable-launch-report, deliverable-launch-price-report, deliverable-annual-marketing-report, deliverable-operating-review]
 
   - id: ENT-015
     priority: P0
-    title: 正常和异常项目样例
+    title: 项目诊断案例校准
     status: missing
-    request: 各提供一个正常、承压、困难和亏损项目的脱敏事实、判断、动作和结果。
-    accepted_formats: [复盘报告, 会议纪要, 脱敏数据包]
+    request: 不作为基础信息和企业口径确认的前置材料。执行具体项目诊断报告或成果前测时，再按任务需要引用不同管理关注度、业绩表现和利润状态项目的现有事实、判断、动作与结果；优先使用已有周月报、台账、会议纪要、专题材料和复盘报告，不另行发放通用问卷。
+    accepted_formats: [具体报告资料, 项目周月报, 系统台账, 复盘报告, 会议纪要, 专题材料]
     affects: [business-analyze-project-health, deliverable-project-diagnosis-report, deliverable-loss-making-project-plan]
 
   - id: ENT-016
@@ -135,10 +135,10 @@ inputs:
   - id: ENT-017
     priority: P1
     title: 营销动作历史效果
-    status: missing
-    request: 提供渠道、媒体、活动、地推、老带新、直播和展示投入的历史目标、费用和结果。
-    accepted_formats: [活动复盘, 投放报表, 渠道台账]
-    affects: [foundation-marketing-action-library, business-plan-customer-acquisition, business-analyze-marketing-expense]
+    status: partial
+    request: 已确认AI无法仅凭经营结果获知项目实际动作，具体项目诊断时由项目在现有周月报或专题材料中填报，或由AI从会议纪要、费用、媒体渠道后台和系统记录中提取后交项目确认；计划、实际执行和结果必须分开。管理汇报只纳入拓客活动、佣金调整、展示开放、认筹启动等重要节点和关键行动，并同步费用、效果和客储数据，一般执行细节无需汇报。仍需确认公司现有关键动作字段、责任人和数据来源映射。
+    accepted_formats: [项目周报, 项目月报, 活动复盘, 投放报表, 渠道台账, 会议纪要]
+    affects: [foundation-marketing-action-library, business-analyze-project-health, business-plan-customer-acquisition, business-analyze-marketing-expense, deliverable-project-diagnosis-report]
 
   - id: ENT-018
     priority: P1
@@ -251,3 +251,11 @@ inputs:
     request: 已确认启动会与首开价格评审会关系、全投资计息简称、回正、精装剔除、价格边界和统一项目利润框架；真实项目使用时仍需财务提供全投资计息及车位测算结果、精装成本和模型版本。
     accepted_formats: [首开价格测算表, 投资测算表, 财务口径说明, 价格审批制度]
     affects: [foundation-financial-standards, foundation-investment-criteria, business-plan-pricing-inventory, deliverable-launch-price-report]
+
+  - id: ENT-032
+    priority: P0
+    title: 项目经营目标与专项任务
+    status: partial
+    request: 已确认多数项目以销售业绩为主并兼顾利润，个别重点、难点或亏损项目可让流速让位于利润。项目分析只综合市场、客户、销售、货量、价格、利润和专项目标等客观数据，形成项目情景和策略倾向；不自行判断公司整体业绩、宏观市场或跨项目取舍。政府沟通、配套落地、换地、精装等专项任务按目标、节点、进展、阻碍、责任和支持单独追踪。公司整体缺数或判断市场下行时可由集团、地区决定降价抢跑，业绩充足且判断市场好转时可决定提价或保留货量等待，最终决策由集团、地区综合作出。仍需共创各级确认权限和最低经营边界。
+    accepted_formats: [共创确认, 文字说明]
+    affects: [foundation-project-model, foundation-financial-standards, foundation-fact-governance, business-plan-marketing-strategy, business-plan-pricing-inventory, deliverable-project-diagnosis-report]

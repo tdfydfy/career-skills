@@ -1,5 +1,12 @@
 contract: market-context
-version: 0.1.0
+version: 0.2.0
+
+context_identity:
+  context_id: null
+  subject_project_name: null
+  applicable_project_names: []
+  prepared_for: city-macro | submarket-macro | project-competition | combined
+  parent_macro_context_ids: []
 
 scope:
   city: null
@@ -9,6 +16,14 @@ scope:
   start_date: null
   end_date: null
   as_of_date: null
+
+reuse_control:
+  city_macro_shareable_across_same_city_projects: true
+  submarket_macro_shareable_only_when_scope_matches: true
+  shared_data_source_and_version: null
+  project_specific_competitor_set_required: true
+  project_specific_market_implication_required: true
+  reuse_notes: []
 
 market_metrics:
   supply_units: null
@@ -21,6 +36,42 @@ market_metrics:
   inventory_months: null
   metric_snapshot_ids: []
 
+monthly_series:
+  - month: null
+    new_home:
+      supply_units: null
+      supply_area: null
+      transaction_units: null
+      transaction_area: null
+      transaction_amount: null
+      average_unit_price: null
+      inventory_months: null
+    secondhand_home:
+      active_listing_units: null
+      transaction_units: null
+      listing_price: null
+      transaction_price: null
+      transaction_discount_rate: null
+    source: null
+    data_status: null
+
+annual_summary:
+  year: null
+  new_home:
+    supply_units: null
+    supply_area: null
+    transaction_units: null
+    transaction_area: null
+    transaction_amount: null
+    weighted_average_unit_price: null
+    year_end_inventory_months: null
+  secondhand_home:
+    year_end_active_listing_units: null
+    average_monthly_active_listing_units: null
+    transaction_units: null
+    weighted_transaction_discount_rate: null
+  aggregation_notes: []
+
 structure:
   by_submarket: []
   by_area_band: []
@@ -30,6 +81,12 @@ structure:
 competitors:
   - project_name: null
     relationship: direct | substitute | reference
+    basic_information:
+      developer: null
+      location: null
+      total_scale: null
+      first_launch_date: null
+      current_sales_stage: null
     property_type: null
     product: null
     price: null
@@ -37,9 +94,21 @@ competitors:
     sales_velocity: null
     display: null
     channel_policy: null
-    recent_actions: []
+    launch_and_release_actions: []
+    marketing_and_sales_actions: []
+    operating_strategy:
+      observed_strategy: null
+      supporting_facts: []
+      inferred_future_actions: []
     data_date: null
     evidence_ids: []
+
+project_competition_scope:
+  subject_project_name: null
+  selection_rule: null
+  included_competitor_names: []
+  excluded_projects_and_reasons: []
+  overlap_with_other_subject_projects: []
 
 future_supply:
   current_competitor_launches: []
@@ -48,11 +117,11 @@ future_supply:
 
 external_factors:
   policies: []
-  secondhand_market: []
   developer_conditions: []
 
 findings:
-  historical_facts: []
+  macro_market_findings: []
+  competitor_findings: []
   structural_opportunities: []
   risks: []
   scenarios: []

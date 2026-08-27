@@ -2,7 +2,7 @@ contract: fact-record
 version: 0.1.0
 
 id: null
-information_type: fact | metric | assumption | observation | inference | forecast | commitment
+information_type: fact | metric | assumption | observation | professional-judgment | inference | forecast | commitment
 statement: null
 
 scope:
@@ -14,7 +14,7 @@ scope:
 
 source:
   title: null
-  source_type: system | document | approval | meeting | interview | field-research | external-data
+  source_type: system | document | approval | project-report | meeting | interview | field-research | external-data
   owner: null
   source_date: null
   retrieved_at: null
@@ -38,3 +38,13 @@ authorization:
   external_use: null
   approved_by: null
   valid_until: null
+
+professional_judgment:
+  provided_by: null
+  role: null
+  direct_participant_or_observer: null
+  observed_context: null
+  rationale: null
+  applicable_scope: null
+  corroborating_evidence_ids: []
+  conflicting_evidence_ids: []

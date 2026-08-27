@@ -1,5 +1,5 @@
 contract: financial-context
-version: 0.3.0
+version: 0.7.0
 
 scope:
   company: null
@@ -19,16 +19,66 @@ price:
   proposed_net_amount: null
   approved_floor_amount: null
   resource_equivalent_cost: null
+  historical_floor_price_version: null
+  below_floor_transaction_units: null
+  below_floor_discount_rate: null
+  below_floor_discount_rate_definition: null
+  below_floor_approval_status: null
 
 profit:
+  primary_metrics: [net_profit, gross_profit, cost_profit_rate]
   revenue: null
   direct_cost: null
   tax: null
   allocated_cost: null
+  net_profit: null
   gross_profit: null
+  cost_profit_rate: null
+  finance_confirmation_status: null
+  supplementary_metrics: []
+  update_governance:
+    monthly_recalculation_required: false
+    latest_confirmed_version_reused: null
+    last_confirmed_at: null
+    material_change_detected: null
+    material_change_types: []
+    material_change_evidence: []
+    finance_update_status: not-needed | review-needed | update-requested | updated | unknown
+    applicability_notes: []
   gross_margin: null
   company_profit_metric: null
   loss_status_confirmed_by_finance: null
+  comparison:
+    reference_selection_rule: formal_target_or_startup_approved; fallback_to_previous_dynamic_only_when_both_missing
+    reference:
+      type: formal_target | startup_approved | previous_dynamic | unavailable
+      version: null
+      as_of_date: null
+      scope: null
+      net_profit: null
+      gross_profit: null
+      cost_profit_rate: null
+      finance_confirmation_status: null
+    latest_dynamic:
+      version: null
+      as_of_date: null
+      scope: null
+      net_profit: null
+      gross_profit: null
+      cost_profit_rate: null
+      finance_confirmation_status: null
+    proposed_scenarios:
+      - scenario_id: null
+        version: null
+        as_of_date: null
+        scope: null
+        net_profit: null
+        gross_profit: null
+        cost_profit_rate: null
+        change_from_reference: []
+        change_from_latest_dynamic: []
+        finance_confirmation_status: null
+    comparability_notes: []
 
 cashflow:
   expected_collection: null
@@ -44,6 +94,39 @@ marketing_expense:
   paid_expense: null
   forecast_expense: null
   expense_rate: null
+  rate_definition:
+    expense_numerator_definition: null
+    sales_or_collection_denominator_definition: null
+    allocation_and_cross_period_rule: null
+    formula_version: null
+  monthly:
+    month: null
+    recognized_expense: null
+    rate_denominator_amount: null
+    expense_rate: null
+  cumulative:
+    start_date: null
+    end_date: null
+    recognized_expense: null
+    rate_denominator_amount: null
+    expense_rate: null
+  by_spend_channel:
+    - channel_or_category: null
+      recognized_expense: null
+      share_of_total_expense: null
+      leads: null
+      new_visit_groups: null
+      valid_customer_groups: null
+      reservoir_changes: []
+      purchase_units: null
+      purchase_amount: null
+      contract_amount: null
+      attribution_window: null
+      attribution_confidence: null
+      effect_assessment: null
+      evidence_ids: []
+  unallocated_expense: null
+  reconciliation_notes: []
 
 authority:
   current_authority: null
